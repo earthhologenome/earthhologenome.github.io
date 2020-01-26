@@ -44,8 +44,8 @@
     "": "on",
     "robotsSwitcher": false,
     "sitemapSwitcher": false,
-    "sitemapSwitcherAuto": false,
-    "siteUrl": "undefined",
+    "sitemapSwitcherAuto": true,
+    "siteUrl": "",
     "screenshot": "screenshot.png",
     "modified": "2019-12-31T08:02:46.000Z"
   },
