@@ -3612,49 +3612,6 @@ section.lazy-placeholder:after {
     height: calc(100% - 56px);
   }
 }
-.cid-rFxd3Y3bmc {
-  padding-top: 30px;
-  padding-bottom: 15px;
-  background-color: #232323;
-}
-.cid-rFxd3Y3bmc .mbr-section-subtitle {
-  color: #efefef;
-}
-.cid-rFxd3Y3bmc .media-row {
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-}
-.cid-rFxd3Y3bmc .team-item {
-  transition: all .2s;
-  margin-bottom: 2rem;
-}
-.cid-rFxd3Y3bmc .team-item .item-image img {
-  width: 100%;
-}
-.cid-rFxd3Y3bmc .team-item .item-name p {
-  margin-bottom: 0;
-}
-.cid-rFxd3Y3bmc .team-item .item-role p {
-  margin-bottom: 0;
-}
-.cid-rFxd3Y3bmc .team-item .item-social {
-  display: -webkit-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  -webkit-flex-wrap: wrap;
-  -webkit-justify-content: center;
-}
-.cid-rFxd3Y3bmc .team-item .item-social .socicon {
-  color: #232323;
-  font-size: 17px;
-}
-.cid-rFxd3Y3bmc .team-item .item-caption {
-  background: #efefef;
-}
-.cid-rFxd3Y3bmc H2 {
-  color: #ffffff;
-}
 .cid-rFP7oPvuwl {
   padding-top: 30px;
   padding-bottom: 15px;
@@ -14323,6 +14280,14 @@ section.lazy-placeholder:after {
 }
 .cid-rOH2hRX3Qa .card-title {
   text-align: center;
+}
+.cid-rOLDG6VxG3 {
+  padding-top: 15px;
+  padding-bottom: 0px;
+  background-color: #ffffff;
+}
+.cid-rOLDG6VxG3 .mbr-section-subtitle {
+  color: #767676;
 }
 .cid-rOH2QeQfjZ {
   padding-top: 0px;
