@@ -17143,6 +17143,27 @@ section.lazy-placeholder:after {
 .cid-scU5YaoTVf .mbr-section-subtitle {
   color: #767676;
 }
+.cid-scUGaxFmku {
+  background: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 30px;
+}
+.cid-scUGaxFmku .image-block {
+  margin: auto;
+}
+.cid-scUGaxFmku figcaption {
+  position: relative;
+}
+.cid-scUGaxFmku figcaption div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .cid-scUGaxFmku .image-block {
+    width: 100% !important;
+  }
+}
 .cid-scU5F0YqM0 {
   background-image: url("../../../assets/images/mbr-1920x1271.jpg");
 }
