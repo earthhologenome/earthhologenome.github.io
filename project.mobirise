@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "Earth HoloGenome Initiative ",
-    "currentPage": "ecosystem_ontology.html",
+    "currentPage": "metadata.html",
     "theme": {
       "name": "mobirise4",
       "title": "Mobirise 4",
@@ -40,7 +40,7 @@
     "path": "@PROJECT_PATH@",
     "siteFonts": [],
     "versionFirst": "4.7.6",
-    "uniqCompNum": 492,
+    "uniqCompNum": 493,
     "versionPublish": "4.11.2",
     "favicon": "@PROJECT_PATH@/assets/images/logo-circle-128x128.png",
     "": "on",
@@ -19972,52 +19972,50 @@
           "_styles": {
             "padding-top": "(@paddingTop * 15px)",
             "padding-bottom": "(@paddingBottom * 15px)",
-            "background-color": "@bgColor",
-            ".counter-container": {
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value"
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)"
+            },
+            ".card-box": {
+              "background-color": "@cardsBg",
+              "padding": "2rem"
+            },
+            "h4": {
+              "font-weight": "500",
+              "margin-bottom": "0",
+              "text-align": "left"
+            },
+            "p": {
               "color": "#767676",
-              "ol": {
-                "margin-bottom": "0",
-                "li": {
-                  "margin-bottom": "1rem"
-                },
-                "& when (@stylizedCounters)": {
-                  "counter-reset": "myCounter",
-                  "li": {
-                    "list-style": "none",
-                    "padding-left": ".5rem",
-                    "&:before": {
-                      "position": "absolute",
-                      "left": "0px",
-                      "margin-top": "-10px",
-                      "counter-increment": "myCounter",
-                      "content": "counter(myCounter)",
-                      "display": "inline-block",
-                      "text-align": "center",
-                      "margin": "5px 10px",
-                      "line-height": "40px",
-                      "transition": "all .2s",
-                      "color": "contrast(@counterColor)",
-                      "background": "@counterColor",
-                      "width": "40px",
-                      "height": "40px",
-                      "border-radius": "50%",
-                      "& when (@squareCounters)": {
-                        "border-radius": "0"
-                      }
-                    }
-                  }
-                }
+              "text-align": "left"
+            },
+            ".card-wrapper": {
+              "position": "relative",
+              "box-shadow": "0px 0px 0px 0px rgba(0, 0, 0, 0)",
+              "transition": "box-shadow 0.3s",
+              "&:hover": {
+                "box-shadow": "0px 0px 30px 0px rgba(0, 0, 0, 0.05)",
+                "transition": "box-shadow 0.3s"
               }
+            },
+            ".card-img": {
+              "position": "absolute",
+              "top": "0",
+              "left": "0",
+              "width": "100%",
+              "overflow": "hidden"
             }
           },
-          "_name": "content11",
-          "_customHTML": "<section class=\"mbr-section article content11\">\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"2\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"0\">\n        <input type=\"checkbox\" title=\"Stylized Counters\" name=\"stylizedCounters\" checked>\n        <input type=\"checkbox\" title=\"Square Counters\" name=\"squareCounters\" condition=\"stylizedCounters\">\n        <input type=\"color\" title=\"Counter Color\" name=\"counterColor\" value=\"#8bc61d\" condition=\"stylizedCounters\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters> \n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"mbr-text counter-container col-12 col-md-8 mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".mbr-text\" data-multiline mbr-article>\n                <ol>\n                    <li><b>HIERARCHICAL METADATA STRUCTURE</b><br>The EHI metadata is organised at three hierarchical levels: sampling event, animal specimen and sample. The three levels are inter-related through unique identifiers.<br><a href=\"metadata.html#content4-ck\"><b>LEARN MORE</b></a></li>\n                    <li><b>FIELD METADATA SHEETS</b><br>There are two optional field metadata sheets that enable collecting all the required metadata. The first sheet contains information of the sampling events (A), while the second incorporates information of animal specimens (B1) and samples (B2).<br><a href=\"metadata.html#content4-cl\"><b>LEARN MORE</b></a></li>\n                    <li><b>ELECTRONIC METADATA DOCUMENT<br></b>The metadata information need to be sent electronically to the EHI management team using the standardised metadata sheets, which contain three tabs with information about sampling events (A), animal specimens (B1) and samples (B2).<br><a href=\"metadata.html#content4-cd\"><b>LEARN MORE</b></a></li>\n                </ol>\n            </div>\n        </div>\n    </div>\n</section>",
-          "_cid": "scVw45yg7n",
+          "_name": "features4",
+          "_customHTML": "<section class=\"features4\" group=\"Features\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n    \n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"9\" step=\"1\" value=\"2\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"9\" step=\"1\" value=\"2\">\n        \n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Text\" name=\"showText\" checked>\n        <input type=\"color\" title=\"Cards Bg\" name=\"cardsBg\" value=\"#faffe6\">\n        <select title=\"Cards\" name=\"cardsAmount\">\n            <option value=\"1\">1</option>\n            <option value=\"2\">2</option>\n            <option value=\"3\" selected>3</option>\n            <option value=\"4\">4</option>\n        </select>\n\n        <fieldset type=\"background\" name=\"bg\" parallax>\n            <input type=\"image\" title=\"Background Image\" value=\"../_images/background5.jpg\" parallax>\n            <input type=\"color\" title=\"Background Color\" value=\"#ffffff\" selected>\n            <input type=\"video\" title=\"Background Video\" value=\"https://www.youtube.com/watch?v=36YgDDJ7XSc\">\n        </fieldset>\n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" checked condition=\"bg.type !== 'color'\">\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#cebfaf\" condition=\"overlay && bg.type !== 'color'\">\n        <input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.5\" condition=\"overlay && bg.type !== 'color'\">\n    <!-- End block parameters -->\n    </mbr-parameters>     \n\n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type!== 'color'\" mbr-style=\"{'opacity': overlayOpacity, 'background-color': overlayColor}\">\n    </div>\n    <div class=\"container\">\n        <div class=\"media-container-row\" mbr-cards=\"bootstrap\">\n            <div class=\"card p-3 col-12 col-md-6\" mbr-class=\"{'col-lg-3': cardsAmount == '4',\n                             'col-lg-4': cardsAmount == '3'}\">\n                <div class=\"card-wrapper media-container-row media-container-row\">\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title\">HIERARCHICAL METADATA STRUCTURE</h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\">The EHI metadata is organised at three hierarchical levels: sampling event, animal specimen and sample. The three levels are inter-related through unique identifiers.<br><a href=\"metadata.html#content4-ck\"><b>LEARN MORE</b></a></p>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"card p-3 col-12 col-md-6 col-12 col-md-6\" mbr-if=\"cardsAmount > 1\" mbr-class=\"{'col-lg-3': cardsAmount == '4',\n                             'col-lg-4': cardsAmount == '3'}\">\n                <div class=\"card-wrapper media-container-row\">\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title\">FIELD METADATA SHEETS</h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\">There are two optional field metadata sheets that enable collecting all the required metadata. The first sheet contains information of the sampling events (A), while the second incorporates information of animal specimens (B1) and samples (B2).<br><a href=\"metadata.html#content4-cp\"><b>LEARN MORE</b></a></p>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"card p-3 col-12 col-md-6\" mbr-if=\"cardsAmount > 2\" mbr-class=\"{'col-lg-3': cardsAmount == '4',\n                             'col-lg-4': cardsAmount == '3'}\">\n                <div class=\"card-wrapper media-container-row\">\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title\">ELECTRONIC METADATA DOCUMENT</h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\">The metadata information need to be sent electronically to the EHI management team using the standardised metadata sheets, which contain three tabs with information about sampling events (A), animal specimens (B1) and samples (B2).<br><a href=\"metadata.html#content4-ct\"><b>LEARN MORE</b></a></p>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"card p-3 col-12 col-md-6\" mbr-if=\"cardsAmount > 3\" mbr-class=\"{'col-lg-3': cardsAmount == '4',\n                             'col-lg-4': cardsAmount == '3'}\">\n                <div class=\"card-wrapper media-container-row\">\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title pb-3 mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showTitle\" data-app-selector=\".card-title\">\n                            Unlimited Sites\n                        </h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\">\n                            Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.\n                        </p>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "scVSdmuDaL",
           "_protectedParams": [],
           "_global": false,
           "_once": false,
           "_params": {},
-          "_anchor": "content11-cn"
+          "_anchor": "features4-do"
         },
         {
           "alias": false,
@@ -23369,6 +23367,9 @@
             },
             ".cost": {
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23429,6 +23430,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23489,6 +23493,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23549,6 +23556,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23609,6 +23619,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23669,6 +23682,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23729,6 +23745,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23789,6 +23808,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23849,6 +23871,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
@@ -23909,6 +23934,9 @@
             ".cost": {
               "text-align": "left",
               "color": "#55b4d4"
+            },
+            "H2": {
+              "color": "#507310"
             }
           },
           "_name": "services5",
