@@ -1137,26 +1137,10 @@ section.lazy-placeholder:after {
 .cid-shlN1AIxR1 .card-img {
   color: #c4bc3b;
 }
-.cid-rHj8JtqoS6 {
-  padding-top: 15px;
-  padding-bottom: 0px;
-  background-color: #465052;
-}
-.cid-rHj8JtqoS6 .mbr-section-subtitle {
-  color: #ffffff;
-}
-.cid-rHj8JtqoS6 H2 {
-  color: #8bc61d;
-}
-.cid-rHj99ORovO {
-  padding-top: 0px;
-  padding-bottom: 15px;
-  background-color: #465052;
-}
 .cid-rFs1iHAmUw {
-  padding-top: 30px;
+  padding-top: 0px;
   padding-bottom: 0px;
-  background-color: #ffffff;
+  background-image: url("../../../assets/images/mbr-13-1920x1280.jpg");
 }
 .cid-rFs1iHAmUw h3 {
   text-align: center;
@@ -1166,10 +1150,10 @@ section.lazy-placeholder:after {
   font-weight: 300;
 }
 .cid-rFs1iHAmUw .mbr-content-text {
-  color: #767676;
+  color: #ffffff;
 }
 .cid-rFs1iHAmUw .panel-item {
-  background: #ffffff;
+  background: #465052;
 }
 .cid-rFs1iHAmUw .card {
   word-wrap: break-word;
@@ -1178,9 +1162,15 @@ section.lazy-placeholder:after {
   font-size: 80px;
   color: #149dcc;
 }
+.cid-rFs1iHAmUw H4 {
+  color: #f7ed4a;
+}
+.cid-rFs1iHAmUw H3 {
+  color: #b2ccd2;
+}
 .cid-rHj7LTusZ7 {
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background-color: #ffffff;
 }
 .cid-rFOTQrfq1n {
