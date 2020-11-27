@@ -1137,6 +1137,59 @@ section.lazy-placeholder:after {
 .cid-shlN1AIxR1 .card-img {
   color: #c4bc3b;
 }
+.cid-shx1HBakvB {
+  padding-top: 45px;
+  padding-bottom: 15px;
+  background-color: #232323;
+}
+.cid-shx1HBakvB p {
+  margin-bottom: 0;
+}
+.cid-shx1HBakvB .card-box {
+  z-index: 1;
+  position: relative;
+  background-color: rgba(120, 115, 36, 0.7);
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+.cid-shx1HBakvB .card-box .card-title {
+  pointer-events: all;
+}
+.cid-shx1HBakvB .card-box .mbr-text {
+  pointer-events: all;
+}
+.cid-shx1HBakvB .media-container-row {
+  word-wrap: break-word;
+  word-break: break-word;
+  align-items: stretch;
+  -webkit-align-items: stretch;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.cid-shx1HBakvB .card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.cid-shx1HBakvB .card-img img {
+  z-index: -1;
+  height: 100%;
+  min-width: 100%;
+  width: auto;
+}
+.cid-shx1HBakvB .card-wrap {
+  position: relative;
+}
+.cid-shx1HBakvB .card {
+  padding-bottom: 2rem;
+}
+.cid-shx1HBakvB .mbr-section-title {
+  color: #ffffff;
+}
 .cid-shm4gAXr2a {
   padding-top: 45px;
   padding-bottom: 30px;
@@ -1303,7 +1356,7 @@ section.lazy-placeholder:after {
   stroke: rgba(206, 206, 206, 0.4);
 }
 .cid-rFOWz9eMbz path {
-  stroke: #8bc61d;
+  stroke: #c4bc3b;
 }
 @media (max-width: 991px) and (min-width: 768px) {
   .cid-rFOWz9eMbz .card {
