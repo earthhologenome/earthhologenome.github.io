@@ -1333,49 +1333,6 @@ section.lazy-placeholder:after {
   transition: 0.2s background ease-in-out;
   background: linear-gradient(to left, #787324, #c4bc3b) !important;
 }
-.cid-rFOWz9eMbz {
-  padding-top: 30px;
-  padding-bottom: 0px;
-  background-color: #232323;
-}
-.cid-rFOWz9eMbz h3 {
-  text-align: center;
-  font-weight: 300;
-}
-.cid-rFOWz9eMbz .wrap {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto;
-}
-.cid-rFOWz9eMbz .mbr-section-subtitle {
-  color: #767676;
-}
-.cid-rFOWz9eMbz .card {
-  -webkit-flex-basis: 100%;
-  flex-basis: 100%;
-  word-wrap: break-word;
-}
-.cid-rFOWz9eMbz ellipse {
-  stroke: rgba(206, 206, 206, 0.4);
-}
-.cid-rFOWz9eMbz path {
-  stroke: #c4bc3b;
-}
-@media (max-width: 991px) and (min-width: 768px) {
-  .cid-rFOWz9eMbz .card {
-    -webkit-flex-basis: 33%;
-    flex-basis: 33%;
-  }
-}
-.cid-rFOWz9eMbz .mbr-section-title {
-  color: #ffffff;
-}
-.cid-rFOWz9eMbz P {
-  color: #ffffff;
-}
-.cid-rFOWz9eMbz H4 {
-  color: #ffffff;
-}
 .cid-rFOY1nVIhX {
   background-image: url("../../../assets/images/mbr-1920x1271.jpg");
 }
