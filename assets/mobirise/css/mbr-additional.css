@@ -10313,6 +10313,46 @@ section.lazy-placeholder:after {
 .cid-sngAuYBwzW .team-item .item-caption {
   background: #efefef;
 }
+.cid-svu4Xja3Xx {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #ffffff;
+}
+.cid-svu4Xja3Xx .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-svu4Xja3Xx .media-row {
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+.cid-svu4Xja3Xx .team-item {
+  transition: all .2s;
+  margin-bottom: 2rem;
+}
+.cid-svu4Xja3Xx .team-item .item-image img {
+  width: 100%;
+}
+.cid-svu4Xja3Xx .team-item .item-name p {
+  margin-bottom: 0;
+}
+.cid-svu4Xja3Xx .team-item .item-role p {
+  margin-bottom: 0;
+}
+.cid-svu4Xja3Xx .team-item .item-social {
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -webkit-justify-content: center;
+}
+.cid-svu4Xja3Xx .team-item .item-social .socicon {
+  color: #232323;
+  font-size: 17px;
+}
+.cid-svu4Xja3Xx .team-item .item-caption {
+  background: #efefef;
+}
 .cid-sngCo1lZeA {
   padding-top: 30px;
   padding-bottom: 15px;
