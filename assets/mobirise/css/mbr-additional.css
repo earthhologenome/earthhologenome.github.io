@@ -8641,8 +8641,8 @@ section.lazy-placeholder:after {
   color: #c1c1c1 !important;
 }
 .cid-rFsdJcdT5q {
-  padding-top: 120px;
-  padding-bottom: 30px;
+  padding-top: 135px;
+  padding-bottom: 45px;
   background-image: url("../../../assets/images/mbr-1920x1280.jpeg");
 }
 .cid-rFsdJcdT5q P {
@@ -9213,37 +9213,112 @@ section.lazy-placeholder:after {
 .cid-sddeew8sPY .mbr-text {
   color: #ffffff;
 }
-.cid-rHAuFk6Mgs {
+.cid-sw8CzlyPw5 {
   padding-top: 30px;
+  padding-bottom: 15px;
+  background: linear-gradient(45deg, #f7ed4a, #787324);
+}
+.cid-sw8CzlyPw5 .main {
+  flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+}
+.cid-sw8CzlyPw5 .main .mbr-section-btn {
+  text-align: right;
+}
+.cid-sw8CzlyPw5 .btn {
+  margin: 0 0 .5rem 0;
+}
+.cid-sw8Bcfzwg1 {
+  padding-top: 0px;
   padding-bottom: 0px;
   background-color: #ffffff;
 }
-.cid-rHAuFk6Mgs .mbr-text,
-.cid-rHAuFk6Mgs blockquote {
+.cid-sw8Bcfzwg1 .mbr-section-subtitle {
   color: #767676;
+  font-weight: 300;
 }
-.cid-rHAuFk6Mgs .mbr-text {
-  color: #232323;
+.cid-sw8Bcfzwg1 .media-container-row {
+  word-wrap: break-word;
+  word-break: break-word;
+  align-items: stretch;
+  -webkit-align-items: stretch;
 }
-.cid-rHAvKacU5H {
-  padding-top: 15px;
-  padding-bottom: 0px;
-  background-color: #ffffff;
+.cid-sw8Bcfzwg1 .card_cont {
+  -o-transition: all .5s;
+  -ms-transition: all .5s;
+  -moz-transition: all .5s;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  background-color: #eee;
 }
-.cid-rHAvKacU5H h4 {
-  font-weight: 500;
-  margin-bottom: 0;
-  text-align: left;
-}
-.cid-rHAvKacU5H p {
-  color: #767676;
-  text-align: left;
-}
-.cid-rHAvKacU5H .card-box {
-  padding-top: 2rem;
-}
-.cid-rHAvKacU5H .card-wrapper {
+.cid-sw8Bcfzwg1 .card-front {
+  z-index: 2;
+  padding: 0;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.cid-sw8Bcfzwg1 .card-front img {
+  height: 100%;
+  min-width: 100%;
+  width: auto;
+}
+.cid-sw8Bcfzwg1 .card_back {
+  width: 100%;
+  height: 100%;
+  padding: 30px 30px;
+  color: #ffffff;
+  background-color: #f7ed4a;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.cid-sw8Bcfzwg1 .card {
+  min-height: 300px;
+}
+.cid-sw8Bcfzwg1 .card:hover .card-front {
+  z-index: 1;
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.cid-sw8Bcfzwg1 .card:hover .card_back {
+  z-index: 2;
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+.cid-sw8Bcfzwg1 .builderCard .card_back {
+  border-bottom-left-radius: 100px;
+}
+.cid-sw8Bcfzwg1 .builderCard .card_cont {
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidd;
+  -moz-backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+.cid-sw8Bcfzwg1 H4 {
+  color: #787324;
 }
 #custom-html-63 {
   /* Type valid CSS here */
