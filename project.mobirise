@@ -46,7 +46,7 @@
       }
     ],
     "versionFirst": "4.7.6",
-    "uniqCompNum": 664,
+    "uniqCompNum": 665,
     "versionPublish": "5.2.0",
     "favicon": "@PROJECT_PATH@/assets/images/logo-circle-128x128.png",
     "": "on",
@@ -12090,6 +12090,21 @@
           ],
           "_name": "pro.custom-html",
           "_anchor": "collaborator_map",
+          "_PHPplaceholders": [],
+          "_JSplaceholders": []
+        },
+        {
+          "_customTemplate": true,
+          "_afterNavbarItem": false,
+          "_customHTML": "<!-- Type valid HTML here -->\n\n<div>\n<iframe src=\"http://www.batchgeo.com/map/ehi_collaborators_april2021\" frameborder=\"0\" width=\"100%\" height=\"850\" sandbox=\"allow-top-navigation allow-scripts allow-popups allow-same-origin allow-modals allow-forms\" style=\"border:8px solid #aaa;\"></iframe>\n</div>",
+          "_customCSS": "/* Type valid CSS here */\n\ndiv {\n  padding: 80px 0;\n  color: #777;\n  text-align: center;\n}\np {\n  font-size: 60px;\n  color: #777;\n}",
+          "alias": "code-editor",
+          "_tags": [
+            "Extension"
+          ],
+          "_name": "pro.custom-html",
+          "_sourceTheme": "mobirise4",
+          "_anchor": "custom-html-ig",
           "_PHPplaceholders": [],
           "_JSplaceholders": []
         },
