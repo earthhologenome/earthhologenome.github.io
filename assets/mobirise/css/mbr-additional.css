@@ -9875,7 +9875,7 @@ section.lazy-placeholder:after {
   /* Type valid CSS here */
 }
 #custom-html-ig div {
-  padding: 80px 0;
+  padding: 0px 0;
   color: #777;
   text-align: center;
 }
