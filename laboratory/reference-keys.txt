@@ -34,11 +34,6 @@ stock-reagents-1
 preparation-of-working-reagents-1
 reaction-enhancer
 protocol-3
-end-repair-reaction
-ligation-reaction
-fill-in-reaction
-magnetic-bead-based-purification
-library-qc-qpcr
 library-indexing
 instruments-plasticware-and-reagents-4
 protocol-4
