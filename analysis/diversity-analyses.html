@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Diversity analyses | The Earth Hologenome Initiative Data Analysis Workflow</title>
+  <meta name="description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Diversity analyses | The Earth Hologenome Initiative Data Analysis Workflow" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+  <meta property="og:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="github-repo" content="earthhologenome/EHI_analysis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Diversity analyses | The Earth Hologenome Initiative Data Analysis Workflow" />
+  
+  <meta name="twitter:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="twitter:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+
+<meta name="author" content="Ostaizka Aizpurua" />
+<meta name="author" content="Antton Alberdi" />
+
+
+<meta name="date" content="2023-11-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="taxonomic-composition.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><img src="images/ehi_logo.png" alt="Earth Hologenome Initiative"></li>
+<li align="center"><b>ANALYSIS WORFLOW</b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prepare-the-r-environment"><i class="fa fa-check"></i><b>1.1</b> Prepare the R environment</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-mock-data"><i class="fa fa-check"></i><b>1.2</b> Download mock data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-summary.html"><a href="data-summary.html"><i class="fa fa-check"></i><b>2</b> Data summary</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-summary.html"><a href="data-summary.html#load-the-data"><i class="fa fa-check"></i><b>2.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-summary.html"><a href="data-summary.html#general-data-statistics"><i class="fa fa-check"></i><b>2.2</b> General data statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-samples"><i class="fa fa-check"></i>Number of samples</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-discarded-data"><i class="fa fa-check"></i>Amount of discarded data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-host-data"><i class="fa fa-check"></i>Amount of host data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-metagenomic-data"><i class="fa fa-check"></i>Amount of metagenomic data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-estimated-prokaryotic"><i class="fa fa-check"></i>Amount of estimated prokaryotic</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-summary.html"><a href="data-summary.html#general-mag-statistics"><i class="fa fa-check"></i><b>2.3</b> General MAG statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-mags"><i class="fa fa-check"></i>Number of MAGs</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-mags-without-species-level-annotation"><i class="fa fa-check"></i>Number of MAGs without species-level annotation</a></li>
+<li class="chapter" data-level="2.3.1" data-path="data-summary.html"><a href="data-summary.html#number-of-phylums"><i class="fa fa-check"></i><b>2.3.1</b> Number of phylums</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-summary.html"><a href="data-summary.html#geographic-distribution"><i class="fa fa-check"></i><b>2.4</b> Geographic distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="data-summary.html"><a href="data-summary.html#prepare-the-colour-layout"><i class="fa fa-check"></i><b>2.5</b> Prepare the colour layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mag-catalogue.html"><a href="mag-catalogue.html"><i class="fa fa-check"></i><b>3</b> MAG catalogue</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-phylogeny"><i class="fa fa-check"></i><b>3.1</b> MAG phylogeny</a>
+<ul>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-mag-metadata"><i class="fa fa-check"></i>Prepare MAG metadata</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylogenetic-tree"><i class="fa fa-check"></i>Plot phylogenetic tree</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylum-color-legend"><i class="fa fa-check"></i>Plot phylum color legend</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-quality"><i class="fa fa-check"></i><b>3.2</b> MAG quality</a>
+<ul>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-input-table"><i class="fa fa-check"></i>Prepare input table</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-biplot-chart"><i class="fa fa-check"></i>Create biplot chart</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-boxplot-charts"><i class="fa fa-check"></i>Create boxplot charts</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-composite-figure"><i class="fa fa-check"></i>Create composite figure</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-attributes-of-mags"><i class="fa fa-check"></i><b>3.3</b> Functional attributes of MAGs</a></li>
+<li class="chapter" data-level="3.4" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-ordination-of-mags"><i class="fa fa-check"></i><b>3.4</b> Functional ordination of MAGs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html"><i class="fa fa-check"></i><b>4</b> Sequencing Assessment</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#dna-fractions"><i class="fa fa-check"></i><b>4.1</b> DNA fractions</a></li>
+<li class="chapter" data-level="4.2" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#estimated-vs.-mapped-prokaryotic-fraction"><i class="fa fa-check"></i><b>4.2</b> Estimated vs. mapped prokaryotic fraction</a></li>
+<li class="chapter" data-level="4.3" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#additional-sequencing-needed"><i class="fa fa-check"></i><b>4.3</b> Additional sequencing needed</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="count-data.html"><a href="count-data.html"><i class="fa fa-check"></i><b>5</b> Count data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="count-data.html"><a href="count-data.html#minimum-coverage-filtering"><i class="fa fa-check"></i><b>5.1</b> Minimum coverage filtering</a></li>
+<li class="chapter" data-level="5.2" data-path="count-data.html"><a href="count-data.html#genome-size-normalisation"><i class="fa fa-check"></i><b>5.2</b> Genome size normalisation</a></li>
+<li class="chapter" data-level="5.3" data-path="count-data.html"><a href="count-data.html#count-table"><i class="fa fa-check"></i><b>5.3</b> Count table</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html"><i class="fa fa-check"></i><b>6</b> Taxonomic composition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html#taxonomy-stacked-barplot"><i class="fa fa-check"></i><b>6.1</b> Taxonomy stacked barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diversity-analyses.html"><a href="diversity-analyses.html"><i class="fa fa-check"></i><b>7</b> Diversity analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diversity-analyses.html"><a href="diversity-analyses.html#data-preparation"><i class="fa fa-check"></i><b>7.1</b> Data preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity"><i class="fa fa-check"></i><b>7.2</b> Alpha diversity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-metrics"><i class="fa fa-check"></i>Alpha diversity metrics</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-plots"><i class="fa fa-check"></i>Alpha diversity plots</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-comparisons"><i class="fa fa-check"></i>Alpha diversity comparisons</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#relationship-between-alpha-diversity-and-sequencing-effort"><i class="fa fa-check"></i>Relationship between alpha diversity and sequencing effort</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity"><i class="fa fa-check"></i><b>7.3</b> Beta diversity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity-test"><i class="fa fa-check"></i>Beta diversity test</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity-plot"><i class="fa fa-check"></i>Beta diversity plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Earth Hologenome Initiative Data Analysis Workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="diversity-analyses" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Diversity analyses<a href="diversity-analyses.html#diversity-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This workflow performs diversity analyses of the count data generated through the EHI pipeline. Note the workflow relies on previous scripts, so make sure you go through the general pipeline before starting working on this document.</p>
+<div id="data-preparation" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Data preparation<a href="diversity-analyses.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to avoid issues with diversity computation is recommendable to remove samples and MAGs without count data.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb54-1"><a href="diversity-analyses.html#cb54-1" tabindex="-1"></a><span class="co">#Get list of present MAGs</span></span>
+<span id="cb54-2"><a href="diversity-analyses.html#cb54-2" tabindex="-1"></a>present_MAGs <span class="ot">&lt;-</span> count_table_cov_size <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="diversity-analyses.html#cb54-3" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="fu">rowSums</span>(.[, <span class="sc">-</span><span class="dv">1</span>]) <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb54-4"><a href="diversity-analyses.html#cb54-4" tabindex="-1"></a>        <span class="fu">rownames</span>()</span>
+<span id="cb54-5"><a href="diversity-analyses.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="diversity-analyses.html#cb54-6" tabindex="-1"></a><span class="co">#Remove samples with all zeros (no data after filtering)</span></span>
+<span id="cb54-7"><a href="diversity-analyses.html#cb54-7" tabindex="-1"></a>count_table_cov_size <span class="ot">&lt;-</span> count_table_cov_size <span class="sc">%&gt;%</span></span>
+<span id="cb54-8"><a href="diversity-analyses.html#cb54-8" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">all</span>(. <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb54-9"><a href="diversity-analyses.html#cb54-9" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="diversity-analyses.html#cb54-10" tabindex="-1"></a><span class="co">#Align KEGG annotations with present MAGs and remove all-zero and all-one traits</span></span>
+<span id="cb54-11"><a href="diversity-analyses.html#cb54-11" tabindex="-1"></a>present_MAGs <span class="ot">&lt;-</span> present_MAGs[present_MAGs <span class="sc">%in%</span> <span class="fu">rownames</span>(kegg_table)]</span>
+<span id="cb54-12"><a href="diversity-analyses.html#cb54-12" tabindex="-1"></a>kegg_table_filt <span class="ot">&lt;-</span> kegg_table[present_MAGs,] <span class="sc">%&gt;%</span></span>
+<span id="cb54-13"><a href="diversity-analyses.html#cb54-13" tabindex="-1"></a>            <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">all</span>(. <span class="sc">==</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span>  <span class="co">#remove all-zero modules</span></span>
+<span id="cb54-14"><a href="diversity-analyses.html#cb54-14" tabindex="-1"></a>            <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">all</span>(. <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#remove all-one modules</span></span>
+<span id="cb54-15"><a href="diversity-analyses.html#cb54-15" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="diversity-analyses.html#cb54-16" tabindex="-1"></a><span class="co">#Filter count table to only contain present MAGs after KEGG filtering</span></span>
+<span id="cb54-17"><a href="diversity-analyses.html#cb54-17" tabindex="-1"></a>count_table_cov_size_filt <span class="ot">&lt;-</span> count_table_cov_size[present_MAGs,]</span></code></pre></div>
+</div>
+<div id="alpha-diversity" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Alpha diversity<a href="diversity-analyses.html#alpha-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="alpha-diversity-metrics" class="section level3 unnumbered hasAnchor">
+<h3>Alpha diversity metrics<a href="diversity-analyses.html#alpha-diversity-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb55-1"><a href="diversity-analyses.html#cb55-1" tabindex="-1"></a>q0n <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb55-2"><a href="diversity-analyses.html#cb55-2" tabindex="-1"></a>q1n <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb55-3"><a href="diversity-analyses.html#cb55-3" tabindex="-1"></a>q1p <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">1</span>,<span class="at">tree=</span>tree) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb55-4"><a href="diversity-analyses.html#cb55-4" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">traits2dist</span>(kegg_table_filt, <span class="at">method=</span><span class="st">&quot;gower&quot;</span>)</span>
+<span id="cb55-5"><a href="diversity-analyses.html#cb55-5" tabindex="-1"></a>q1f <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size_filt,<span class="at">q=</span><span class="dv">1</span>,<span class="at">dist=</span>dist) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb55-6"><a href="diversity-analyses.html#cb55-6" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="diversity-analyses.html#cb55-7" tabindex="-1"></a><span class="co"># Merge all metrics</span></span>
+<span id="cb55-8"><a href="diversity-analyses.html#cb55-8" tabindex="-1"></a>alpha_div <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">sample=</span><span class="fu">colnames</span>(count_table_cov_size),<span class="at">richness=</span>q0n,<span class="at">neutral=</span><span class="fu">round</span>(q1n,<span class="dv">3</span>),<span class="at">phylo=</span><span class="fu">round</span>(q1p,<span class="dv">3</span>),<span class="at">func=</span><span class="fu">round</span>(q1f,<span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-9"><a href="diversity-analyses.html#cb55-9" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb55-10"><a href="diversity-analyses.html#cb55-10" tabindex="-1"></a>columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;richness&quot;</span>,<span class="st">&quot;neutral&quot;</span>,<span class="st">&quot;phylo&quot;</span>,<span class="st">&quot;func&quot;</span>,<span class="st">&quot;mapped&quot;</span>,<span class="st">&quot;total&quot;</span>)</span>
+<span id="cb55-11"><a href="diversity-analyses.html#cb55-11" tabindex="-1"></a></span>
+<span id="cb55-12"><a href="diversity-analyses.html#cb55-12" tabindex="-1"></a><span class="co"># Add amount of sequencing data to the table</span></span>
+<span id="cb55-13"><a href="diversity-analyses.html#cb55-13" tabindex="-1"></a>alpha_div <span class="ot">&lt;-</span> alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb55-14"><a href="diversity-analyses.html#cb55-14" tabindex="-1"></a>  <span class="fu">left_join</span>(sequence_fractions, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span> <span class="co">#add sequencing depth information</span></span>
+<span id="cb55-15"><a href="diversity-analyses.html#cb55-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mapped=</span><span class="fu">round</span>(mags_bases<span class="sc">/</span><span class="dv">1000000000</span>,<span class="dv">3</span>)) <span class="sc">%&gt;%</span> <span class="co">#modify depth to million reads</span></span>
+<span id="cb55-16"><a href="diversity-analyses.html#cb55-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">round</span>((mags_bases<span class="sc">+</span>unmapped_bases<span class="sc">+</span>host_bases<span class="sc">+</span>lowqual_bases)<span class="sc">/</span><span class="dv">1000000000</span>,<span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-17"><a href="diversity-analyses.html#cb55-17" tabindex="-1"></a>  <span class="fu">select</span>(sample,richness,neutral,phylo,func,mapped,total) <span class="sc">%&gt;%</span></span>
+<span id="cb55-18"><a href="diversity-analyses.html#cb55-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span><span class="dv">1</span>, as.numeric))</span></code></pre></div>
+</div>
+<div id="alpha-diversity-plots" class="section level3 unnumbered hasAnchor">
+<h3>Alpha diversity plots<a href="diversity-analyses.html#alpha-diversity-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb56-1"><a href="diversity-analyses.html#cb56-1" tabindex="-1"></a>alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="diversity-analyses.html#cb56-2" tabindex="-1"></a>        <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="diversity-analyses.html#cb56-3" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb56-4"><a href="diversity-analyses.html#cb56-4" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">y=</span>sample)) <span class="sc">+</span></span>
+<span id="cb56-5"><a href="diversity-analyses.html#cb56-5" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="at">fill=</span><span class="st">&quot;#6c9ebc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-6"><a href="diversity-analyses.html#cb56-6" tabindex="-1"></a>            <span class="fu">facet_wrap</span>(<span class="sc">~</span>data,  <span class="at">scales=</span><span class="st">&quot;free_x&quot;</span>, <span class="at">ncol=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="diversity-analyses.html#cb56-7" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb56-8"><a href="diversity-analyses.html#cb56-8" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb56-9"><a href="diversity-analyses.html#cb56-9" tabindex="-1"></a>                <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb56-10"><a href="diversity-analyses.html#cb56-10" tabindex="-1"></a>                <span class="at">panel.grid.minor.x =</span> <span class="fu">element_line</span>( <span class="at">size=</span>.<span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span> ),</span>
+<span id="cb56-11"><a href="diversity-analyses.html#cb56-11" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb56-12"><a href="diversity-analyses.html#cb56-12" tabindex="-1"></a>                <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb56-13"><a href="diversity-analyses.html#cb56-13" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb56-14"><a href="diversity-analyses.html#cb56-14" tabindex="-1"></a>            )</span></code></pre></div>
+<p><img src="_main_files/figure-html/alpha_diversity_plot-1.png" width="768" /></p>
+<p>You can also generate an HTML table using knitr.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb57-1"><a href="diversity-analyses.html#cb57-1" tabindex="-1"></a><span class="fu">kable</span>(alpha_div)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sample</th>
+<th align="right">richness</th>
+<th align="right">neutral</th>
+<th align="right">phylo</th>
+<th align="right">func</th>
+<th align="right">mapped</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EHI00696</td>
+<td align="right">190</td>
+<td align="right">101.237</td>
+<td align="right">10.960</td>
+<td align="right">1.518</td>
+<td align="right">3.430</td>
+<td align="right">5.868</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00687</td>
+<td align="right">75</td>
+<td align="right">51.579</td>
+<td align="right">8.942</td>
+<td align="right">1.523</td>
+<td align="right">0.783</td>
+<td align="right">1.297</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00757</td>
+<td align="right">123</td>
+<td align="right">64.415</td>
+<td align="right">11.643</td>
+<td align="right">1.626</td>
+<td align="right">2.567</td>
+<td align="right">4.455</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00686</td>
+<td align="right">82</td>
+<td align="right">17.581</td>
+<td align="right">6.624</td>
+<td align="right">1.373</td>
+<td align="right">3.094</td>
+<td align="right">4.307</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00693</td>
+<td align="right">159</td>
+<td align="right">72.791</td>
+<td align="right">9.241</td>
+<td align="right">1.450</td>
+<td align="right">3.975</td>
+<td align="right">5.656</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00697</td>
+<td align="right">54</td>
+<td align="right">41.198</td>
+<td align="right">10.126</td>
+<td align="right">1.476</td>
+<td align="right">0.386</td>
+<td align="right">1.067</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00688</td>
+<td align="right">114</td>
+<td align="right">52.637</td>
+<td align="right">7.758</td>
+<td align="right">1.485</td>
+<td align="right">2.812</td>
+<td align="right">3.850</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00730</td>
+<td align="right">215</td>
+<td align="right">113.479</td>
+<td align="right">16.288</td>
+<td align="right">1.521</td>
+<td align="right">2.565</td>
+<td align="right">5.078</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00692</td>
+<td align="right">162</td>
+<td align="right">60.243</td>
+<td align="right">10.864</td>
+<td align="right">1.485</td>
+<td align="right">3.244</td>
+<td align="right">5.099</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00676</td>
+<td align="right">159</td>
+<td align="right">82.850</td>
+<td align="right">10.203</td>
+<td align="right">1.469</td>
+<td align="right">2.401</td>
+<td align="right">3.758</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00682</td>
+<td align="right">85</td>
+<td align="right">46.715</td>
+<td align="right">15.128</td>
+<td align="right">1.568</td>
+<td align="right">0.780</td>
+<td align="right">1.596</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00679</td>
+<td align="right">137</td>
+<td align="right">69.732</td>
+<td align="right">12.678</td>
+<td align="right">1.500</td>
+<td align="right">1.645</td>
+<td align="right">3.306</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00690</td>
+<td align="right">95</td>
+<td align="right">44.051</td>
+<td align="right">8.235</td>
+<td align="right">1.420</td>
+<td align="right">1.424</td>
+<td align="right">2.459</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00683</td>
+<td align="right">125</td>
+<td align="right">81.839</td>
+<td align="right">12.258</td>
+<td align="right">1.481</td>
+<td align="right">1.189</td>
+<td align="right">2.022</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00733</td>
+<td align="right">147</td>
+<td align="right">60.117</td>
+<td align="right">7.219</td>
+<td align="right">1.427</td>
+<td align="right">3.688</td>
+<td align="right">5.706</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00685</td>
+<td align="right">89</td>
+<td align="right">40.760</td>
+<td align="right">8.071</td>
+<td align="right">1.491</td>
+<td align="right">4.730</td>
+<td align="right">6.188</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00752</td>
+<td align="right">70</td>
+<td align="right">41.494</td>
+<td align="right">13.077</td>
+<td align="right">1.589</td>
+<td align="right">3.176</td>
+<td align="right">8.595</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00681</td>
+<td align="right">69</td>
+<td align="right">28.127</td>
+<td align="right">6.909</td>
+<td align="right">1.440</td>
+<td align="right">1.093</td>
+<td align="right">1.528</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00700</td>
+<td align="right">144</td>
+<td align="right">88.972</td>
+<td align="right">11.118</td>
+<td align="right">1.473</td>
+<td align="right">1.660</td>
+<td align="right">2.480</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00680</td>
+<td align="right">132</td>
+<td align="right">65.208</td>
+<td align="right">8.859</td>
+<td align="right">1.529</td>
+<td align="right">2.736</td>
+<td align="right">3.559</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00751</td>
+<td align="right">113</td>
+<td align="right">64.296</td>
+<td align="right">11.104</td>
+<td align="right">1.528</td>
+<td align="right">2.999</td>
+<td align="right">4.552</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00742</td>
+<td align="right">113</td>
+<td align="right">56.852</td>
+<td align="right">9.372</td>
+<td align="right">1.505</td>
+<td align="right">3.071</td>
+<td align="right">5.697</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00675</td>
+<td align="right">128</td>
+<td align="right">65.964</td>
+<td align="right">13.873</td>
+<td align="right">1.495</td>
+<td align="right">1.592</td>
+<td align="right">3.102</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00732</td>
+<td align="right">117</td>
+<td align="right">70.557</td>
+<td align="right">7.101</td>
+<td align="right">1.458</td>
+<td align="right">1.360</td>
+<td align="right">3.986</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00684</td>
+<td align="right">120</td>
+<td align="right">59.392</td>
+<td align="right">9.508</td>
+<td align="right">1.436</td>
+<td align="right">1.498</td>
+<td align="right">3.132</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00694</td>
+<td align="right">121</td>
+<td align="right">46.891</td>
+<td align="right">8.820</td>
+<td align="right">1.448</td>
+<td align="right">3.452</td>
+<td align="right">5.636</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00743</td>
+<td align="right">165</td>
+<td align="right">78.383</td>
+<td align="right">8.533</td>
+<td align="right">1.467</td>
+<td align="right">4.395</td>
+<td align="right">6.805</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00731</td>
+<td align="right">144</td>
+<td align="right">89.203</td>
+<td align="right">9.214</td>
+<td align="right">1.537</td>
+<td align="right">1.648</td>
+<td align="right">2.853</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00698</td>
+<td align="right">97</td>
+<td align="right">20.448</td>
+<td align="right">6.877</td>
+<td align="right">1.366</td>
+<td align="right">1.399</td>
+<td align="right">2.199</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00699</td>
+<td align="right">142</td>
+<td align="right">68.270</td>
+<td align="right">12.874</td>
+<td align="right">1.452</td>
+<td align="right">1.931</td>
+<td align="right">2.983</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00674</td>
+<td align="right">60</td>
+<td align="right">32.495</td>
+<td align="right">6.593</td>
+<td align="right">1.410</td>
+<td align="right">0.669</td>
+<td align="right">1.039</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00753</td>
+<td align="right">89</td>
+<td align="right">55.487</td>
+<td align="right">12.870</td>
+<td align="right">1.551</td>
+<td align="right">1.742</td>
+<td align="right">3.324</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00695</td>
+<td align="right">179</td>
+<td align="right">91.539</td>
+<td align="right">9.847</td>
+<td align="right">1.437</td>
+<td align="right">4.036</td>
+<td align="right">5.528</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00678</td>
+<td align="right">135</td>
+<td align="right">71.700</td>
+<td align="right">10.831</td>
+<td align="right">1.466</td>
+<td align="right">2.403</td>
+<td align="right">3.815</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00689</td>
+<td align="right">62</td>
+<td align="right">20.056</td>
+<td align="right">6.318</td>
+<td align="right">1.374</td>
+<td align="right">1.551</td>
+<td align="right">2.029</td>
+</tr>
+<tr class="even">
+<td align="left">EHI00677</td>
+<td align="right">121</td>
+<td align="right">50.998</td>
+<td align="right">7.182</td>
+<td align="right">1.485</td>
+<td align="right">6.818</td>
+<td align="right">8.344</td>
+</tr>
+<tr class="odd">
+<td align="left">EHI00691</td>
+<td align="right">81</td>
+<td align="right">35.247</td>
+<td align="right">8.681</td>
+<td align="right">1.441</td>
+<td align="right">2.738</td>
+<td align="right">3.846</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="alpha-diversity-comparisons" class="section level3 unnumbered hasAnchor">
+<h3>Alpha diversity comparisons<a href="diversity-analyses.html#alpha-diversity-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Alpha diversities can be compared across any categorical features that group analysed samples (e.g., localities, sampling seasons, sex), or continuous variables associated with the host animals.</p>
+<p>Let’s first create a nice colour palette for the localities</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb58-1"><a href="diversity-analyses.html#cb58-1" tabindex="-1"></a>alpha_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#e5bd5b&quot;</span>,<span class="st">&quot;#6b7398&quot;</span>,<span class="st">&quot;#76b183&quot;</span>,<span class="st">&quot;#d57d2c&quot;</span>,<span class="st">&quot;#2a2d26&quot;</span>,<span class="st">&quot;#f9d4cc&quot;</span>,<span class="st">&quot;#3c634e&quot;</span>,<span class="st">&quot;#ea68c3&quot;</span>)</span></code></pre></div>
+<p>Let’s also identify the number of comparing groups, so that the colour palette can be subsetted properly when plotting the figures.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb59-1"><a href="diversity-analyses.html#cb59-1" tabindex="-1"></a>group_n <span class="ot">&lt;-</span> alpha_div <span class="sc">%&gt;%</span> <span class="fu">select</span>(sample,neutral) <span class="sc">%&gt;%</span></span>
+<span id="cb59-2"><a href="diversity-analyses.html#cb59-2" tabindex="-1"></a>        <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="diversity-analyses.html#cb59-3" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb59-4"><a href="diversity-analyses.html#cb59-4" tabindex="-1"></a>        <span class="fu">select</span>(location) <span class="sc">%&gt;%</span> <span class="fu">pull</span>() <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div id="neutral-diversity" class="section level4 unnumbered hasAnchor">
+<h4>Neutral diversity<a href="diversity-analyses.html#neutral-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb60-1"><a href="diversity-analyses.html#cb60-1" tabindex="-1"></a>alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="diversity-analyses.html#cb60-2" tabindex="-1"></a>            <span class="fu">select</span>(sample,neutral) <span class="sc">%&gt;%</span></span>
+<span id="cb60-3"><a href="diversity-analyses.html#cb60-3" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="diversity-analyses.html#cb60-4" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb60-5"><a href="diversity-analyses.html#cb60-5" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb60-6"><a href="diversity-analyses.html#cb60-6" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb60-7"><a href="diversity-analyses.html#cb60-7" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-8"><a href="diversity-analyses.html#cb60-8" tabindex="-1"></a>                    <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb60-9"><a href="diversity-analyses.html#cb60-9" tabindex="-1"></a>                    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb60-10"><a href="diversity-analyses.html#cb60-10" tabindex="-1"></a>                    <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb60-11"><a href="diversity-analyses.html#cb60-11" tabindex="-1"></a>                    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb60-12"><a href="diversity-analyses.html#cb60-12" tabindex="-1"></a>                    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Neutral Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-13"><a href="diversity-analyses.html#cb60-13" tabindex="-1"></a>                    <span class="fu">theme</span>(</span>
+<span id="cb60-14"><a href="diversity-analyses.html#cb60-14" tabindex="-1"></a>                        <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb60-15"><a href="diversity-analyses.html#cb60-15" tabindex="-1"></a>                        <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb60-16"><a href="diversity-analyses.html#cb60-16" tabindex="-1"></a>                        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb60-17"><a href="diversity-analyses.html#cb60-17" tabindex="-1"></a>                        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb60-18"><a href="diversity-analyses.html#cb60-18" tabindex="-1"></a>                    <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Location&quot;</span>), <span class="at">fill=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/alpha_divs_comp_neutral-1.png" width="768" /></p>
+</div>
+<div id="phylogenetic-diversity" class="section level4 unnumbered hasAnchor">
+<h4>Phylogenetic diversity<a href="diversity-analyses.html#phylogenetic-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb61-1"><a href="diversity-analyses.html#cb61-1" tabindex="-1"></a>alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="diversity-analyses.html#cb61-2" tabindex="-1"></a>            <span class="fu">select</span>(sample,phylo) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="diversity-analyses.html#cb61-3" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="diversity-analyses.html#cb61-4" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb61-5"><a href="diversity-analyses.html#cb61-5" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-6"><a href="diversity-analyses.html#cb61-6" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb61-7"><a href="diversity-analyses.html#cb61-7" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb61-8"><a href="diversity-analyses.html#cb61-8" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb61-9"><a href="diversity-analyses.html#cb61-9" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb61-10"><a href="diversity-analyses.html#cb61-10" tabindex="-1"></a>            <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb61-11"><a href="diversity-analyses.html#cb61-11" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb61-12"><a href="diversity-analyses.html#cb61-12" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Phylogenetic Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb61-13"><a href="diversity-analyses.html#cb61-13" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb61-14"><a href="diversity-analyses.html#cb61-14" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb61-15"><a href="diversity-analyses.html#cb61-15" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb61-16"><a href="diversity-analyses.html#cb61-16" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/alpha_divs_comp_phylo-1.png" width="768" /></p>
+</div>
+<div id="functional-diversity" class="section level4 unnumbered hasAnchor">
+<h4>Functional diversity<a href="diversity-analyses.html#functional-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb62-1"><a href="diversity-analyses.html#cb62-1" tabindex="-1"></a>alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="diversity-analyses.html#cb62-2" tabindex="-1"></a>            <span class="fu">select</span>(sample,func) <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="diversity-analyses.html#cb62-3" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="diversity-analyses.html#cb62-4" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb62-5"><a href="diversity-analyses.html#cb62-5" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb62-6"><a href="diversity-analyses.html#cb62-6" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb62-7"><a href="diversity-analyses.html#cb62-7" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-8"><a href="diversity-analyses.html#cb62-8" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="diversity-analyses.html#cb62-9" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="diversity-analyses.html#cb62-10" tabindex="-1"></a>            <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb62-11"><a href="diversity-analyses.html#cb62-11" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb62-12"><a href="diversity-analyses.html#cb62-12" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Functional Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-13"><a href="diversity-analyses.html#cb62-13" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb62-14"><a href="diversity-analyses.html#cb62-14" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb62-15"><a href="diversity-analyses.html#cb62-15" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb62-16"><a href="diversity-analyses.html#cb62-16" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/alpha_divs_comp_func-1.png" width="768" /></p>
+</div>
+</div>
+<div id="relationship-between-alpha-diversity-and-sequencing-effort" class="section level3 unnumbered hasAnchor">
+<h3>Relationship between alpha diversity and sequencing effort<a href="diversity-analyses.html#relationship-between-alpha-diversity-and-sequencing-effort" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The microbial diversity in a sample is often correlated with sequencing depth, mainly when the sequencing effort is not large enough to properly capture the entirety of the diversity in the sample. The following plot shows the relationship between neutral diversity (Hill number of q=1, Shannon diversity) and the GBs mapped to the MAG catalogue. The size of the dots indicates the total sequencing effort performed for that sample (including host DNA, non-mapped reads, etc.). The flatter the regression line the lower is the correlation, and thus lower is the effect of sequencing depth in the results. However, it must be noted that this analysis only compares the sequencing depth in relation to the MAG catalogue, which might not be complete or representative of the system. Hence, the results shown here must be interpreted cautiously.</p>
+<p><img src="_main_files/figure-html/alpha_divs_seq_plot-1.png" width="768" /></p>
+</div>
+</div>
+<div id="beta-diversity" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Beta diversity<a href="diversity-analyses.html#beta-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pairwise beta diversities quantify the dissimilarity between samples. Within the Hill numbers framework, beta diversities can be calculated for neutral, phylogenetic and functional diversities, at the desired order of diversity (q-value). Often times, beta diversities differ depending on the components of the diversity. For instance, phylogenetic and functional diversities often display lower beta values than neutral diversities due to phylogenetic and functional redundancy of the microbiota (i.e. different yet closely related and functionally similar MAGs replace each other). Pairwise beta diversities can be displayed in a 2-dimensional ordination using NMDS, and can be used to test for compositional differences between variables of interest. Note that outliers (often technical failures) can distort the ordination considerably.</p>
+<div id="beta-diversity-test" class="section level3 unnumbered hasAnchor">
+<h3>Beta diversity test<a href="diversity-analyses.html#beta-diversity-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb63-1"><a href="diversity-analyses.html#cb63-1" tabindex="-1"></a>beta_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#e5bd5b&quot;</span>,<span class="st">&quot;#6b7398&quot;</span>,<span class="st">&quot;#76b183&quot;</span>,<span class="st">&quot;#d57d2c&quot;</span>,<span class="st">&quot;#2a2d26&quot;</span>,<span class="st">&quot;#f9d4cc&quot;</span>,<span class="st">&quot;#3c634e&quot;</span>,<span class="st">&quot;#ea68c3&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Df</th>
+<th align="right">SumOfSqs</th>
+<th align="right">R2</th>
+<th align="right">F</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">location</td>
+<td align="right">6</td>
+<td align="right">1.3247170</td>
+<td align="right">0.1191033</td>
+<td align="right">0.6509051</td>
+<td align="right">0.997</td>
+</tr>
+<tr class="even">
+<td align="left">sex</td>
+<td align="right">1</td>
+<td align="right">0.3001424</td>
+<td align="right">0.0269853</td>
+<td align="right">0.8848571</td>
+<td align="right">0.652</td>
+</tr>
+<tr class="odd">
+<td align="left">Residual</td>
+<td align="right">28</td>
+<td align="right">9.4975634</td>
+<td align="right">0.8539114</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="right">35</td>
+<td align="right">11.1224228</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="beta-diversity-plot" class="section level3 unnumbered hasAnchor">
+<h3>Beta diversity plot<a href="diversity-analyses.html#beta-diversity-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb64-1"><a href="diversity-analyses.html#cb64-1" tabindex="-1"></a>group_n <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(beta_q1n_nmds<span class="sc">$</span>region))</span>
+<span id="cb64-2"><a href="diversity-analyses.html#cb64-2" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="diversity-analyses.html#cb64-3" tabindex="-1"></a>beta_q1n_nmds <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="diversity-analyses.html#cb64-4" tabindex="-1"></a>            <span class="fu">group_by</span>(region) <span class="sc">%&gt;%</span></span>
+<span id="cb64-5"><a href="diversity-analyses.html#cb64-5" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">x_cen =</span> <span class="fu">mean</span>(NMDS1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb64-6"><a href="diversity-analyses.html#cb64-6" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">y_cen =</span> <span class="fu">mean</span>(NMDS2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb64-7"><a href="diversity-analyses.html#cb64-7" tabindex="-1"></a>            <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb64-8"><a href="diversity-analyses.html#cb64-8" tabindex="-1"></a>            <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span>NMDS1,<span class="at">y=</span>NMDS2, <span class="at">color=</span>region)) <span class="sc">+</span></span>
+<span id="cb64-9"><a href="diversity-analyses.html#cb64-9" tabindex="-1"></a>                <span class="fu">scale_color_manual</span>(<span class="at">values=</span>beta_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb64-10"><a href="diversity-analyses.html#cb64-10" tabindex="-1"></a>                <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb64-11"><a href="diversity-analyses.html#cb64-11" tabindex="-1"></a>                <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span>x_cen, <span class="at">y=</span>y_cen, <span class="at">xend=</span>NMDS1, <span class="at">yend=</span>NMDS2), <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb64-12"><a href="diversity-analyses.html#cb64-12" tabindex="-1"></a>                <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb64-13"><a href="diversity-analyses.html#cb64-13" tabindex="-1"></a>                <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;right&quot;</span>, <span class="at">legend.box=</span><span class="st">&quot;vertical&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-14"><a href="diversity-analyses.html#cb64-14" tabindex="-1"></a>                <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Region&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/beta_neutral_nmds_plot-1.png" width="768" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="taxonomic-composition.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

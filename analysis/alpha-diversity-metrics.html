@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 2.1 Alpha diversity metrics | The Earth Hologenome Initiative Data Analysis Workflow</title>
+  <meta name="description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 2.1 Alpha diversity metrics | The Earth Hologenome Initiative Data Analysis Workflow" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+  <meta property="og:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="github-repo" content="earthhologenome/EHI_analysis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 2.1 Alpha diversity metrics | The Earth Hologenome Initiative Data Analysis Workflow" />
+  
+  <meta name="twitter:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="twitter:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+
+<meta name="author" content="Ostaizka Aizpurua" />
+<meta name="author" content="Antton Alberdi" />
+
+
+<meta name="date" content="2023-11-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="diversity-analyses.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EHI analysis workflow</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prepare-the-environment"><i class="fa fa-check"></i><b>1.1</b> Prepare the environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-summary.html"><a href="data-summary.html"><i class="fa fa-check"></i><b>2</b> Data summary</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-summary.html"><a href="data-summary.html#load-the-data"><i class="fa fa-check"></i><b>2.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-summary.html"><a href="data-summary.html#general-statistics"><i class="fa fa-check"></i><b>2.2</b> General statistics</a></li>
+<li class="chapter" data-level="2.3" data-path="data-summary.html"><a href="data-summary.html#geographic-distribution"><i class="fa fa-check"></i><b>2.3</b> Geographic distribution</a></li>
+<li class="chapter" data-level="2.4" data-path="data-summary.html"><a href="data-summary.html#prepare-the-colour-layout"><i class="fa fa-check"></i><b>2.4</b> Prepare the colour layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mag-catalogue.html"><a href="mag-catalogue.html"><i class="fa fa-check"></i><b>3</b> MAG catalogue</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-phylogeny"><i class="fa fa-check"></i><b>3.1</b> MAG phylogeny</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-mag-metadata"><i class="fa fa-check"></i><b>3.1.1</b> Prepare MAG metadata</a></li>
+<li class="chapter" data-level="3.1.2" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylogenetic-tree"><i class="fa fa-check"></i><b>3.1.2</b> Plot phylogenetic tree</a></li>
+<li class="chapter" data-level="3.1.3" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylum-color-legend"><i class="fa fa-check"></i><b>3.1.3</b> Plot phylum color legend</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-quality"><i class="fa fa-check"></i><b>3.2</b> MAG quality</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-input-table"><i class="fa fa-check"></i><b>3.2.1</b> Prepare input table</a></li>
+<li class="chapter" data-level="3.2.2" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-biplot-chart"><i class="fa fa-check"></i><b>3.2.2</b> Create biplot chart</a></li>
+<li class="chapter" data-level="3.2.3" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-boxplot-charts"><i class="fa fa-check"></i><b>3.2.3</b> Create boxplot charts</a></li>
+<li class="chapter" data-level="3.2.4" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-composite-figure"><i class="fa fa-check"></i><b>3.2.4</b> Create composite figure</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-attributes-of-mags"><i class="fa fa-check"></i><b>3.3</b> Functional attributes of MAGs</a></li>
+<li class="chapter" data-level="3.4" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-ordination-of-mags"><i class="fa fa-check"></i><b>3.4</b> Functional ordination of MAGs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html"><i class="fa fa-check"></i><b>4</b> Sequencing Assessment</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#dna-fractions"><i class="fa fa-check"></i><b>4.1</b> DNA fractions</a></li>
+<li class="chapter" data-level="4.2" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#estimated-vs.-mapped-prokaryotic-fraction"><i class="fa fa-check"></i><b>4.2</b> Estimated vs. mapped prokaryotic fraction</a></li>
+<li class="chapter" data-level="4.3" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#additional-sequencing-needed"><i class="fa fa-check"></i><b>4.3</b> Additional sequencing needed</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="count-data.html"><a href="count-data.html"><i class="fa fa-check"></i><b>5</b> Count data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="count-data.html"><a href="count-data.html#minimum-coverage-filtering"><i class="fa fa-check"></i><b>5.1</b> Minimum coverage filtering</a></li>
+<li class="chapter" data-level="5.2" data-path="count-data.html"><a href="count-data.html#genome-size-normalisation"><i class="fa fa-check"></i><b>5.2</b> Genome size normalisation</a></li>
+<li class="chapter" data-level="5.3" data-path="count-data.html"><a href="count-data.html#count-table"><i class="fa fa-check"></i><b>5.3</b> Count table</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html"><i class="fa fa-check"></i><b>6</b> Taxonomic composition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html#taxonomy-stacked-barplot"><i class="fa fa-check"></i><b>6.1</b> Taxonomy stacked barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diversity-analyses.html"><a href="diversity-analyses.html"><i class="fa fa-check"></i><b>7</b> Diversity analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diversity-analyses.html"><a href="diversity-analyses.html#data-preparation"><i class="fa fa-check"></i><b>7.1</b> Data preparation</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity"><i class="fa fa-check"></i><b>7.1.1</b> Alpha diversity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html"><i class="fa fa-check"></i><b>8</b> 2.1 Alpha diversity metrics</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html#alpha-diversity-plots"><i class="fa fa-check"></i><b>8.0.1</b> Alpha diversity plots</a></li>
+<li class="chapter" data-level="8.0.2" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html#alpha-diversity-comparisons"><i class="fa fa-check"></i><b>8.0.2</b> Alpha diversity comparisons</a></li>
+<li class="chapter" data-level="8.1" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html#beta-diversity"><i class="fa fa-check"></i><b>8.1</b> Beta diversity</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html#beta-diversity-tests"><i class="fa fa-check"></i><b>8.1.1</b> Beta diversity tests</a></li>
+<li class="chapter" data-level="8.1.2" data-path="alpha-diversity-metrics.html"><a href="alpha-diversity-metrics.html#beta-diversity-plots"><i class="fa fa-check"></i><b>8.1.2</b> Beta diversity plots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Earth Hologenome Initiative Data Analysis Workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="alpha-diversity-metrics" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> 2.1 Alpha diversity metrics<a href="alpha-diversity-metrics.html#alpha-diversity-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="alpha-diversity-metrics.html#cb58-1" tabindex="-1"></a>q0n <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb58-2"><a href="alpha-diversity-metrics.html#cb58-2" tabindex="-1"></a>q1n <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb58-3"><a href="alpha-diversity-metrics.html#cb58-3" tabindex="-1"></a>q1p <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size,<span class="at">q=</span><span class="dv">1</span>,<span class="at">tree=</span>tree) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb58-4"><a href="alpha-diversity-metrics.html#cb58-4" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">traits2dist</span>(kegg_table_filt, <span class="at">method=</span><span class="st">&quot;gower&quot;</span>)</span>
+<span id="cb58-5"><a href="alpha-diversity-metrics.html#cb58-5" tabindex="-1"></a>q1f <span class="ot">&lt;-</span> <span class="fu">hilldiv</span>(count_table_cov_size_filt,<span class="at">q=</span><span class="dv">1</span>,<span class="at">dist=</span>dist) <span class="sc">%&gt;%</span> <span class="fu">c</span>()</span>
+<span id="cb58-6"><a href="alpha-diversity-metrics.html#cb58-6" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="alpha-diversity-metrics.html#cb58-7" tabindex="-1"></a><span class="co"># Merge all metrics</span></span>
+<span id="cb58-8"><a href="alpha-diversity-metrics.html#cb58-8" tabindex="-1"></a>alpha_div <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">sample=</span><span class="fu">colnames</span>(count_table_cov_size),<span class="at">richness=</span>q0n,<span class="at">neutral=</span><span class="fu">round</span>(q1n,<span class="dv">3</span>),<span class="at">phylo=</span><span class="fu">round</span>(q1p,<span class="dv">3</span>),<span class="at">func=</span><span class="fu">round</span>(q1f,<span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-9"><a href="alpha-diversity-metrics.html#cb58-9" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb58-10"><a href="alpha-diversity-metrics.html#cb58-10" tabindex="-1"></a>columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;richness&quot;</span>,<span class="st">&quot;neutral&quot;</span>,<span class="st">&quot;phylo&quot;</span>,<span class="st">&quot;func&quot;</span>,<span class="st">&quot;mapped&quot;</span>,<span class="st">&quot;total&quot;</span>)</span>
+<span id="cb58-11"><a href="alpha-diversity-metrics.html#cb58-11" tabindex="-1"></a></span>
+<span id="cb58-12"><a href="alpha-diversity-metrics.html#cb58-12" tabindex="-1"></a><span class="co"># Add amount of sequencing data to the table</span></span>
+<span id="cb58-13"><a href="alpha-diversity-metrics.html#cb58-13" tabindex="-1"></a>alpha_div <span class="ot">&lt;-</span> alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb58-14"><a href="alpha-diversity-metrics.html#cb58-14" tabindex="-1"></a>  <span class="fu">left_join</span>(sequence_fractions, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span> <span class="co">#add sequencing depth information</span></span>
+<span id="cb58-15"><a href="alpha-diversity-metrics.html#cb58-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mapped=</span><span class="fu">round</span>(mags_bases<span class="sc">/</span><span class="dv">1000000000</span>,<span class="dv">3</span>)) <span class="sc">%&gt;%</span> <span class="co">#modify depth to million reads</span></span>
+<span id="cb58-16"><a href="alpha-diversity-metrics.html#cb58-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">round</span>((mags_bases<span class="sc">+</span>unmapped_bases<span class="sc">+</span>host_bases<span class="sc">+</span>lowqual_bases)<span class="sc">/</span><span class="dv">1000000000</span>,<span class="dv">3</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-17"><a href="alpha-diversity-metrics.html#cb58-17" tabindex="-1"></a>  <span class="fu">select</span>(sample,richness,neutral,phylo,func,mapped,total) <span class="sc">%&gt;%</span></span>
+<span id="cb58-18"><a href="alpha-diversity-metrics.html#cb58-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="sc">-</span><span class="dv">1</span>, as.numeric))</span></code></pre></div>
+<div id="alpha-diversity-plots" class="section level3 hasAnchor" number="8.0.1">
+<h3><span class="header-section-number">8.0.1</span> Alpha diversity plots<a href="alpha-diversity-metrics.html#alpha-diversity-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="alpha-diversity-metrics.html#cb59-1" tabindex="-1"></a><span class="co">#+ alpha_divs_plot, echo=FALSE, warning=FALSE, fig.height=6</span></span>
+<span id="cb59-2"><a href="alpha-diversity-metrics.html#cb59-2" tabindex="-1"></a>alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="alpha-diversity-metrics.html#cb59-3" tabindex="-1"></a>        <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb59-4"><a href="alpha-diversity-metrics.html#cb59-4" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb59-5"><a href="alpha-diversity-metrics.html#cb59-5" tabindex="-1"></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">y=</span>sample)) <span class="sc">+</span></span>
+<span id="cb59-6"><a href="alpha-diversity-metrics.html#cb59-6" tabindex="-1"></a>            <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&#39;identity&#39;</span>, <span class="at">fill=</span><span class="st">&quot;#6c9ebc&quot;</span>) <span class="sc">+</span></span>
+<span id="cb59-7"><a href="alpha-diversity-metrics.html#cb59-7" tabindex="-1"></a>            <span class="fu">facet_wrap</span>(<span class="sc">~</span>data,  <span class="at">scales=</span><span class="st">&quot;free_x&quot;</span>, <span class="at">ncol=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb59-8"><a href="alpha-diversity-metrics.html#cb59-8" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb59-9"><a href="alpha-diversity-metrics.html#cb59-9" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb59-10"><a href="alpha-diversity-metrics.html#cb59-10" tabindex="-1"></a>                <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-11"><a href="alpha-diversity-metrics.html#cb59-11" tabindex="-1"></a>                <span class="at">panel.grid.minor.x =</span> <span class="fu">element_line</span>( <span class="at">size=</span>.<span class="dv">1</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span> ),</span>
+<span id="cb59-12"><a href="alpha-diversity-metrics.html#cb59-12" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-13"><a href="alpha-diversity-metrics.html#cb59-13" tabindex="-1"></a>                <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb59-14"><a href="alpha-diversity-metrics.html#cb59-14" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb59-15"><a href="alpha-diversity-metrics.html#cb59-15" tabindex="-1"></a>            )</span></code></pre></div>
+<p>You can also generate an HTML table using knitr.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="alpha-diversity-metrics.html#cb60-1" tabindex="-1"></a><span class="fu">kable</span>(alpha_div, <span class="at">caption=</span><span class="st">&quot;Mapped and Total amount of data are shown in GB (gigabases)&quot;</span>)</span></code></pre></div>
+</div>
+<div id="alpha-diversity-comparisons" class="section level3 hasAnchor" number="8.0.2">
+<h3><span class="header-section-number">8.0.2</span> Alpha diversity comparisons<a href="alpha-diversity-metrics.html#alpha-diversity-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="alpha-diversity-metrics.html#cb61-1" tabindex="-1"></a>group_n <span class="ot">&lt;-</span> alpha_div <span class="sc">%&gt;%</span> <span class="fu">select</span>(sample,neutral) <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="alpha-diversity-metrics.html#cb61-2" tabindex="-1"></a>        <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="alpha-diversity-metrics.html#cb61-3" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="alpha-diversity-metrics.html#cb61-4" tabindex="-1"></a>        <span class="fu">select</span>(location) <span class="sc">%&gt;%</span> <span class="fu">pull</span>() <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="alpha-diversity-metrics.html#cb62-1" tabindex="-1"></a><span class="cf">if</span>(group_n<span class="sc">&gt;</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> group_n<span class="sc">&lt;=</span><span class="dv">8</span>){</span>
+<span id="cb62-2"><a href="alpha-diversity-metrics.html#cb62-2" tabindex="-1"></a>    alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="alpha-diversity-metrics.html#cb62-3" tabindex="-1"></a>            <span class="fu">select</span>(sample,neutral) <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="alpha-diversity-metrics.html#cb62-4" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-5"><a href="alpha-diversity-metrics.html#cb62-5" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb62-6"><a href="alpha-diversity-metrics.html#cb62-6" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb62-7"><a href="alpha-diversity-metrics.html#cb62-7" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb62-8"><a href="alpha-diversity-metrics.html#cb62-8" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="alpha-diversity-metrics.html#cb62-9" tabindex="-1"></a>                    <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="alpha-diversity-metrics.html#cb62-10" tabindex="-1"></a>                    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb62-11"><a href="alpha-diversity-metrics.html#cb62-11" tabindex="-1"></a>                    <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb62-12"><a href="alpha-diversity-metrics.html#cb62-12" tabindex="-1"></a>                    <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb62-13"><a href="alpha-diversity-metrics.html#cb62-13" tabindex="-1"></a>                    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Neutral Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-14"><a href="alpha-diversity-metrics.html#cb62-14" tabindex="-1"></a>                    <span class="fu">theme</span>(</span>
+<span id="cb62-15"><a href="alpha-diversity-metrics.html#cb62-15" tabindex="-1"></a>                        <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb62-16"><a href="alpha-diversity-metrics.html#cb62-16" tabindex="-1"></a>                        <span class="at">legend.box =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb62-17"><a href="alpha-diversity-metrics.html#cb62-17" tabindex="-1"></a>                        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb62-18"><a href="alpha-diversity-metrics.html#cb62-18" tabindex="-1"></a>                        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb62-19"><a href="alpha-diversity-metrics.html#cb62-19" tabindex="-1"></a>                    <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Location&quot;</span>), <span class="at">fill=</span><span class="st">&quot;none&quot;</span>)</span>
+<span id="cb62-20"><a href="alpha-diversity-metrics.html#cb62-20" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="alpha-diversity-metrics.html#cb63-1" tabindex="-1"></a><span class="cf">if</span>(group_n<span class="sc">&gt;</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> group_n<span class="sc">&lt;=</span><span class="dv">8</span>){</span>
+<span id="cb63-2"><a href="alpha-diversity-metrics.html#cb63-2" tabindex="-1"></a>    alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="alpha-diversity-metrics.html#cb63-3" tabindex="-1"></a>            <span class="fu">select</span>(sample,phylo) <span class="sc">%&gt;%</span></span>
+<span id="cb63-4"><a href="alpha-diversity-metrics.html#cb63-4" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-5"><a href="alpha-diversity-metrics.html#cb63-5" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb63-6"><a href="alpha-diversity-metrics.html#cb63-6" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb63-7"><a href="alpha-diversity-metrics.html#cb63-7" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb63-8"><a href="alpha-diversity-metrics.html#cb63-8" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb63-9"><a href="alpha-diversity-metrics.html#cb63-9" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb63-10"><a href="alpha-diversity-metrics.html#cb63-10" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb63-11"><a href="alpha-diversity-metrics.html#cb63-11" tabindex="-1"></a>            <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb63-12"><a href="alpha-diversity-metrics.html#cb63-12" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb63-13"><a href="alpha-diversity-metrics.html#cb63-13" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Phylogenetic Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb63-14"><a href="alpha-diversity-metrics.html#cb63-14" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb63-15"><a href="alpha-diversity-metrics.html#cb63-15" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb63-16"><a href="alpha-diversity-metrics.html#cb63-16" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb63-17"><a href="alpha-diversity-metrics.html#cb63-17" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb63-18"><a href="alpha-diversity-metrics.html#cb63-18" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="alpha-diversity-metrics.html#cb64-1" tabindex="-1"></a><span class="cf">if</span>(group_n<span class="sc">&gt;</span><span class="dv">1</span> <span class="sc">&amp;&amp;</span> group_n<span class="sc">&lt;=</span><span class="dv">8</span> <span class="sc">&amp;&amp;</span> func <span class="sc">==</span> <span class="st">&quot;yes&quot;</span>){</span>
+<span id="cb64-2"><a href="alpha-diversity-metrics.html#cb64-2" tabindex="-1"></a>    alpha_div <span class="sc">%&gt;%</span></span>
+<span id="cb64-3"><a href="alpha-diversity-metrics.html#cb64-3" tabindex="-1"></a>            <span class="fu">select</span>(sample,func) <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="alpha-diversity-metrics.html#cb64-4" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="sc">-</span>sample, <span class="at">names_to =</span> <span class="st">&quot;data&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-5"><a href="alpha-diversity-metrics.html#cb64-5" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">data =</span> <span class="fu">factor</span>(data, <span class="at">levels =</span> columns))   <span class="sc">%&gt;%</span></span>
+<span id="cb64-6"><a href="alpha-diversity-metrics.html#cb64-6" tabindex="-1"></a>            <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample)) <span class="sc">%&gt;%</span></span>
+<span id="cb64-7"><a href="alpha-diversity-metrics.html#cb64-7" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">location=</span><span class="fu">paste0</span>(<span class="fu">round</span>(longitude,<span class="dv">2</span>),<span class="st">&quot;_&quot;</span>,<span class="fu">round</span>(latitude,<span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb64-8"><a href="alpha-diversity-metrics.html#cb64-8" tabindex="-1"></a>            <span class="fu">ggboxplot</span>(., <span class="at">x =</span> <span class="st">&quot;location&quot;</span>, <span class="at">y =</span> <span class="st">&quot;value&quot;</span>, <span class="at">color =</span> <span class="st">&quot;location&quot;</span>, <span class="at">fill=</span><span class="st">&quot;location&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-9"><a href="alpha-diversity-metrics.html#cb64-9" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span>alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)]) <span class="sc">+</span></span>
+<span id="cb64-10"><a href="alpha-diversity-metrics.html#cb64-10" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">paste0</span>(alpha_colors[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>group_n)],<span class="st">&quot;50&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb64-11"><a href="alpha-diversity-metrics.html#cb64-11" tabindex="-1"></a>            <span class="fu">stat_compare_means</span>() <span class="sc">+</span></span>
+<span id="cb64-12"><a href="alpha-diversity-metrics.html#cb64-12" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb64-13"><a href="alpha-diversity-metrics.html#cb64-13" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Functional Hill numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-14"><a href="alpha-diversity-metrics.html#cb64-14" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
+<span id="cb64-15"><a href="alpha-diversity-metrics.html#cb64-15" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb64-16"><a href="alpha-diversity-metrics.html#cb64-16" tabindex="-1"></a>                <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb64-17"><a href="alpha-diversity-metrics.html#cb64-17" tabindex="-1"></a>                <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb64-18"><a href="alpha-diversity-metrics.html#cb64-18" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="beta-diversity" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Beta diversity<a href="alpha-diversity-metrics.html#beta-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pairwise beta diversities quantify the dissimilarity between samples. Within the Hill numbers framework, beta diversities can be calculated for neutral, phylogenetic and functional diversities, at the desired order of diversity (q-value). Often times, beta diversities differ depending on the components of the diversity. For instance, phylogenetic and functional diversities often display lower beta values than neutral diversities due to phylogenetic and functional redundancy of the microbiota (i.e. different yet closely related and functionally similar MAGs replace each other). Pairwise beta diversities can be displayed in a 2-dimensional ordination using NMDS, and can be used to test for compositional differences between variables of interest. Note that outliers (often technical failures) can distort the ordination considerably.</p>
+<div id="beta-diversity-tests" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Beta diversity tests<a href="alpha-diversity-metrics.html#beta-diversity-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the following pages, PERMANOVAs are conducted against all metadata variables with &gt;1 different values, and NMDS ordinations are displayed for all metadata features containing between 2 and 8 different values.</p>
+</div>
+<div id="beta-diversity-plots" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Beta diversity plots<a href="alpha-diversity-metrics.html#beta-diversity-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="diversity-analyses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Sequencing Assessment | The Earth Hologenome Initiative Data Analysis Workflow</title>
+  <meta name="description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Sequencing Assessment | The Earth Hologenome Initiative Data Analysis Workflow" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+  <meta property="og:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="github-repo" content="earthhologenome/EHI_analysis" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Sequencing Assessment | The Earth Hologenome Initiative Data Analysis Workflow" />
+  
+  <meta name="twitter:description" content="Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative." />
+  <meta name="twitter:image" content="http://www.earthhologenome.org/analysis/images/ehi_logo.png" />
+
+<meta name="author" content="Ostaizka Aizpurua" />
+<meta name="author" content="Antton Alberdi" />
+
+
+<meta name="date" content="2023-11-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mag-catalogue.html"/>
+<link rel="next" href="count-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><img src="images/ehi_logo.png" alt="Earth Hologenome Initiative"></li>
+<li align="center"><b>ANALYSIS WORFLOW</b></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prepare-the-r-environment"><i class="fa fa-check"></i><b>1.1</b> Prepare the R environment</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-mock-data"><i class="fa fa-check"></i><b>1.2</b> Download mock data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-summary.html"><a href="data-summary.html"><i class="fa fa-check"></i><b>2</b> Data summary</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-summary.html"><a href="data-summary.html#load-the-data"><i class="fa fa-check"></i><b>2.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-summary.html"><a href="data-summary.html#general-data-statistics"><i class="fa fa-check"></i><b>2.2</b> General data statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-samples"><i class="fa fa-check"></i>Number of samples</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-discarded-data"><i class="fa fa-check"></i>Amount of discarded data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-host-data"><i class="fa fa-check"></i>Amount of host data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-metagenomic-data"><i class="fa fa-check"></i>Amount of metagenomic data</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#amount-of-estimated-prokaryotic"><i class="fa fa-check"></i>Amount of estimated prokaryotic</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-summary.html"><a href="data-summary.html#general-mag-statistics"><i class="fa fa-check"></i><b>2.3</b> General MAG statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-mags"><i class="fa fa-check"></i>Number of MAGs</a></li>
+<li class="chapter" data-level="" data-path="data-summary.html"><a href="data-summary.html#number-of-mags-without-species-level-annotation"><i class="fa fa-check"></i>Number of MAGs without species-level annotation</a></li>
+<li class="chapter" data-level="2.3.1" data-path="data-summary.html"><a href="data-summary.html#number-of-phylums"><i class="fa fa-check"></i><b>2.3.1</b> Number of phylums</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-summary.html"><a href="data-summary.html#geographic-distribution"><i class="fa fa-check"></i><b>2.4</b> Geographic distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="data-summary.html"><a href="data-summary.html#prepare-the-colour-layout"><i class="fa fa-check"></i><b>2.5</b> Prepare the colour layout</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mag-catalogue.html"><a href="mag-catalogue.html"><i class="fa fa-check"></i><b>3</b> MAG catalogue</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-phylogeny"><i class="fa fa-check"></i><b>3.1</b> MAG phylogeny</a>
+<ul>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-mag-metadata"><i class="fa fa-check"></i>Prepare MAG metadata</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylogenetic-tree"><i class="fa fa-check"></i>Plot phylogenetic tree</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#plot-phylum-color-legend"><i class="fa fa-check"></i>Plot phylum color legend</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="mag-catalogue.html"><a href="mag-catalogue.html#mag-quality"><i class="fa fa-check"></i><b>3.2</b> MAG quality</a>
+<ul>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#prepare-input-table"><i class="fa fa-check"></i>Prepare input table</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-biplot-chart"><i class="fa fa-check"></i>Create biplot chart</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-boxplot-charts"><i class="fa fa-check"></i>Create boxplot charts</a></li>
+<li class="chapter" data-level="" data-path="mag-catalogue.html"><a href="mag-catalogue.html#create-composite-figure"><i class="fa fa-check"></i>Create composite figure</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-attributes-of-mags"><i class="fa fa-check"></i><b>3.3</b> Functional attributes of MAGs</a></li>
+<li class="chapter" data-level="3.4" data-path="mag-catalogue.html"><a href="mag-catalogue.html#functional-ordination-of-mags"><i class="fa fa-check"></i><b>3.4</b> Functional ordination of MAGs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html"><i class="fa fa-check"></i><b>4</b> Sequencing Assessment</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#dna-fractions"><i class="fa fa-check"></i><b>4.1</b> DNA fractions</a></li>
+<li class="chapter" data-level="4.2" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#estimated-vs.-mapped-prokaryotic-fraction"><i class="fa fa-check"></i><b>4.2</b> Estimated vs. mapped prokaryotic fraction</a></li>
+<li class="chapter" data-level="4.3" data-path="sequencing-assessment.html"><a href="sequencing-assessment.html#additional-sequencing-needed"><i class="fa fa-check"></i><b>4.3</b> Additional sequencing needed</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="count-data.html"><a href="count-data.html"><i class="fa fa-check"></i><b>5</b> Count data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="count-data.html"><a href="count-data.html#minimum-coverage-filtering"><i class="fa fa-check"></i><b>5.1</b> Minimum coverage filtering</a></li>
+<li class="chapter" data-level="5.2" data-path="count-data.html"><a href="count-data.html#genome-size-normalisation"><i class="fa fa-check"></i><b>5.2</b> Genome size normalisation</a></li>
+<li class="chapter" data-level="5.3" data-path="count-data.html"><a href="count-data.html#count-table"><i class="fa fa-check"></i><b>5.3</b> Count table</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html"><i class="fa fa-check"></i><b>6</b> Taxonomic composition</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="taxonomic-composition.html"><a href="taxonomic-composition.html#taxonomy-stacked-barplot"><i class="fa fa-check"></i><b>6.1</b> Taxonomy stacked barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diversity-analyses.html"><a href="diversity-analyses.html"><i class="fa fa-check"></i><b>7</b> Diversity analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diversity-analyses.html"><a href="diversity-analyses.html#data-preparation"><i class="fa fa-check"></i><b>7.1</b> Data preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity"><i class="fa fa-check"></i><b>7.2</b> Alpha diversity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-metrics"><i class="fa fa-check"></i>Alpha diversity metrics</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-plots"><i class="fa fa-check"></i>Alpha diversity plots</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#alpha-diversity-comparisons"><i class="fa fa-check"></i>Alpha diversity comparisons</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#relationship-between-alpha-diversity-and-sequencing-effort"><i class="fa fa-check"></i>Relationship between alpha diversity and sequencing effort</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity"><i class="fa fa-check"></i><b>7.3</b> Beta diversity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity-test"><i class="fa fa-check"></i>Beta diversity test</a></li>
+<li class="chapter" data-level="" data-path="diversity-analyses.html"><a href="diversity-analyses.html#beta-diversity-plot"><i class="fa fa-check"></i>Beta diversity plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Earth Hologenome Initiative Data Analysis Workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sequencing-assessment" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Sequencing Assessment<a href="sequencing-assessment.html#sequencing-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This workflow explores the characteristics of the MAG catalogue generated through the EHI pipeline. Note the workflow begins where the General analysis pipeline ends, so make sure you go through the general pipeline before starting working on this document.</p>
+<div id="dna-fractions" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> DNA fractions<a href="sequencing-assessment.html#dna-fractions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When performing genome-resolved metagenomic analyses on host-associated microbial communities, the data usually contains a mixture of origins. One fraction is low-quality data that is discarded in the bioinformatic preprocessing due to lack of informativeness. These data include low-quality bases, adaptors, low-complexity reads and alike, which do not contribute to the study. Another fraction belongs to the host genome against which the data are mapped. The host fraction can be very variable depending on the species and the sample type, and while it is not informative for metagenomic analyses, it can be used for genomic analyses. The rest is what we call the metagenomic fraction. Part of the metagenomic fraction is built into draft bacterial genomes or MAGs, against which metagenomic reads are mapped later on to quantify relative representation of genomes. The fraction that is not built into MAGs is what is also unmapped against the MAG catalogue. This last fraction includes DNA dietary items, viruses and other organisms, but can include prokaryotic DNA of bacteria and archaea that were unable to be reconstructed. In order to have representative results, the number of reads mapped to the MAG catalogue should be similar across samples. However, multiple reasons can create large imbalances, including uneven sequencing depth, different microbiome complexity across samples, different amount of host or non-microbial reads in the dataset, etc.</p>
+<p>The following scripts generate a plot showing the distribution of reads across samples.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb40-1"><a href="sequencing-assessment.html#cb40-1" tabindex="-1"></a>sequence_fractions <span class="ot">&lt;-</span> count_table <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="sequencing-assessment.html#cb40-2" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="st">&quot;Genome&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="sequencing-assessment.html#cb40-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Genome, <span class="at">names_to =</span> <span class="st">&quot;sample&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="sequencing-assessment.html#cb40-4" tabindex="-1"></a>  <span class="fu">group_by</span>(sample) <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="sequencing-assessment.html#cb40-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mags =</span> <span class="fu">sum</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="sequencing-assessment.html#cb40-6" tabindex="-1"></a>    <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample))  <span class="sc">%&gt;%</span></span>
+<span id="cb40-7"><a href="sequencing-assessment.html#cb40-7" tabindex="-1"></a>    <span class="fu">select</span>(sample,mags,metagenomic_bases,host_bases,bases_lost_fastp_percent) <span class="sc">%&gt;%</span></span>
+<span id="cb40-8"><a href="sequencing-assessment.html#cb40-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_bases =</span> mags<span class="sc">*</span><span class="dv">146</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-9"><a href="sequencing-assessment.html#cb40-9" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">lowqual_bases =</span> ((metagenomic_bases<span class="sc">+</span>host_bases)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>bases_lost_fastp_percent))<span class="sc">-</span>(metagenomic_bases<span class="sc">+</span>host_bases)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-10"><a href="sequencing-assessment.html#cb40-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">unmapped_bases =</span> metagenomic_bases <span class="sc">-</span> mags_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb40-11"><a href="sequencing-assessment.html#cb40-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">unmapped_bases =</span> <span class="fu">ifelse</span>(unmapped_bases <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, unmapped_bases)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-12"><a href="sequencing-assessment.html#cb40-12" tabindex="-1"></a>    <span class="fu">select</span>(sample,mags_bases,unmapped_bases,host_bases,lowqual_bases)</span>
+<span id="cb40-13"><a href="sequencing-assessment.html#cb40-13" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="sequencing-assessment.html#cb40-14" tabindex="-1"></a>mags_bases_mean <span class="ot">&lt;-</span> sequence_fractions <span class="sc">%&gt;%</span></span>
+<span id="cb40-15"><a href="sequencing-assessment.html#cb40-15" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_bases =</span> mags_bases <span class="sc">/</span> <span class="dv">1000000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-16"><a href="sequencing-assessment.html#cb40-16" tabindex="-1"></a>    <span class="fu">select</span>(mags_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb40-17"><a href="sequencing-assessment.html#cb40-17" tabindex="-1"></a>    <span class="fu">pull</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb40-18"><a href="sequencing-assessment.html#cb40-18" tabindex="-1"></a>    <span class="fu">mean</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb41-1"><a href="sequencing-assessment.html#cb41-1" tabindex="-1"></a>  sequence_fractions <span class="sc">%&gt;%</span></span>
+<span id="cb41-2"><a href="sequencing-assessment.html#cb41-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">!</span>sample, <span class="at">names_to =</span> <span class="st">&quot;fraction&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="sequencing-assessment.html#cb41-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">value =</span> value <span class="sc">/</span> <span class="dv">1000000000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="sequencing-assessment.html#cb41-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">fraction =</span> <span class="fu">factor</span>(fraction, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;lowqual_bases&quot;</span>,<span class="st">&quot;host_bases&quot;</span>,<span class="st">&quot;unmapped_bases&quot;</span>,<span class="st">&quot;mags_bases&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="sequencing-assessment.html#cb41-5" tabindex="-1"></a>    <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> sample, <span class="at">y =</span> value, <span class="at">fill=</span>fraction)) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="sequencing-assessment.html#cb41-6" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;stack&quot;</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-7"><a href="sequencing-assessment.html#cb41-7" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#CCCCCC&quot;</span>,<span class="st">&quot;#178a94&quot;</span>,<span class="st">&quot;#ee8080&quot;</span>,<span class="st">&quot;#d03161&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb41-8"><a href="sequencing-assessment.html#cb41-8" tabindex="-1"></a>        <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> mags_bases_mean, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="sequencing-assessment.html#cb41-9" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Samples&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Amount of data (GB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-10"><a href="sequencing-assessment.html#cb41-10" tabindex="-1"></a>        <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb41-11"><a href="sequencing-assessment.html#cb41-11" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size=</span><span class="dv">6</span>),<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/dna_fractions_plot-1.png" width="768" /></p>
+</div>
+<div id="estimated-vs.-mapped-prokaryotic-fraction" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Estimated vs. mapped prokaryotic fraction<a href="sequencing-assessment.html#estimated-vs.-mapped-prokaryotic-fraction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main metric employed to assess the representativeness of a prokaryotic community using genome-resolved metagenomics is to measure the percentage or reads mapped to the MAG catalogue. This metric, however can be slippery when prokaryotic DNA is not dominant in the metagenomic mixture. Host DNA, dietary DNA, viral DNA and other non-prokaryotic DNA sequences can drastically underestimate representativeness in such cases. In the EHI we also employ another metric which estimated the proportion of prokaryotic sequences in a sample relying on coverage values on marker genes and extrapolation of genome sizes of the closest relatives. Combining both approaches, we can better estimate whether a prokaryotic community has been properly represented, or whether further sequencing is required.</p>
+<p>The following script generate a plot in which the difference between estimated vs. mapped prokaryotic fractions can be visualised. A longer the orange line indicates that the mapping rate is further away from the expected fraction of prokaryotic DNA. The absence of lines and brown dots indicate that the mapping rate and the estimated fraction match, so the representativeness is correct. When the mapping value is at zero, it indicates that not enough metagenomic data was generated for this type of analyses, usually due to excessive host DNA.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb42-1"><a href="sequencing-assessment.html#cb42-1" tabindex="-1"></a>singlem_table <span class="ot">&lt;-</span> sequence_fractions <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="sequencing-assessment.html#cb42-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_proportion =</span> <span class="fu">round</span>((mags_bases <span class="sc">/</span> (mags_bases <span class="sc">+</span> unmapped_bases))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="sequencing-assessment.html#cb42-3" tabindex="-1"></a>    <span class="fu">left_join</span>(sample_table, <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> sample))  <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="sequencing-assessment.html#cb42-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">singlem_proportion =</span> <span class="fu">round</span>(singlem_fraction<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="sequencing-assessment.html#cb42-5" tabindex="-1"></a>    <span class="fu">select</span>(sample,mags_proportion,singlem_proportion) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="sequencing-assessment.html#cb42-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_proportion =</span> <span class="fu">ifelse</span>(singlem_proportion <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, mags_proportion)) <span class="sc">%&gt;%</span> <span class="co">#convert zeros to NA</span></span>
+<span id="cb42-7"><a href="sequencing-assessment.html#cb42-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">singlem_proportion =</span> <span class="fu">ifelse</span>(singlem_proportion <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">NA</span>, singlem_proportion)) <span class="sc">%&gt;%</span> <span class="co">#convert zeros to NA</span></span>
+<span id="cb42-8"><a href="sequencing-assessment.html#cb42-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">singlem_proportion =</span> <span class="fu">ifelse</span>(singlem_proportion <span class="sc">&lt;</span> mags_proportion, <span class="cn">NA</span>, singlem_proportion)) <span class="sc">%&gt;%</span> <span class="co">#if singlem is smaller, then NA, to simplify plot</span></span>
+<span id="cb42-9"><a href="sequencing-assessment.html#cb42-9" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">singlem_proportion =</span> <span class="fu">ifelse</span>(singlem_proportion <span class="sc">&gt;</span> <span class="dv">100</span>, <span class="dv">100</span>, singlem_proportion)) <span class="co">#simplify</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb43-1"><a href="sequencing-assessment.html#cb43-1" tabindex="-1"></a>singlem_table <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="sequencing-assessment.html#cb43-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">!</span>sample, <span class="at">names_to =</span> <span class="st">&quot;proportion&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="sequencing-assessment.html#cb43-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">proportion =</span> <span class="fu">factor</span>(proportion, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;mags_proportion&quot;</span>,<span class="st">&quot;singlem_proportion&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="sequencing-assessment.html#cb43-4" tabindex="-1"></a>    <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> sample, <span class="at">color=</span>proportion)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="sequencing-assessment.html#cb43-5" tabindex="-1"></a>            <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> sample), <span class="at">color =</span> <span class="st">&quot;#f8a538&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="sequencing-assessment.html#cb43-6" tabindex="-1"></a>            <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb43-7"><a href="sequencing-assessment.html#cb43-7" tabindex="-1"></a>            <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#52e1e8&quot;</span>,<span class="st">&quot;#876b53&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="sequencing-assessment.html#cb43-8" tabindex="-1"></a>            <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb43-9"><a href="sequencing-assessment.html#cb43-9" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Samples&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Prokaryotic fraction (%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-10"><a href="sequencing-assessment.html#cb43-10" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size=</span><span class="dv">6</span>),<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/singlem_plot-1.png" width="768" /></p>
+</div>
+<div id="additional-sequencing-needed" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Additional sequencing needed<a href="sequencing-assessment.html#additional-sequencing-needed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Estimating the amount of host and metagenomic data required for robust hologenomic analyses is very complex, because these values are dependent on many system and study-specific factors. Here you will find the minimum data requirements that work for most systems, which take as reference a desired amount of 5GB of host DNA and 2GB of prokaryotic DNA. The calculations of extra sequencing required take into account the different fractions of sequencing data, including low-quality, host, MAG catalogue-mapped and other metagenomic reads. The bars exceeding the vertical dashed bar set at 20GB of data indicate that more than 20GBs are required to reach the desired amount of host or prokaryotic data. You can check the table for the actual value, but bear in mind that generating more than 20GB of data is economically prohibitive in most cases.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb44-1"><a href="sequencing-assessment.html#cb44-1" tabindex="-1"></a><span class="co"># Define the aimed GBs for host and mapped metagenomic data</span></span>
+<span id="cb44-2"><a href="sequencing-assessment.html#cb44-2" tabindex="-1"></a>mags_bases_aim<span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb44-3"><a href="sequencing-assessment.html#cb44-3" tabindex="-1"></a>host_bases_aim<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb44-4"><a href="sequencing-assessment.html#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="sequencing-assessment.html#cb44-5" tabindex="-1"></a>sequence_fractions_required <span class="ot">&lt;-</span> sequence_fractions <span class="sc">%&gt;%</span></span>
+<span id="cb44-6"><a href="sequencing-assessment.html#cb44-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_bases =</span> <span class="fu">round</span>(mags_bases <span class="sc">/</span> <span class="dv">1000000000</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-7"><a href="sequencing-assessment.html#cb44-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">unmapped_bases =</span> <span class="fu">round</span>(unmapped_bases <span class="sc">/</span> <span class="dv">1000000000</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-8"><a href="sequencing-assessment.html#cb44-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_bases =</span> <span class="fu">round</span>(host_bases <span class="sc">/</span> <span class="dv">1000000000</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-9"><a href="sequencing-assessment.html#cb44-9" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">lowqual_bases =</span> <span class="fu">round</span>(lowqual_bases <span class="sc">/</span> <span class="dv">1000000000</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-10"><a href="sequencing-assessment.html#cb44-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total_bases =</span> mags_bases<span class="sc">+</span>unmapped_bases<span class="sc">+</span>host_bases<span class="sc">+</span>lowqual_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb44-11"><a href="sequencing-assessment.html#cb44-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_bases_fraction =</span> mags_bases<span class="sc">/</span>total_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb44-12"><a href="sequencing-assessment.html#cb44-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">mags_bases_difference =</span> mags_bases_aim <span class="sc">-</span> mags_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb44-13"><a href="sequencing-assessment.html#cb44-13" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">meta_required =</span> <span class="fu">round</span>(mags_bases_difference <span class="sc">/</span> mags_bases_fraction,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-14"><a href="sequencing-assessment.html#cb44-14" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">meta_required =</span> <span class="fu">ifelse</span>(meta_required <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, meta_required)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-15"><a href="sequencing-assessment.html#cb44-15" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_bases_fraction =</span> host_bases<span class="sc">/</span>total_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb44-16"><a href="sequencing-assessment.html#cb44-16" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_bases_difference =</span> host_bases_aim <span class="sc">-</span> host_bases) <span class="sc">%&gt;%</span></span>
+<span id="cb44-17"><a href="sequencing-assessment.html#cb44-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_required =</span> <span class="fu">round</span>(host_bases_difference <span class="sc">/</span> host_bases_fraction,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-18"><a href="sequencing-assessment.html#cb44-18" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_required =</span> <span class="fu">ifelse</span>(host_required <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, host_required)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-19"><a href="sequencing-assessment.html#cb44-19" tabindex="-1"></a>    <span class="fu">select</span>(sample,mags_bases,unmapped_bases,host_bases,lowqual_bases,meta_required,host_required)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb45-1"><a href="sequencing-assessment.html#cb45-1" tabindex="-1"></a>sequence_fractions_required <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="sequencing-assessment.html#cb45-2" tabindex="-1"></a>    <span class="fu">select</span>(sample,meta_required,host_required) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="sequencing-assessment.html#cb45-3" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">meta_required =</span> <span class="fu">ifelse</span>(meta_required <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="dv">21</span>, meta_required)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="sequencing-assessment.html#cb45-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">host_required =</span> <span class="fu">ifelse</span>(host_required <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="dv">21</span>, host_required)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-5"><a href="sequencing-assessment.html#cb45-5" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">!</span>sample, <span class="at">names_to =</span> <span class="st">&quot;requirement&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-6"><a href="sequencing-assessment.html#cb45-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">requirement =</span> <span class="fu">factor</span>(requirement, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;host_required&quot;</span>,<span class="st">&quot;meta_required&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="sequencing-assessment.html#cb45-7" tabindex="-1"></a>    <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> sample, <span class="at">fill=</span>requirement, <span class="at">group=</span>requirement)) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="sequencing-assessment.html#cb45-8" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;stack&quot;</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-9"><a href="sequencing-assessment.html#cb45-9" tabindex="-1"></a>            <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#178a94&quot;</span>,<span class="st">&quot;#d03161&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb45-10"><a href="sequencing-assessment.html#cb45-10" tabindex="-1"></a>            <span class="fu">facet_wrap</span>(<span class="sc">~</span>requirement, <span class="at">scales=</span><span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-11"><a href="sequencing-assessment.html#cb45-11" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Amount of data (GB)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Samples&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-12"><a href="sequencing-assessment.html#cb45-12" tabindex="-1"></a>            <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">20</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb45-13"><a href="sequencing-assessment.html#cb45-13" tabindex="-1"></a>        <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb45-14"><a href="sequencing-assessment.html#cb45-14" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size=</span><span class="dv">6</span>),<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/sequencing_plot-1.png" width="768" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mag-catalogue.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="count-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
