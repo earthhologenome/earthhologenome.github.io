@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Dereplication and mapping | The Earth Hologenome Initiative Bioinformatics Workflow</title>
+  <title>Chapter 4 Bin annotation | The Earth Hologenome Initiative Bioinformatics Workflow</title>
   <meta name="description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Dereplication and mapping | The Earth Hologenome Initiative Bioinformatics Workflow" />
+  <meta property="og:title" content="Chapter 4 Bin annotation | The Earth Hologenome Initiative Bioinformatics Workflow" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   <meta name="github-repo" content="earthhologenome/EHI_bioinfo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Dereplication and mapping | The Earth Hologenome Initiative Bioinformatics Workflow" />
+  <meta name="twitter:title" content="Chapter 4 Bin annotation | The Earth Hologenome Initiative Bioinformatics Workflow" />
   
   <meta name="twitter:description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bin-annotation.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="assembly-binning.html"/>
+<link rel="next" href="dereplication-and-mapping.html"/>
 
 
 
@@ -2078,52 +2078,33 @@ background-color: #ffffff !important;
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dereplication-and-mapping" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Dereplication and mapping<a href="dereplication-and-mapping.html#dereplication-and-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bin-annotation" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Bin annotation<a href="bin-annotation.html#bin-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Contents here</p>
-<div id="mag-dereplication" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> MAG dereplication<a href="dereplication-and-mapping.html#mag-dereplication" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb14-1"><a href="dereplication-and-mapping.html#cb14-1" tabindex="-1"></a><span class="ex">dRep</span> dereplicate <span class="dt">\</span></span>
-<span id="cb14-2"><a href="dereplication-and-mapping.html#cb14-2" tabindex="-1"></a>      {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep <span class="dt">\</span></span>
-<span id="cb14-3"><a href="dereplication-and-mapping.html#cb14-3" tabindex="-1"></a>      <span class="at">-p</span> {threads} <span class="dt">\</span></span>
-<span id="cb14-4"><a href="dereplication-and-mapping.html#cb14-4" tabindex="-1"></a>      <span class="at">-comp</span> 50 <span class="dt">\</span></span>
-<span id="cb14-5"><a href="dereplication-and-mapping.html#cb14-5" tabindex="-1"></a>      <span class="at">-sa</span> {config<span class="pp">[</span><span class="ss">ani</span><span class="pp">]</span>} <span class="dt">\</span></span>
-<span id="cb14-6"><a href="dereplication-and-mapping.html#cb14-6" tabindex="-1"></a>      <span class="at">-g</span> {config<span class="pp">[</span><span class="ss">magdir</span><span class="pp">]</span>}/<span class="pp">*</span>.fa.gz <span class="dt">\</span></span>
-<span id="cb14-7"><a href="dereplication-and-mapping.html#cb14-7" tabindex="-1"></a>      <span class="at">--genomeInfo</span> mags_formatted.csv</span></code></pre></div>
+<div id="taxonomic-annotation" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Taxonomic annotation<a href="bin-annotation.html#taxonomic-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb12-1"><a href="bin-annotation.html#cb12-1" tabindex="-1"></a><span class="co"># Run GTDB-tk:</span></span>
+<span id="cb12-2"><a href="bin-annotation.html#cb12-2" tabindex="-1"></a><span class="ex">gtdbtk</span> classify_wf <span class="dt">\</span></span>
+<span id="cb12-3"><a href="bin-annotation.html#cb12-3" tabindex="-1"></a>    <span class="at">--genome_dir</span> {params.bins} <span class="dt">\</span></span>
+<span id="cb12-4"><a href="bin-annotation.html#cb12-4" tabindex="-1"></a>    <span class="at">--extension</span> <span class="st">&quot;gz&quot;</span> <span class="dt">\</span></span>
+<span id="cb12-5"><a href="bin-annotation.html#cb12-5" tabindex="-1"></a>    <span class="at">--out_dir</span> {params.outdir} <span class="dt">\</span></span>
+<span id="cb12-6"><a href="bin-annotation.html#cb12-6" tabindex="-1"></a>    <span class="at">--cpus</span> {threads} <span class="dt">\</span></span>
+<span id="cb12-7"><a href="bin-annotation.html#cb12-7" tabindex="-1"></a>    <span class="at">--skip_ani_screen</span></span></code></pre></div>
 </div>
-<div id="mapping-to-mag-catalogue" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Mapping to MAG catalogue<a href="dereplication-and-mapping.html#mapping-to-mag-catalogue" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb15-1"><a href="dereplication-and-mapping.html#cb15-1" tabindex="-1"></a><span class="co"># Concatenate MAGs</span></span>
-<span id="cb15-2"><a href="dereplication-and-mapping.html#cb15-2" tabindex="-1"></a><span class="fu">cat</span> {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep/dereplicated_genomes/<span class="pp">*</span>.fa.gz <span class="op">&gt;</span> {config[workdir]}/mag_catalogue/{config[dmb]}_mags.fasta.gz</span>
-<span id="cb15-3"><a href="dereplication-and-mapping.html#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="dereplication-and-mapping.html#cb15-4" tabindex="-1"></a><span class="co"># Index the coassembly</span></span>
-<span id="cb15-5"><a href="dereplication-and-mapping.html#cb15-5" tabindex="-1"></a><span class="ex">bowtie2-build</span> <span class="dt">\</span></span>
-<span id="cb15-6"><a href="dereplication-and-mapping.html#cb15-6" tabindex="-1"></a>      <span class="at">--large-index</span> <span class="dt">\</span></span>
-<span id="cb15-7"><a href="dereplication-and-mapping.html#cb15-7" tabindex="-1"></a>      <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb15-8"><a href="dereplication-and-mapping.html#cb15-8" tabindex="-1"></a>      {output.mags} {output.mags}</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb16-1"><a href="dereplication-and-mapping.html#cb16-1" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
-<span id="cb16-2"><a href="dereplication-and-mapping.html#cb16-2" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
-<span id="cb16-3"><a href="dereplication-and-mapping.html#cb16-3" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb16-4"><a href="dereplication-and-mapping.html#cb16-4" tabindex="-1"></a>    <span class="at">-x</span> {input.contigs} <span class="dt">\</span></span>
-<span id="cb16-5"><a href="dereplication-and-mapping.html#cb16-5" tabindex="-1"></a>    <span class="at">-1</span> {input.r1} <span class="dt">\</span></span>
-<span id="cb16-6"><a href="dereplication-and-mapping.html#cb16-6" tabindex="-1"></a>    <span class="at">-2</span> {input.r2} <span class="dt">\</span></span>
-<span id="cb16-7"><a href="dereplication-and-mapping.html#cb16-7" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output}</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb17-1"><a href="dereplication-and-mapping.html#cb17-1" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
-<span id="cb17-2"><a href="dereplication-and-mapping.html#cb17-2" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
-<span id="cb17-3"><a href="dereplication-and-mapping.html#cb17-3" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
-<span id="cb17-4"><a href="dereplication-and-mapping.html#cb17-4" tabindex="-1"></a>    <span class="at">-m</span> count covered_fraction <span class="dt">\</span></span>
-<span id="cb17-5"><a href="dereplication-and-mapping.html#cb17-5" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
-<span id="cb17-6"><a href="dereplication-and-mapping.html#cb17-6" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
-<span id="cb17-7"><a href="dereplication-and-mapping.html#cb17-7" tabindex="-1"></a>    <span class="op">&gt;</span> {output.count_table}</span>
-<span id="cb17-8"><a href="dereplication-and-mapping.html#cb17-8" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="dereplication-and-mapping.html#cb17-9" tabindex="-1"></a><span class="co">#relative abundance for report</span></span>
-<span id="cb17-10"><a href="dereplication-and-mapping.html#cb17-10" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
-<span id="cb17-11"><a href="dereplication-and-mapping.html#cb17-11" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
-<span id="cb17-12"><a href="dereplication-and-mapping.html#cb17-12" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
-<span id="cb17-13"><a href="dereplication-and-mapping.html#cb17-13" tabindex="-1"></a>    <span class="at">-m</span> relative_abundance <span class="dt">\</span></span>
-<span id="cb17-14"><a href="dereplication-and-mapping.html#cb17-14" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
-<span id="cb17-15"><a href="dereplication-and-mapping.html#cb17-15" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
-<span id="cb17-16"><a href="dereplication-and-mapping.html#cb17-16" tabindex="-1"></a>    <span class="op">&gt;</span> {output.mapping_rate}</span></code></pre></div>
+<div id="functional-annotation" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Functional annotation<a href="bin-annotation.html#functional-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb13-1"><a href="bin-annotation.html#cb13-1" tabindex="-1"></a><span class="ex">DRAM.py</span> annotate <span class="dt">\</span></span>
+<span id="cb13-2"><a href="bin-annotation.html#cb13-2" tabindex="-1"></a>        <span class="at">-i</span> {input.mag} <span class="dt">\</span></span>
+<span id="cb13-3"><a href="bin-annotation.html#cb13-3" tabindex="-1"></a>        <span class="at">-o</span> {params.outdir} <span class="dt">\</span></span>
+<span id="cb13-4"><a href="bin-annotation.html#cb13-4" tabindex="-1"></a>        <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb13-5"><a href="bin-annotation.html#cb13-5" tabindex="-1"></a>        <span class="at">--min_contig_size</span> 1500</span>
+<span id="cb13-6"><a href="bin-annotation.html#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="bin-annotation.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="bin-annotation.html#cb13-8" tabindex="-1"></a><span class="ex">DRAM.py</span> distill <span class="dt">\</span></span>
+<span id="cb13-9"><a href="bin-annotation.html#cb13-9" tabindex="-1"></a>        <span class="at">-i</span> {params.outdir}/annotations.tsv <span class="dt">\</span></span>
+<span id="cb13-10"><a href="bin-annotation.html#cb13-10" tabindex="-1"></a>        <span class="at">--rrna_path</span> {params.outdir}/rrnas.tsv <span class="dt">\</span></span>
+<span id="cb13-11"><a href="bin-annotation.html#cb13-11" tabindex="-1"></a>        <span class="at">--trna_path</span> {params.outdir}/trnas.tsv <span class="dt">\</span></span>
+<span id="cb13-12"><a href="bin-annotation.html#cb13-12" tabindex="-1"></a>        <span class="at">-o</span> {params.distillate}</span></code></pre></div>
 
 </div>
 </div>
@@ -2132,8 +2113,8 @@ background-color: #ffffff !important;
           </div>
         </div>
       </div>
-<a href="bin-annotation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="assembly-binning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dereplication-and-mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */

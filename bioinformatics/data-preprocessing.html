@@ -2025,12 +2025,38 @@ background-color: #ffffff !important;
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prepare-the-r-environment"><i class="fa fa-check"></i><b>1.1</b> Prepare the R environment</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#download-mock-data"><i class="fa fa-check"></i><b>1.2</b> Download mock data</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#workflow-overview"><i class="fa fa-check"></i><b>1.1</b> Workflow overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#snakemake-pipeline"><i class="fa fa-check"></i><b>1.2</b> Snakemake pipeline</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="3" data-path="assembly-binning.html"><a href="assembly-binning.html"><i class="fa fa-check"></i><b>3</b> Assembly &amp; Binning</a></li>
-<li class="chapter" data-level="4" data-path="dereplication-and-mapping.html"><a href="dereplication-and-mapping.html"><i class="fa fa-check"></i><b>4</b> Dereplication and mapping</a></li>
+<li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#quality-filtering"><i class="fa fa-check"></i><b>2.1</b> Quality-filtering</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i><b>2.2</b> Host mapping</a></li>
+<li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#metagenomic-complexity-assessment"><i class="fa fa-check"></i><b>2.3</b> Metagenomic complexity assessment</a></li>
+<li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#prokaryotic-fraction-assessment"><i class="fa fa-check"></i><b>2.4</b> Prokaryotic fraction assessment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="assembly-binning.html"><a href="assembly-binning.html"><i class="fa fa-check"></i><b>3</b> Assembly &amp; Binning</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="assembly-binning.html"><a href="assembly-binning.html#metagenomic-assembly"><i class="fa fa-check"></i><b>3.1</b> Metagenomic assembly</a></li>
+<li class="chapter" data-level="3.2" data-path="assembly-binning.html"><a href="assembly-binning.html#assembly-mapping"><i class="fa fa-check"></i><b>3.2</b> Assembly mapping</a></li>
+<li class="chapter" data-level="3.3" data-path="assembly-binning.html"><a href="assembly-binning.html#ensemble-binning"><i class="fa fa-check"></i><b>3.3</b> Ensemble binning</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="assembly-binning.html"><a href="assembly-binning.html#maxbin"><i class="fa fa-check"></i><b>3.3.1</b> Maxbin</a></li>
+<li class="chapter" data-level="3.3.2" data-path="assembly-binning.html"><a href="assembly-binning.html#metabat"><i class="fa fa-check"></i><b>3.3.2</b> Metabat</a></li>
+<li class="chapter" data-level="3.3.3" data-path="assembly-binning.html"><a href="assembly-binning.html#concoct"><i class="fa fa-check"></i><b>3.3.3</b> CONCOCT</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="assembly-binning.html"><a href="assembly-binning.html#bin-refinement"><i class="fa fa-check"></i><b>3.4</b> Bin refinement</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="bin-annotation.html"><a href="bin-annotation.html"><i class="fa fa-check"></i><b>4</b> Bin annotation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="bin-annotation.html"><a href="bin-annotation.html#taxonomic-annotation"><i class="fa fa-check"></i><b>4.1</b> Taxonomic annotation</a></li>
+<li class="chapter" data-level="4.2" data-path="bin-annotation.html"><a href="bin-annotation.html#functional-annotation"><i class="fa fa-check"></i><b>4.2</b> Functional annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dereplication-and-mapping.html"><a href="dereplication-and-mapping.html"><i class="fa fa-check"></i><b>5</b> Dereplication and mapping</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dereplication-and-mapping.html"><a href="dereplication-and-mapping.html#mag-dereplication"><i class="fa fa-check"></i><b>5.1</b> MAG dereplication</a></li>
+<li class="chapter" data-level="5.2" data-path="dereplication-and-mapping.html"><a href="dereplication-and-mapping.html#mapping-to-mag-catalogue"><i class="fa fa-check"></i><b>5.2</b> Mapping to MAG catalogue</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
@@ -2054,8 +2080,80 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="data-preprocessing" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data preprocessing<a href="data-preprocessing.html#data-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Contents here</p>
+<p>Contents here.</p>
+<div id="quality-filtering" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Quality-filtering<a href="data-preprocessing.html#quality-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb1-1"><a href="data-preprocessing.html#cb1-1" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<span id="cb1-2"><a href="data-preprocessing.html#cb1-2" tabindex="-1"></a>    <span class="at">--in1</span> {input.r1i} <span class="at">--in2</span> {input.r2i} <span class="dt">\</span></span>
+<span id="cb1-3"><a href="data-preprocessing.html#cb1-3" tabindex="-1"></a>    <span class="at">--out1</span> {output.r1o} <span class="at">--out2</span> {output.r2o} <span class="dt">\</span></span>
+<span id="cb1-4"><a href="data-preprocessing.html#cb1-4" tabindex="-1"></a>    <span class="at">--trim_poly_g</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="data-preprocessing.html#cb1-5" tabindex="-1"></a>    <span class="at">--trim_poly_x</span> <span class="dt">\</span></span>
+<span id="cb1-6"><a href="data-preprocessing.html#cb1-6" tabindex="-1"></a>    <span class="at">--low_complexity_filter</span> <span class="dt">\</span></span>
+<span id="cb1-7"><a href="data-preprocessing.html#cb1-7" tabindex="-1"></a>    <span class="at">--n_base_limit</span> 5 <span class="dt">\</span></span>
+<span id="cb1-8"><a href="data-preprocessing.html#cb1-8" tabindex="-1"></a>    <span class="at">--qualified_quality_phred</span> 20 <span class="dt">\</span></span>
+<span id="cb1-9"><a href="data-preprocessing.html#cb1-9" tabindex="-1"></a>    <span class="at">--length_required</span> 60 <span class="dt">\</span></span>
+<span id="cb1-10"><a href="data-preprocessing.html#cb1-10" tabindex="-1"></a>    <span class="at">--thread</span> {threads} <span class="dt">\</span></span>
+<span id="cb1-11"><a href="data-preprocessing.html#cb1-11" tabindex="-1"></a>    <span class="at">--html</span> {output.fastp_html} <span class="dt">\</span></span>
+<span id="cb1-12"><a href="data-preprocessing.html#cb1-12" tabindex="-1"></a>    <span class="at">--json</span> {output.fastp_json} <span class="dt">\</span></span>
+<span id="cb1-13"><a href="data-preprocessing.html#cb1-13" tabindex="-1"></a>    <span class="at">--adapter_sequence</span> {params.adapter1} <span class="dt">\</span></span>
+<span id="cb1-14"><a href="data-preprocessing.html#cb1-14" tabindex="-1"></a>    <span class="at">--adapter_sequence_r2</span> {params.adapter2}</span></code></pre></div>
+</div>
+<div id="host-mapping" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Host mapping<a href="data-preprocessing.html#host-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb2-1"><a href="data-preprocessing.html#cb2-1" tabindex="-1"></a><span class="co"># Map reads to catted reference using Bowtie2</span></span>
+<span id="cb2-2"><a href="data-preprocessing.html#cb2-2" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="data-preprocessing.html#cb2-3" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="data-preprocessing.html#cb2-4" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb2-5"><a href="data-preprocessing.html#cb2-5" tabindex="-1"></a>    <span class="at">-x</span> {input.catted_ref} <span class="dt">\</span></span>
+<span id="cb2-6"><a href="data-preprocessing.html#cb2-6" tabindex="-1"></a>    <span class="at">-1</span> {input.r1i} <span class="dt">\</span></span>
+<span id="cb2-7"><a href="data-preprocessing.html#cb2-7" tabindex="-1"></a>    <span class="at">-2</span> {input.r2i} <span class="dt">\</span></span>
+<span id="cb2-8"><a href="data-preprocessing.html#cb2-8" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-@</span> {threads} <span class="at">-</span> <span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.all_bam} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
+<span id="cb2-9"><a href="data-preprocessing.html#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="data-preprocessing.html#cb2-10" tabindex="-1"></a><span class="co"># Extract non-host reads (note we&#39;re not compressing for nonpareil)</span></span>
+<span id="cb2-11"><a href="data-preprocessing.html#cb2-11" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-f12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
+<span id="cb2-12"><a href="data-preprocessing.html#cb2-12" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> fastq <span class="at">-@</span> {threads} <span class="at">-1</span> {output.non_host_r1} <span class="at">-2</span> {output.non_host_r2} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
+<span id="cb2-13"><a href="data-preprocessing.html#cb2-13" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="data-preprocessing.html#cb2-14" tabindex="-1"></a><span class="co"># Send host reads to BAM</span></span>
+<span id="cb2-15"><a href="data-preprocessing.html#cb2-15" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-F12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
+<span id="cb2-16"><a href="data-preprocessing.html#cb2-16" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.host_bam} <span class="at">-</span></span>
+<span id="cb2-17"><a href="data-preprocessing.html#cb2-17" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="data-preprocessing.html#cb2-18" tabindex="-1"></a><span class="co"># Get % duplicates from host BAM</span></span>
+<span id="cb2-19"><a href="data-preprocessing.html#cb2-19" tabindex="-1"></a><span class="ex">picard</span> <span class="at">-Xmx{resources.mem_gb}g</span> MarkDuplicates <span class="dt">\</span></span>
+<span id="cb2-20"><a href="data-preprocessing.html#cb2-20" tabindex="-1"></a>-I {output.host_bam} <span class="dt">\</span></span>
+<span id="cb2-21"><a href="data-preprocessing.html#cb2-21" tabindex="-1"></a>-O {output.markdup_bam} <span class="dt">\</span></span>
+<span id="cb2-22"><a href="data-preprocessing.html#cb2-22" tabindex="-1"></a>-M {output.markdup}</span></code></pre></div>
+</div>
+<div id="metagenomic-complexity-assessment" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Metagenomic complexity assessment<a href="data-preprocessing.html#metagenomic-complexity-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb3-1"><a href="data-preprocessing.html#cb3-1" tabindex="-1"></a><span class="ex">nonpareil</span> <span class="dt">\</span></span>
+<span id="cb3-2"><a href="data-preprocessing.html#cb3-2" tabindex="-1"></a>    <span class="at">-s</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb3-3"><a href="data-preprocessing.html#cb3-3" tabindex="-1"></a>    <span class="at">-f</span> fastq <span class="dt">\</span></span>
+<span id="cb3-4"><a href="data-preprocessing.html#cb3-4" tabindex="-1"></a>    <span class="at">-T</span> kmer <span class="dt">\</span></span>
+<span id="cb3-5"><a href="data-preprocessing.html#cb3-5" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
+<span id="cb3-6"><a href="data-preprocessing.html#cb3-6" tabindex="-1"></a>    <span class="at">-b</span> {wildcards.sample}</span>
+<span id="cb3-7"><a href="data-preprocessing.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="data-preprocessing.html#cb3-8" tabindex="-1"></a><span class="co">#Script to extract nonpareil values of interest</span></span>
+<span id="cb3-9"><a href="data-preprocessing.html#cb3-9" tabindex="-1"></a><span class="ex">Rscript</span> {config<span class="pp">[</span><span class="ss">codedir</span><span class="pp">]</span>}/scripts/nonpareil_table.R {output.npo} {output.npstats}</span></code></pre></div>
+</div>
+<div id="prokaryotic-fraction-assessment" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Prokaryotic fraction assessment<a href="data-preprocessing.html#prokaryotic-fraction-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb4-1"><a href="data-preprocessing.html#cb4-1" tabindex="-1"></a><span class="co">#Run singlem pipe</span></span>
+<span id="cb4-2"><a href="data-preprocessing.html#cb4-2" tabindex="-1"></a><span class="ex">singlem</span> pipe <span class="dt">\</span></span>
+<span id="cb4-3"><a href="data-preprocessing.html#cb4-3" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb4-4"><a href="data-preprocessing.html#cb4-4" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
+<span id="cb4-5"><a href="data-preprocessing.html#cb4-5" tabindex="-1"></a>    <span class="at">--otu-table</span> {params.pipe_uncompressed} <span class="dt">\</span></span>
+<span id="cb4-6"><a href="data-preprocessing.html#cb4-6" tabindex="-1"></a>    <span class="at">--taxonomic-profile</span> {output.condense} <span class="dt">\</span></span>
+<span id="cb4-7"><a href="data-preprocessing.html#cb4-7" tabindex="-1"></a>    <span class="at">--threads</span> {threads}</span>
+<span id="cb4-8"><a href="data-preprocessing.html#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="data-preprocessing.html#cb4-9" tabindex="-1"></a><span class="co">#Run singlem read_fraction</span></span>
+<span id="cb4-10"><a href="data-preprocessing.html#cb4-10" tabindex="-1"></a><span class="ex">singlem</span> read_fraction <span class="dt">\</span></span>
+<span id="cb4-11"><a href="data-preprocessing.html#cb4-11" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb4-12"><a href="data-preprocessing.html#cb4-12" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
+<span id="cb4-13"><a href="data-preprocessing.html#cb4-13" tabindex="-1"></a>    <span class="at">--input-profile</span> {output.condense} <span class="dt">\</span></span>
+<span id="cb4-14"><a href="data-preprocessing.html#cb4-14" tabindex="-1"></a>    <span class="at">--output-tsv</span> {output.read_fraction} <span class="dt">\</span></span>
+<span id="cb4-15"><a href="data-preprocessing.html#cb4-15" tabindex="-1"></a>    <span class="at">--output-per-taxon-read-fractions</span> {params.read_fraction_taxa}</span></code></pre></div>
 
+</div>
 </div>
             </section>
 
