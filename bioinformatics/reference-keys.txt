@@ -1,0 +1,6 @@
+introduction
+prepare-the-r-environment
+download-mock-data
+data-preprocessing
+assembly-binning
+dereplication-and-mapping

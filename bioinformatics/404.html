@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>The Earth Hologenome Initiative Bioinformatics Workflow</title>
+  <title>Page not found | The Earth Hologenome Initiative Bioinformatics Workflow</title>
   <meta name="description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="The Earth Hologenome Initiative Bioinformatics Workflow" />
+  <meta property="og:title" content="Page not found | The Earth Hologenome Initiative Bioinformatics Workflow" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   <meta name="github-repo" content="earthhologenome/EHI_bioinfo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="The Earth Hologenome Initiative Bioinformatics Workflow" />
+  <meta name="twitter:title" content="Page not found | The Earth Hologenome Initiative Bioinformatics Workflow" />
   
   <meta name="twitter:description" content="&lt;p&gt;Detailed information of the data analysis procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   
@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="data-preprocessing.html"/>
+
 
 
 
@@ -2052,103 +2052,11 @@ background-color: #ffffff !important;
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">The Earth Hologenome Initiative Bioinformatics Workflow</h1>
-<p class="author"><em>Raphael Eisenhofer<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="author"><em>Antton Alberdi<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></em></p>
-<p class="date"><em>2023-11-06</em></p>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The Earth Hologenome Initiative (EHI, <a href="http://www.earthhologenome.org">www.earthhologenome.org</a>) is a global collaborative endeavour aimed at promoting, facilitating, coordinating, and standardising hologenomic research on wild organisms worldwide. The EHI encompasses projects with diverse study designs and goals around standardised and open access sample collection and preservation, data generation and data management criteria.</p>
-<p>One of the main objectives of the EHI is to facilitate analysis of animal genomic and microbial metagenomic data. Here, you will find resources to summarise, visualise and model data generated through the EHI pipeline.</p>
-<div id="prepare-the-r-environment" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Prepare the R environment<a href="index.html#prepare-the-r-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The first step is to prepare your R environment. You must ensure you are at the appropriate working directory, and all required libraries are installed and loaded.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;path_to_your_working_directory&quot;</span>) <span class="co"># Change this to your absolute working directory</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="st">&quot;data&quot;</span>) <span class="co">#Create the data folder to store EHI data files</span></span></code></pre></div>
-<p>The pipeline requires the following packages to be installed in your R environment.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="co"># These packages can be installed from CRAN</span></span>
-<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;R.utils&quot;</span>)</span>
-<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;knitr&quot;</span>)</span>
-<span id="cb2-4"><a href="index.html#cb2-4" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb2-5"><a href="index.html#cb2-5" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
-<span id="cb2-6"><a href="index.html#cb2-6" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;phytools&quot;</span>)</span>
-<span id="cb2-7"><a href="index.html#cb2-7" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb2-8"><a href="index.html#cb2-8" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggtree&quot;</span>)</span>
-<span id="cb2-9"><a href="index.html#cb2-9" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggrepel&quot;</span>)</span>
-<span id="cb2-10"><a href="index.html#cb2-10" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
-<span id="cb2-11"><a href="index.html#cb2-11" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggnewscale&quot;</span>)</span>
-<span id="cb2-12"><a href="index.html#cb2-12" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggtreeExtra&quot;</span>)</span>
-<span id="cb2-13"><a href="index.html#cb2-13" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;gridExtra&quot;</span>)</span>
-<span id="cb2-14"><a href="index.html#cb2-14" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;spaa&quot;</span>)</span>
-<span id="cb2-15"><a href="index.html#cb2-15" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;vegan&quot;</span>)</span>
-<span id="cb2-16"><a href="index.html#cb2-16" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;Rtsne&quot;</span>)</span>
-<span id="cb2-17"><a href="index.html#cb2-17" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-18"><a href="index.html#cb2-18" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="index.html#cb2-19" tabindex="-1"></a><span class="co"># This packages must be installed from Github using devtools</span></span>
-<span id="cb2-20"><a href="index.html#cb2-20" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb2-21"><a href="index.html#cb2-21" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;anttonalberdi/hilldiv2&quot;</span>)</span></code></pre></div>
-<p>All those packages then need to be loaded to your R environment.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(R.utils))</span>
-<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(knitr))</span>
-<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
-<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ape))</span>
-<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(phytools))</span>
-<span id="cb3-6"><a href="index.html#cb3-6" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggplot2))</span>
-<span id="cb3-7"><a href="index.html#cb3-7" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggtree))</span>
-<span id="cb3-8"><a href="index.html#cb3-8" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggrepel))</span>
-<span id="cb3-9"><a href="index.html#cb3-9" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggpubr))</span>
-<span id="cb3-10"><a href="index.html#cb3-10" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggnewscale))</span>
-<span id="cb3-11"><a href="index.html#cb3-11" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggtreeExtra))</span>
-<span id="cb3-12"><a href="index.html#cb3-12" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(gridExtra))</span>
-<span id="cb3-13"><a href="index.html#cb3-13" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(hilldiv2))</span>
-<span id="cb3-14"><a href="index.html#cb3-14" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(spaa))</span>
-<span id="cb3-15"><a href="index.html#cb3-15" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(vegan))</span>
-<span id="cb3-16"><a href="index.html#cb3-16" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(Rtsne))</span></code></pre></div>
-</div>
-<div id="download-mock-data" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Download mock data<a href="index.html#download-mock-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you want to reproduce the analyses shown in this website, you can download the mock data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a><span class="co"># Count table</span></span>
-<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038_counts.tsv.gz&quot;</span>,</span>
-<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038_counts.tsv.gz&quot;</span>)</span>
-<span id="cb4-5"><a href="index.html#cb4-5" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="index.html#cb4-6" tabindex="-1"></a><span class="co"># Coverage table</span></span>
-<span id="cb4-7"><a href="index.html#cb4-7" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-8"><a href="index.html#cb4-8" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038_coverage.tsv.gz&quot;</span>,</span>
-<span id="cb4-9"><a href="index.html#cb4-9" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038_coverage.tsv.gz&quot;</span>)</span>
-<span id="cb4-10"><a href="index.html#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="index.html#cb4-11" tabindex="-1"></a><span class="co"># MAG metadata table</span></span>
-<span id="cb4-12"><a href="index.html#cb4-12" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-13"><a href="index.html#cb4-13" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038_mag_info.tsv.gz&quot;</span>,</span>
-<span id="cb4-14"><a href="index.html#cb4-14" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038_mag_info.tsv.gz&quot;</span>)</span>
-<span id="cb4-15"><a href="index.html#cb4-15" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="index.html#cb4-16" tabindex="-1"></a><span class="co"># Sample metadata table</span></span>
-<span id="cb4-17"><a href="index.html#cb4-17" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-18"><a href="index.html#cb4-18" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038_metadata.tsv.gz&quot;</span>,</span>
-<span id="cb4-19"><a href="index.html#cb4-19" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038_metadata.tsv.gz&quot;</span>)</span>
-<span id="cb4-20"><a href="index.html#cb4-20" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="index.html#cb4-21" tabindex="-1"></a><span class="co"># MAG phylogenetic tree</span></span>
-<span id="cb4-22"><a href="index.html#cb4-22" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-23"><a href="index.html#cb4-23" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038.tree.gz&quot;</span>,</span>
-<span id="cb4-24"><a href="index.html#cb4-24" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038.tree.gz&quot;</span>)</span>
-<span id="cb4-25"><a href="index.html#cb4-25" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="index.html#cb4-26" tabindex="-1"></a><span class="co"># MAG functional annotation table</span></span>
-<span id="cb4-27"><a href="index.html#cb4-27" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb4-28"><a href="index.html#cb4-28" tabindex="-1"></a>    <span class="st">&quot;https://github.com/earthhologenome/EHI_analysis/raw/main/data/DMB0038_merged_kegg.tsv.gz&quot;</span>,</span>
-<span id="cb4-29"><a href="index.html#cb4-29" tabindex="-1"></a>    <span class="st">&quot;data/DMB0038_merged_kegg.tsv.gz&quot;</span>)</span></code></pre></div>
-<p>Now you are ready to begin your analysis.</p>
-
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>University of Copenhagen, <a href="mailto:raphael.eisenhofer@sund.ku.dk" class="email">raphael.eisenhofer@sund.ku.dk</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>University of Copenhagen, <a href="mailto:antton.alberdi@sund.ku.dk" class="email">antton.alberdi@sund.ku.dk</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
@@ -2156,7 +2064,7 @@ background-color: #ffffff !important;
         </div>
       </div>
 
-<a href="data-preprocessing.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
     </div>
   </div>
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
