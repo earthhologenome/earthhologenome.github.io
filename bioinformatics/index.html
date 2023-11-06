@@ -2031,7 +2031,11 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#quality-filtering"><i class="fa fa-check"></i><b>2.1</b> Quality-filtering</a></li>
-<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i><b>2.2</b> Host mapping</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#splitting-host-and-non-host-data"><i class="fa fa-check"></i><b>2.2</b> Splitting host and non-host data</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#index-host-genome"><i class="fa fa-check"></i>Index host genome</a></li>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i>Host mapping</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#metagenomic-complexity-assessment"><i class="fa fa-check"></i><b>2.3</b> Metagenomic complexity assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#prokaryotic-fraction-assessment"><i class="fa fa-check"></i><b>2.4</b> Prokaryotic fraction assessment</a></li>
 </ul></li>
@@ -2060,6 +2064,8 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+<li><a href="https://www.earthhologenome.org/laboratory" target="blank"><b>Laboratory workflow</b></a></li>
+<li><a href="https://www.earthhologenome.org/analysis" target="blank"><b>Analysis workflow</b></a></li>
 
 </ul>
 
@@ -2090,11 +2096,27 @@ background-color: #ffffff !important;
 <p>One of the main objectives of the EHI is to facilitate analysis of animal genomic and microbial metagenomic data. Here, you will find a summary of the bioinformatic pipeline we use for generating analytical data from raw sequencing files.</p>
 <div id="workflow-overview" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Workflow overview<a href="index.html#workflow-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Description of pipeline</p>
+<p>The genome-resolved metagenomics pipeline of the EHI aims to reconstruct metagenome-assembled genomes (MAGs) from faecal and other samples, and subsequently annotate and analyse these MAGs for a better understanding of microbial community composition and function. Here is an overview of such a pipeline:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Data preprocessing:</strong> the pipeline begins by assessing and filtering raw sequencing data to remove low-quality reads, adapters, and contaminants. This step ensures the data’s reliability and quality.</p></li>
+<li><p><strong>Splitting host and non-host data:</strong> the metagenomic fraction is separated from the host, by mapping the reads against a reference host genome.</p></li>
+<li><p><strong>Metagenomic assembly:</strong> the remaining non-host reads are assembled into contigs or scaffolds using metagenomic assembly software. This step results in a set of contigs representing the genetic material of the microbial community.</p></li>
+<li><p><strong>Binning:</strong> the assembled contigs are clustered into metagenome-assembled genomes (MAGs) based on sequence composition, coverage, and other characteristics.</p></li>
+<li><p><strong>MAG Annotation:</strong> MAGs are annotated to determine their taxonomic identity and functional potential.</p></li>
+<li><p><strong>Dereplication:</strong> MAGs are dereplicated to remove redundancy and retain only unique genomic representatives. This step ensures that each MAG represents a distinct microbial population or genome.</p></li>
+<li><p><strong>Compositional overview:</strong> finally, to understand the composition of the gut microbiota in individual samples, the pre-processed reads from each sample are mapped against the dereplicated MAG catalogue. This step quantifies the abundance of each MAG in each sample, allowing for a comprehensive view of the microbial community composition.</p></li>
+</ol>
 </div>
 <div id="snakemake-pipeline" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Snakemake pipeline<a href="index.html#snakemake-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Description of Snakemake</p>
+<p>Snakemake is a workflow management system that helps automate the execution of computational workflows. It is designed to handle complex dependencies between the input files, output files, and the software tools used to process the data. Snakemake is based on the Python programming language and provides a simple and intuitive syntax for defining rules and dependencies.</p>
+<p>Here is a brief overview of how Snakemake works and its basic usage:</p>
+<ol style="list-style-type: decimal">
+<li>Define the input and output files: In Snakemake, you define the input and output files for each step in your workflow. This allows Snakemake to determine when a step needs to be executed based on the availability of its inputs and the freshness of its outputs.</li>
+<li>Write rules: Next, you write rules that describe the software tools and commands needed to process the input files into the output files. A rule consists of a name, input and output files, and a command to run.</li>
+<li>Create a workflow: Once you have defined the rules, you create a workflow by specifying the order in which the rules should be executed. Snakemake automatically resolves the dependencies between the rules based on the input and output files.</li>
+<li>Run the workflow: Finally, you run the workflow using the snakemake command. Snakemake analyzes the input and output files and executes the rules in the correct order to generate the desired output files.</li>
+</ol>
 
 </div>
 </div>

@@ -3,7 +3,7 @@ workflow-overview
 snakemake-pipeline
 data-preprocessing
 quality-filtering
-host-mapping
+splitting-host-and-non-host-data
 metagenomic-complexity-assessment
 prokaryotic-fraction-assessment
 assembly-binning

@@ -2031,7 +2031,11 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#quality-filtering"><i class="fa fa-check"></i><b>2.1</b> Quality-filtering</a></li>
-<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i><b>2.2</b> Host mapping</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#splitting-host-and-non-host-data"><i class="fa fa-check"></i><b>2.2</b> Splitting host and non-host data</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#index-host-genome"><i class="fa fa-check"></i>Index host genome</a></li>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i>Host mapping</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#metagenomic-complexity-assessment"><i class="fa fa-check"></i><b>2.3</b> Metagenomic complexity assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#prokaryotic-fraction-assessment"><i class="fa fa-check"></i><b>2.4</b> Prokaryotic fraction assessment</a></li>
 </ul></li>
@@ -2060,6 +2064,8 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+<li><a href="https://www.earthhologenome.org/laboratory" target="blank"><b>Laboratory workflow</b></a></li>
+<li><a href="https://www.earthhologenome.org/analysis" target="blank"><b>Analysis workflow</b></a></li>
 
 </ul>
 
@@ -2080,50 +2086,58 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="dereplication-and-mapping" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Dereplication and mapping<a href="dereplication-and-mapping.html#dereplication-and-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Contents here</p>
+<p>The next step of the pipeline is to dereplicate bins into a MAG catalogue, and to map the pre-processed sequencing reads to the MAG catalogue to obtain read-count data per sample and MAG.</p>
 <div id="mag-dereplication" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> MAG dereplication<a href="dereplication-and-mapping.html#mag-dereplication" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb14-1"><a href="dereplication-and-mapping.html#cb14-1" tabindex="-1"></a><span class="ex">dRep</span> dereplicate <span class="dt">\</span></span>
-<span id="cb14-2"><a href="dereplication-and-mapping.html#cb14-2" tabindex="-1"></a>      {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep <span class="dt">\</span></span>
-<span id="cb14-3"><a href="dereplication-and-mapping.html#cb14-3" tabindex="-1"></a>      <span class="at">-p</span> {threads} <span class="dt">\</span></span>
-<span id="cb14-4"><a href="dereplication-and-mapping.html#cb14-4" tabindex="-1"></a>      <span class="at">-comp</span> 50 <span class="dt">\</span></span>
-<span id="cb14-5"><a href="dereplication-and-mapping.html#cb14-5" tabindex="-1"></a>      <span class="at">-sa</span> {config<span class="pp">[</span><span class="ss">ani</span><span class="pp">]</span>} <span class="dt">\</span></span>
-<span id="cb14-6"><a href="dereplication-and-mapping.html#cb14-6" tabindex="-1"></a>      <span class="at">-g</span> {config<span class="pp">[</span><span class="ss">magdir</span><span class="pp">]</span>}/<span class="pp">*</span>.fa.gz <span class="dt">\</span></span>
-<span id="cb14-7"><a href="dereplication-and-mapping.html#cb14-7" tabindex="-1"></a>      <span class="at">--genomeInfo</span> mags_formatted.csv</span></code></pre></div>
+<p>Dereplication is the reduction of a set of MAGs based on high sequence similarity between them. Although this step is neither essential nor meaningful in certain cases (e.g., when studying straing-level variation or pangenomes), in most cases it contributes to overcome issues such as excessive computational demands, inflated diversity or unspecific read mapping. If the catalogue of MAGs used to map sequencing reads to contains many similar genomes, read mapping results in multiple high-quality alignments. Depending on the software used and parameters chosen, this leads to sequencing reads either being randomly distributed across the redundant genomes or being reported at all redundant locations. This can bias quantitative estimations of relative representation of each MAG in a given metagenomic sample.</p>
+<p>Dereplication is based on pairwise comparisons of average nucleotide identity (ANI) between MAGs. This implies that the number of comparisons scales quadratically with an increasing amount of MAGs, which requires for efficient strategies to perform dereplication in a cost-efficient way. A popular tool used for dereplicating MAGs is dRep, which combines the fast yet innacurate algorithm MASH with the slow but accurate gANI computation to yield a fast and accurate estimation of ANIs between MAGs. An optimal threshold that balances between retaining genome diversity while minimising cross-mapping issues has been found to be 98% ANI.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb17-1"><a href="dereplication-and-mapping.html#cb17-1" tabindex="-1"></a><span class="ex">dRep</span> dereplicate <span class="dt">\</span></span>
+<span id="cb17-2"><a href="dereplication-and-mapping.html#cb17-2" tabindex="-1"></a>      {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep <span class="dt">\</span></span>
+<span id="cb17-3"><a href="dereplication-and-mapping.html#cb17-3" tabindex="-1"></a>      <span class="at">-p</span> {threads} <span class="dt">\</span></span>
+<span id="cb17-4"><a href="dereplication-and-mapping.html#cb17-4" tabindex="-1"></a>      <span class="at">-comp</span> 50 <span class="dt">\</span></span>
+<span id="cb17-5"><a href="dereplication-and-mapping.html#cb17-5" tabindex="-1"></a>      <span class="at">-sa</span> {config<span class="pp">[</span><span class="ss">ani</span><span class="pp">]</span>} <span class="dt">\</span></span>
+<span id="cb17-6"><a href="dereplication-and-mapping.html#cb17-6" tabindex="-1"></a>      <span class="at">-g</span> {config<span class="pp">[</span><span class="ss">magdir</span><span class="pp">]</span>}/<span class="pp">*</span>.fa.gz <span class="dt">\</span></span>
+<span id="cb17-7"><a href="dereplication-and-mapping.html#cb17-7" tabindex="-1"></a>      <span class="at">--genomeInfo</span> mags_formatted.csv</span></code></pre></div>
 </div>
 <div id="mapping-to-mag-catalogue" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Mapping to MAG catalogue<a href="dereplication-and-mapping.html#mapping-to-mag-catalogue" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb15-1"><a href="dereplication-and-mapping.html#cb15-1" tabindex="-1"></a><span class="co"># Concatenate MAGs</span></span>
-<span id="cb15-2"><a href="dereplication-and-mapping.html#cb15-2" tabindex="-1"></a><span class="fu">cat</span> {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep/dereplicated_genomes/<span class="pp">*</span>.fa.gz <span class="op">&gt;</span> {config[workdir]}/mag_catalogue/{config[dmb]}_mags.fasta.gz</span>
-<span id="cb15-3"><a href="dereplication-and-mapping.html#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="dereplication-and-mapping.html#cb15-4" tabindex="-1"></a><span class="co"># Index the coassembly</span></span>
-<span id="cb15-5"><a href="dereplication-and-mapping.html#cb15-5" tabindex="-1"></a><span class="ex">bowtie2-build</span> <span class="dt">\</span></span>
-<span id="cb15-6"><a href="dereplication-and-mapping.html#cb15-6" tabindex="-1"></a>      <span class="at">--large-index</span> <span class="dt">\</span></span>
-<span id="cb15-7"><a href="dereplication-and-mapping.html#cb15-7" tabindex="-1"></a>      <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb15-8"><a href="dereplication-and-mapping.html#cb15-8" tabindex="-1"></a>      {output.mags} {output.mags}</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb16-1"><a href="dereplication-and-mapping.html#cb16-1" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
-<span id="cb16-2"><a href="dereplication-and-mapping.html#cb16-2" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
-<span id="cb16-3"><a href="dereplication-and-mapping.html#cb16-3" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb16-4"><a href="dereplication-and-mapping.html#cb16-4" tabindex="-1"></a>    <span class="at">-x</span> {input.contigs} <span class="dt">\</span></span>
-<span id="cb16-5"><a href="dereplication-and-mapping.html#cb16-5" tabindex="-1"></a>    <span class="at">-1</span> {input.r1} <span class="dt">\</span></span>
-<span id="cb16-6"><a href="dereplication-and-mapping.html#cb16-6" tabindex="-1"></a>    <span class="at">-2</span> {input.r2} <span class="dt">\</span></span>
-<span id="cb16-7"><a href="dereplication-and-mapping.html#cb16-7" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output}</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb17-1"><a href="dereplication-and-mapping.html#cb17-1" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
-<span id="cb17-2"><a href="dereplication-and-mapping.html#cb17-2" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
-<span id="cb17-3"><a href="dereplication-and-mapping.html#cb17-3" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
-<span id="cb17-4"><a href="dereplication-and-mapping.html#cb17-4" tabindex="-1"></a>    <span class="at">-m</span> count covered_fraction <span class="dt">\</span></span>
-<span id="cb17-5"><a href="dereplication-and-mapping.html#cb17-5" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
-<span id="cb17-6"><a href="dereplication-and-mapping.html#cb17-6" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
-<span id="cb17-7"><a href="dereplication-and-mapping.html#cb17-7" tabindex="-1"></a>    <span class="op">&gt;</span> {output.count_table}</span>
-<span id="cb17-8"><a href="dereplication-and-mapping.html#cb17-8" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="dereplication-and-mapping.html#cb17-9" tabindex="-1"></a><span class="co">#relative abundance for report</span></span>
-<span id="cb17-10"><a href="dereplication-and-mapping.html#cb17-10" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
-<span id="cb17-11"><a href="dereplication-and-mapping.html#cb17-11" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
-<span id="cb17-12"><a href="dereplication-and-mapping.html#cb17-12" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
-<span id="cb17-13"><a href="dereplication-and-mapping.html#cb17-13" tabindex="-1"></a>    <span class="at">-m</span> relative_abundance <span class="dt">\</span></span>
-<span id="cb17-14"><a href="dereplication-and-mapping.html#cb17-14" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
-<span id="cb17-15"><a href="dereplication-and-mapping.html#cb17-15" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
-<span id="cb17-16"><a href="dereplication-and-mapping.html#cb17-16" tabindex="-1"></a>    <span class="op">&gt;</span> {output.mapping_rate}</span></code></pre></div>
+<p>When the objective of a genome-resolved metagenomic analysis is to reconstruct and analyse a microbiome, researchers usually require relative abundance information to measure how abundant or rare each bacteria was in the analysed sample. In order to achieve this, it is necessary to map the reads of each sample back to the MAG catalogue and retrieve mapping statistics. The procedure is identical to that explained in the assembly read-mapping section, yet using the MAG catalogue as a reference database rather than the metagenomic assembly.</p>
+<p>This procedure usually happens in two steps. In the first step, reads are mapped to the MAG catalogue to generate BAM or CRAM mapping files. In the second step, these mapping files are used to extract quantitative read-abundance information in the form of a table in which the amount of reads mapped to each MAG in each sample is displayed.</p>
+<p>First, all MAGs need to be concatenated into a single file, which will become the reference MAG catalogue or database.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb18-1"><a href="dereplication-and-mapping.html#cb18-1" tabindex="-1"></a><span class="co"># Concatenate MAGs</span></span>
+<span id="cb18-2"><a href="dereplication-and-mapping.html#cb18-2" tabindex="-1"></a><span class="fu">cat</span> {config<span class="pp">[</span><span class="ss">workdir</span><span class="pp">]</span>}/drep/dereplicated_genomes/<span class="pp">*</span>.fa.gz <span class="op">&gt;</span> {config[workdir]}/mag_catalogue/{config[dmb]}_mags.fasta.gz</span></code></pre></div>
+<p>The MAG catalogue needs to be indexed before the mapping.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb19-1"><a href="dereplication-and-mapping.html#cb19-1" tabindex="-1"></a><span class="co"># Index the coassembly</span></span>
+<span id="cb19-2"><a href="dereplication-and-mapping.html#cb19-2" tabindex="-1"></a><span class="ex">bowtie2-build</span> <span class="dt">\</span></span>
+<span id="cb19-3"><a href="dereplication-and-mapping.html#cb19-3" tabindex="-1"></a>      <span class="at">--large-index</span> <span class="dt">\</span></span>
+<span id="cb19-4"><a href="dereplication-and-mapping.html#cb19-4" tabindex="-1"></a>      <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb19-5"><a href="dereplication-and-mapping.html#cb19-5" tabindex="-1"></a>      {output.mags} {output.mags}</span></code></pre></div>
+<p>Then, the following step needs to be iterated for each sample, yielding a BAM mapping file for each sample.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb20-1"><a href="dereplication-and-mapping.html#cb20-1" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
+<span id="cb20-2"><a href="dereplication-and-mapping.html#cb20-2" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
+<span id="cb20-3"><a href="dereplication-and-mapping.html#cb20-3" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb20-4"><a href="dereplication-and-mapping.html#cb20-4" tabindex="-1"></a>    <span class="at">-x</span> {input.contigs} <span class="dt">\</span></span>
+<span id="cb20-5"><a href="dereplication-and-mapping.html#cb20-5" tabindex="-1"></a>    <span class="at">-1</span> {input.r1} <span class="dt">\</span></span>
+<span id="cb20-6"><a href="dereplication-and-mapping.html#cb20-6" tabindex="-1"></a>    <span class="at">-2</span> {input.r2} <span class="dt">\</span></span>
+<span id="cb20-7"><a href="dereplication-and-mapping.html#cb20-7" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output}</span></code></pre></div>
+<p>Finally, CoverM can be used to extract the required stats, such as relative abundance and covered fraction per MAG per sample.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb21-1"><a href="dereplication-and-mapping.html#cb21-1" tabindex="-1"></a><span class="co">#Relative abundance</span></span>
+<span id="cb21-2"><a href="dereplication-and-mapping.html#cb21-2" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
+<span id="cb21-3"><a href="dereplication-and-mapping.html#cb21-3" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
+<span id="cb21-4"><a href="dereplication-and-mapping.html#cb21-4" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
+<span id="cb21-5"><a href="dereplication-and-mapping.html#cb21-5" tabindex="-1"></a>    <span class="at">-m</span> relative_abundance <span class="dt">\</span></span>
+<span id="cb21-6"><a href="dereplication-and-mapping.html#cb21-6" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
+<span id="cb21-7"><a href="dereplication-and-mapping.html#cb21-7" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
+<span id="cb21-8"><a href="dereplication-and-mapping.html#cb21-8" tabindex="-1"></a>    <span class="op">&gt;</span> {output.mapping_rate}</span>
+<span id="cb21-9"><a href="dereplication-and-mapping.html#cb21-9" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="dereplication-and-mapping.html#cb21-10" tabindex="-1"></a><span class="co">#MAG coverage</span></span>
+<span id="cb21-11"><a href="dereplication-and-mapping.html#cb21-11" tabindex="-1"></a><span class="ex">coverm</span> genome <span class="dt">\</span></span>
+<span id="cb21-12"><a href="dereplication-and-mapping.html#cb21-12" tabindex="-1"></a>    <span class="at">-b</span> {input} <span class="dt">\</span></span>
+<span id="cb21-13"><a href="dereplication-and-mapping.html#cb21-13" tabindex="-1"></a>    <span class="at">-s</span> ^ <span class="dt">\</span></span>
+<span id="cb21-14"><a href="dereplication-and-mapping.html#cb21-14" tabindex="-1"></a>    <span class="at">-m</span> count covered_fraction <span class="dt">\</span></span>
+<span id="cb21-15"><a href="dereplication-and-mapping.html#cb21-15" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
+<span id="cb21-16"><a href="dereplication-and-mapping.html#cb21-16" tabindex="-1"></a>    <span class="at">--min-covered-fraction</span> 0 <span class="dt">\</span></span>
+<span id="cb21-17"><a href="dereplication-and-mapping.html#cb21-17" tabindex="-1"></a>    <span class="op">&gt;</span> {output.count_table}</span></code></pre></div>
 
 </div>
 </div>

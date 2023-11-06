@@ -2031,7 +2031,11 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#quality-filtering"><i class="fa fa-check"></i><b>2.1</b> Quality-filtering</a></li>
-<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i><b>2.2</b> Host mapping</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#splitting-host-and-non-host-data"><i class="fa fa-check"></i><b>2.2</b> Splitting host and non-host data</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#index-host-genome"><i class="fa fa-check"></i>Index host genome</a></li>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i>Host mapping</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#metagenomic-complexity-assessment"><i class="fa fa-check"></i><b>2.3</b> Metagenomic complexity assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#prokaryotic-fraction-assessment"><i class="fa fa-check"></i><b>2.4</b> Prokaryotic fraction assessment</a></li>
 </ul></li>
@@ -2060,6 +2064,8 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+<li><a href="https://www.earthhologenome.org/laboratory" target="blank"><b>Laboratory workflow</b></a></li>
+<li><a href="https://www.earthhologenome.org/analysis" target="blank"><b>Analysis workflow</b></a></li>
 
 </ul>
 
@@ -2080,31 +2086,33 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="bin-annotation" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Bin annotation<a href="bin-annotation.html#bin-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Contents here</p>
+<p>Once the bins of draft bacterial genomes have been generated, one can annotated them both taxonomically as well as functionally, to obtain biological insights into the characterised microbial community.</p>
 <div id="taxonomic-annotation" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Taxonomic annotation<a href="bin-annotation.html#taxonomic-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb12-1"><a href="bin-annotation.html#cb12-1" tabindex="-1"></a><span class="co"># Run GTDB-tk:</span></span>
-<span id="cb12-2"><a href="bin-annotation.html#cb12-2" tabindex="-1"></a><span class="ex">gtdbtk</span> classify_wf <span class="dt">\</span></span>
-<span id="cb12-3"><a href="bin-annotation.html#cb12-3" tabindex="-1"></a>    <span class="at">--genome_dir</span> {params.bins} <span class="dt">\</span></span>
-<span id="cb12-4"><a href="bin-annotation.html#cb12-4" tabindex="-1"></a>    <span class="at">--extension</span> <span class="st">&quot;gz&quot;</span> <span class="dt">\</span></span>
-<span id="cb12-5"><a href="bin-annotation.html#cb12-5" tabindex="-1"></a>    <span class="at">--out_dir</span> {params.outdir} <span class="dt">\</span></span>
-<span id="cb12-6"><a href="bin-annotation.html#cb12-6" tabindex="-1"></a>    <span class="at">--cpus</span> {threads} <span class="dt">\</span></span>
-<span id="cb12-7"><a href="bin-annotation.html#cb12-7" tabindex="-1"></a>    <span class="at">--skip_ani_screen</span></span></code></pre></div>
+<p>Although not necessary for conducting most of the downstream analyses, taxonomic annotation of MAGs is an important step to provide context, improve comparability and facilitate result interpretation in holo-omic studies. MAGs can be taxonomically annotated using different algorithms and reference databases, but the Genome Taxonomy Database (GTDB) and associated taxonomic classification toolkit (GTDB-Tk) have become the preferred option for many researchers.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb15-1"><a href="bin-annotation.html#cb15-1" tabindex="-1"></a><span class="co"># Run GTDB-tk:</span></span>
+<span id="cb15-2"><a href="bin-annotation.html#cb15-2" tabindex="-1"></a><span class="ex">gtdbtk</span> classify_wf <span class="dt">\</span></span>
+<span id="cb15-3"><a href="bin-annotation.html#cb15-3" tabindex="-1"></a>    <span class="at">--genome_dir</span> {params.bins} <span class="dt">\</span></span>
+<span id="cb15-4"><a href="bin-annotation.html#cb15-4" tabindex="-1"></a>    <span class="at">--extension</span> <span class="st">&quot;gz&quot;</span> <span class="dt">\</span></span>
+<span id="cb15-5"><a href="bin-annotation.html#cb15-5" tabindex="-1"></a>    <span class="at">--out_dir</span> {params.outdir} <span class="dt">\</span></span>
+<span id="cb15-6"><a href="bin-annotation.html#cb15-6" tabindex="-1"></a>    <span class="at">--cpus</span> {threads} <span class="dt">\</span></span>
+<span id="cb15-7"><a href="bin-annotation.html#cb15-7" tabindex="-1"></a>    <span class="at">--skip_ani_screen</span></span></code></pre></div>
 </div>
 <div id="functional-annotation" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Functional annotation<a href="bin-annotation.html#functional-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb13-1"><a href="bin-annotation.html#cb13-1" tabindex="-1"></a><span class="ex">DRAM.py</span> annotate <span class="dt">\</span></span>
-<span id="cb13-2"><a href="bin-annotation.html#cb13-2" tabindex="-1"></a>        <span class="at">-i</span> {input.mag} <span class="dt">\</span></span>
-<span id="cb13-3"><a href="bin-annotation.html#cb13-3" tabindex="-1"></a>        <span class="at">-o</span> {params.outdir} <span class="dt">\</span></span>
-<span id="cb13-4"><a href="bin-annotation.html#cb13-4" tabindex="-1"></a>        <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb13-5"><a href="bin-annotation.html#cb13-5" tabindex="-1"></a>        <span class="at">--min_contig_size</span> 1500</span>
-<span id="cb13-6"><a href="bin-annotation.html#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="bin-annotation.html#cb13-7" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="bin-annotation.html#cb13-8" tabindex="-1"></a><span class="ex">DRAM.py</span> distill <span class="dt">\</span></span>
-<span id="cb13-9"><a href="bin-annotation.html#cb13-9" tabindex="-1"></a>        <span class="at">-i</span> {params.outdir}/annotations.tsv <span class="dt">\</span></span>
-<span id="cb13-10"><a href="bin-annotation.html#cb13-10" tabindex="-1"></a>        <span class="at">--rrna_path</span> {params.outdir}/rrnas.tsv <span class="dt">\</span></span>
-<span id="cb13-11"><a href="bin-annotation.html#cb13-11" tabindex="-1"></a>        <span class="at">--trna_path</span> {params.outdir}/trnas.tsv <span class="dt">\</span></span>
-<span id="cb13-12"><a href="bin-annotation.html#cb13-12" tabindex="-1"></a>        <span class="at">-o</span> {params.distillate}</span></code></pre></div>
+<p>Functional annotation refers to the process of identifying putative functions of genes present in MAGs based on information available in reference databases. The first step is to predict genes in the MAGs (unless these are available from the assembly), followed by functional annotation by matching the protein sequences predicted from the genes with reference databases. Currently, multiple tools exist that perform all these procedures in a single pipeline. For instance, DRAM performs the annotation using Pfam, KEGG, UniProt, CAZY and MEROPS databases. These functional annotations can be used for performing functional gene enrichment analyses, distilling them into genome-inferred functional traits, and many other downstrean operations covered in the <a href="https://www.earthhologenome.org/analysis">EHI analysis workflow</a>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb16-1"><a href="bin-annotation.html#cb16-1" tabindex="-1"></a><span class="ex">DRAM.py</span> annotate <span class="dt">\</span></span>
+<span id="cb16-2"><a href="bin-annotation.html#cb16-2" tabindex="-1"></a>        <span class="at">-i</span> {input.mag} <span class="dt">\</span></span>
+<span id="cb16-3"><a href="bin-annotation.html#cb16-3" tabindex="-1"></a>        <span class="at">-o</span> {params.outdir} <span class="dt">\</span></span>
+<span id="cb16-4"><a href="bin-annotation.html#cb16-4" tabindex="-1"></a>        <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb16-5"><a href="bin-annotation.html#cb16-5" tabindex="-1"></a>        <span class="at">--min_contig_size</span> 1500</span>
+<span id="cb16-6"><a href="bin-annotation.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="bin-annotation.html#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="bin-annotation.html#cb16-8" tabindex="-1"></a><span class="ex">DRAM.py</span> distill <span class="dt">\</span></span>
+<span id="cb16-9"><a href="bin-annotation.html#cb16-9" tabindex="-1"></a>        <span class="at">-i</span> {params.outdir}/annotations.tsv <span class="dt">\</span></span>
+<span id="cb16-10"><a href="bin-annotation.html#cb16-10" tabindex="-1"></a>        <span class="at">--rrna_path</span> {params.outdir}/rrnas.tsv <span class="dt">\</span></span>
+<span id="cb16-11"><a href="bin-annotation.html#cb16-11" tabindex="-1"></a>        <span class="at">--trna_path</span> {params.outdir}/trnas.tsv <span class="dt">\</span></span>
+<span id="cb16-12"><a href="bin-annotation.html#cb16-12" tabindex="-1"></a>        <span class="at">-o</span> {params.distillate}</span></code></pre></div>
 
 </div>
 </div>

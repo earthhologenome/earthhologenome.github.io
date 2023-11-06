@@ -2031,7 +2031,11 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data preprocessing</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#quality-filtering"><i class="fa fa-check"></i><b>2.1</b> Quality-filtering</a></li>
-<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i><b>2.2</b> Host mapping</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#splitting-host-and-non-host-data"><i class="fa fa-check"></i><b>2.2</b> Splitting host and non-host data</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#index-host-genome"><i class="fa fa-check"></i>Index host genome</a></li>
+<li class="chapter" data-level="" data-path="data-preprocessing.html"><a href="data-preprocessing.html#host-mapping"><i class="fa fa-check"></i>Host mapping</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#metagenomic-complexity-assessment"><i class="fa fa-check"></i><b>2.3</b> Metagenomic complexity assessment</a></li>
 <li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#prokaryotic-fraction-assessment"><i class="fa fa-check"></i><b>2.4</b> Prokaryotic fraction assessment</a></li>
 </ul></li>
@@ -2060,6 +2064,8 @@ background-color: #ffffff !important;
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://www.earthhologenome.org" target="blank"><b>Earth Hologenome Initiative</b></a></li>
+<li><a href="https://www.earthhologenome.org/laboratory" target="blank"><b>Laboratory workflow</b></a></li>
+<li><a href="https://www.earthhologenome.org/analysis" target="blank"><b>Analysis workflow</b></a></li>
 
 </ul>
 
@@ -2080,9 +2086,10 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="data-preprocessing" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data preprocessing<a href="data-preprocessing.html#data-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Contents here.</p>
+<p>The first step of the bioinformatic pipeline is to pre-process the raw sequencing data to prepare them for downstream analyses.</p>
 <div id="quality-filtering" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Quality-filtering<a href="data-preprocessing.html#quality-filtering" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Raw sequencing data require an initial preprocessing to get rid off low-quality nucleotides and reads, as well as any remains of sequencing adaptors that can mess around in the downstream analyses. An efficient way to do so is to use the software fastp, which can perform all above-mentioned operations in a single go and directly on compressed files.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb1-1"><a href="data-preprocessing.html#cb1-1" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
 <span id="cb1-2"><a href="data-preprocessing.html#cb1-2" tabindex="-1"></a>    <span class="at">--in1</span> {input.r1i} <span class="at">--in2</span> {input.r2i} <span class="dt">\</span></span>
 <span id="cb1-3"><a href="data-preprocessing.html#cb1-3" tabindex="-1"></a>    <span class="at">--out1</span> {output.r1o} <span class="at">--out2</span> {output.r2o} <span class="dt">\</span></span>
@@ -2098,60 +2105,73 @@ background-color: #ffffff !important;
 <span id="cb1-13"><a href="data-preprocessing.html#cb1-13" tabindex="-1"></a>    <span class="at">--adapter_sequence</span> {params.adapter1} <span class="dt">\</span></span>
 <span id="cb1-14"><a href="data-preprocessing.html#cb1-14" tabindex="-1"></a>    <span class="at">--adapter_sequence_r2</span> {params.adapter2}</span></code></pre></div>
 </div>
-<div id="host-mapping" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Host mapping<a href="data-preprocessing.html#host-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb2-1"><a href="data-preprocessing.html#cb2-1" tabindex="-1"></a><span class="co"># Map reads to catted reference using Bowtie2</span></span>
-<span id="cb2-2"><a href="data-preprocessing.html#cb2-2" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
-<span id="cb2-3"><a href="data-preprocessing.html#cb2-3" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
-<span id="cb2-4"><a href="data-preprocessing.html#cb2-4" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
-<span id="cb2-5"><a href="data-preprocessing.html#cb2-5" tabindex="-1"></a>    <span class="at">-x</span> {input.catted_ref} <span class="dt">\</span></span>
-<span id="cb2-6"><a href="data-preprocessing.html#cb2-6" tabindex="-1"></a>    <span class="at">-1</span> {input.r1i} <span class="dt">\</span></span>
-<span id="cb2-7"><a href="data-preprocessing.html#cb2-7" tabindex="-1"></a>    <span class="at">-2</span> {input.r2i} <span class="dt">\</span></span>
-<span id="cb2-8"><a href="data-preprocessing.html#cb2-8" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-@</span> {threads} <span class="at">-</span> <span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.all_bam} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
-<span id="cb2-9"><a href="data-preprocessing.html#cb2-9" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="data-preprocessing.html#cb2-10" tabindex="-1"></a><span class="co"># Extract non-host reads (note we&#39;re not compressing for nonpareil)</span></span>
-<span id="cb2-11"><a href="data-preprocessing.html#cb2-11" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-f12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
-<span id="cb2-12"><a href="data-preprocessing.html#cb2-12" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> fastq <span class="at">-@</span> {threads} <span class="at">-1</span> {output.non_host_r1} <span class="at">-2</span> {output.non_host_r2} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
-<span id="cb2-13"><a href="data-preprocessing.html#cb2-13" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="data-preprocessing.html#cb2-14" tabindex="-1"></a><span class="co"># Send host reads to BAM</span></span>
-<span id="cb2-15"><a href="data-preprocessing.html#cb2-15" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-F12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
-<span id="cb2-16"><a href="data-preprocessing.html#cb2-16" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.host_bam} <span class="at">-</span></span>
-<span id="cb2-17"><a href="data-preprocessing.html#cb2-17" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="data-preprocessing.html#cb2-18" tabindex="-1"></a><span class="co"># Get % duplicates from host BAM</span></span>
-<span id="cb2-19"><a href="data-preprocessing.html#cb2-19" tabindex="-1"></a><span class="ex">picard</span> <span class="at">-Xmx{resources.mem_gb}g</span> MarkDuplicates <span class="dt">\</span></span>
-<span id="cb2-20"><a href="data-preprocessing.html#cb2-20" tabindex="-1"></a>-I {output.host_bam} <span class="dt">\</span></span>
-<span id="cb2-21"><a href="data-preprocessing.html#cb2-21" tabindex="-1"></a>-O {output.markdup_bam} <span class="dt">\</span></span>
-<span id="cb2-22"><a href="data-preprocessing.html#cb2-22" tabindex="-1"></a>-M {output.markdup}</span></code></pre></div>
+<div id="splitting-host-and-non-host-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Splitting host and non-host data<a href="data-preprocessing.html#splitting-host-and-non-host-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Depending on the sample type employed for data generation, sequencing data might contain only host reads, only microbial reads, or a mixture of both. For example, blood sampled from an animal is expected to only contain host DNA/RNA reads (unless an infection is ongoing), while DNA extracted from a microbial culture is only expected to contain microbial DNA/RNA reads (unless human contamination has happened). In contrast, intestinal content samples, faecal samples, leave samples or root samples can contain both host and microbial nucleic acids.</p>
+<div id="index-host-genome" class="section level3 unnumbered hasAnchor">
+<h3>Index host genome<a href="data-preprocessing.html#index-host-genome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to map metagenomic reads to a reference host genome, it is necessary to index the genome. An index is a data structure that allows for efficient searching of the reference genome by breaking it down into smaller, more manageable pieces. Without an index, aligning reads to a reference genome would be prohibitively slow, especially for large genomes. Bowtie2 is a popular software tool for aligning reads to a reference genome, and it requires an index of the reference genome before alignment can be performed. Bowtie2 uses an index based on the Burrows-Wheeler transform (BWT) algorithm, which enables it to efficiently align reads to the reference genome. Here are the basic command to create a Bowtie2 index for a reference genome:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb2-1"><a href="data-preprocessing.html#cb2-1" tabindex="-1"></a><span class="ex">bowtie2-build</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="data-preprocessing.html#cb2-2" tabindex="-1"></a>    <span class="at">--large-index</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="data-preprocessing.html#cb2-3" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb2-4"><a href="data-preprocessing.html#cb2-4" tabindex="-1"></a>        {input.genome} {output.index}</span></code></pre></div>
+</div>
+<div id="host-mapping" class="section level3 unnumbered hasAnchor">
+<h3>Host mapping<a href="data-preprocessing.html#host-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The next step is to map the reads against the reference genome, followed by a split between reads that have been mapped (in the example below are retained in a BAM/SAM file) and the reads that were not mapped (in the example below outputed to fastq files). The mapped reads can be used for performing population genomic analyses, while the unmapped reads can be used for metagenomic analyses.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb3-1"><a href="data-preprocessing.html#cb3-1" tabindex="-1"></a><span class="co"># Map reads to catted reference using Bowtie2</span></span>
+<span id="cb3-2"><a href="data-preprocessing.html#cb3-2" tabindex="-1"></a><span class="ex">bowtie2</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="data-preprocessing.html#cb3-3" tabindex="-1"></a>    <span class="at">--time</span> <span class="dt">\</span></span>
+<span id="cb3-4"><a href="data-preprocessing.html#cb3-4" tabindex="-1"></a>    <span class="at">--threads</span> {threads} <span class="dt">\</span></span>
+<span id="cb3-5"><a href="data-preprocessing.html#cb3-5" tabindex="-1"></a>    <span class="at">-x</span> {input.catted_ref} <span class="dt">\</span></span>
+<span id="cb3-6"><a href="data-preprocessing.html#cb3-6" tabindex="-1"></a>    <span class="at">-1</span> {input.r1i} <span class="dt">\</span></span>
+<span id="cb3-7"><a href="data-preprocessing.html#cb3-7" tabindex="-1"></a>    <span class="at">-2</span> {input.r2i} <span class="dt">\</span></span>
+<span id="cb3-8"><a href="data-preprocessing.html#cb3-8" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-@</span> {threads} <span class="at">-</span> <span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.all_bam} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
+<span id="cb3-9"><a href="data-preprocessing.html#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="data-preprocessing.html#cb3-10" tabindex="-1"></a><span class="co"># Extract non-host reads (note we&#39;re not compressing for nonpareil)</span></span>
+<span id="cb3-11"><a href="data-preprocessing.html#cb3-11" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-f12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
+<span id="cb3-12"><a href="data-preprocessing.html#cb3-12" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> fastq <span class="at">-@</span> {threads} <span class="at">-1</span> {output.non_host_r1} <span class="at">-2</span> {output.non_host_r2} <span class="at">-</span> <span class="kw">&amp;&amp;</span></span>
+<span id="cb3-13"><a href="data-preprocessing.html#cb3-13" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="data-preprocessing.html#cb3-14" tabindex="-1"></a><span class="co"># Send host reads to BAM</span></span>
+<span id="cb3-15"><a href="data-preprocessing.html#cb3-15" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-b</span> <span class="at">-F12</span> <span class="at">-@</span> {threads} {output.all_bam} <span class="dt">\</span></span>
+<span id="cb3-16"><a href="data-preprocessing.html#cb3-16" tabindex="-1"></a><span class="kw">|</span> <span class="ex">samtools</span> sort <span class="at">-@</span> {threads} <span class="at">-o</span> {output.host_bam} <span class="at">-</span></span>
+<span id="cb3-17"><a href="data-preprocessing.html#cb3-17" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="data-preprocessing.html#cb3-18" tabindex="-1"></a><span class="co"># Get % duplicates from host BAM</span></span>
+<span id="cb3-19"><a href="data-preprocessing.html#cb3-19" tabindex="-1"></a><span class="ex">picard</span> <span class="at">-Xmx{resources.mem_gb}g</span> MarkDuplicates <span class="dt">\</span></span>
+<span id="cb3-20"><a href="data-preprocessing.html#cb3-20" tabindex="-1"></a>-I {output.host_bam} <span class="dt">\</span></span>
+<span id="cb3-21"><a href="data-preprocessing.html#cb3-21" tabindex="-1"></a>-O {output.markdup_bam} <span class="dt">\</span></span>
+<span id="cb3-22"><a href="data-preprocessing.html#cb3-22" tabindex="-1"></a>-M {output.markdup}</span></code></pre></div>
+</div>
 </div>
 <div id="metagenomic-complexity-assessment" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Metagenomic complexity assessment<a href="data-preprocessing.html#metagenomic-complexity-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb3-1"><a href="data-preprocessing.html#cb3-1" tabindex="-1"></a><span class="ex">nonpareil</span> <span class="dt">\</span></span>
-<span id="cb3-2"><a href="data-preprocessing.html#cb3-2" tabindex="-1"></a>    <span class="at">-s</span> {input.non_host_r1} <span class="dt">\</span></span>
-<span id="cb3-3"><a href="data-preprocessing.html#cb3-3" tabindex="-1"></a>    <span class="at">-f</span> fastq <span class="dt">\</span></span>
-<span id="cb3-4"><a href="data-preprocessing.html#cb3-4" tabindex="-1"></a>    <span class="at">-T</span> kmer <span class="dt">\</span></span>
-<span id="cb3-5"><a href="data-preprocessing.html#cb3-5" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
-<span id="cb3-6"><a href="data-preprocessing.html#cb3-6" tabindex="-1"></a>    <span class="at">-b</span> {wildcards.sample}</span>
-<span id="cb3-7"><a href="data-preprocessing.html#cb3-7" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="data-preprocessing.html#cb3-8" tabindex="-1"></a><span class="co">#Script to extract nonpareil values of interest</span></span>
-<span id="cb3-9"><a href="data-preprocessing.html#cb3-9" tabindex="-1"></a><span class="ex">Rscript</span> {config<span class="pp">[</span><span class="ss">codedir</span><span class="pp">]</span>}/scripts/nonpareil_table.R {output.npo} {output.npstats}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb4-1"><a href="data-preprocessing.html#cb4-1" tabindex="-1"></a><span class="ex">nonpareil</span> <span class="dt">\</span></span>
+<span id="cb4-2"><a href="data-preprocessing.html#cb4-2" tabindex="-1"></a>    <span class="at">-s</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb4-3"><a href="data-preprocessing.html#cb4-3" tabindex="-1"></a>    <span class="at">-f</span> fastq <span class="dt">\</span></span>
+<span id="cb4-4"><a href="data-preprocessing.html#cb4-4" tabindex="-1"></a>    <span class="at">-T</span> kmer <span class="dt">\</span></span>
+<span id="cb4-5"><a href="data-preprocessing.html#cb4-5" tabindex="-1"></a>    <span class="at">-t</span> {threads} <span class="dt">\</span></span>
+<span id="cb4-6"><a href="data-preprocessing.html#cb4-6" tabindex="-1"></a>    <span class="at">-b</span> {wildcards.sample}</span>
+<span id="cb4-7"><a href="data-preprocessing.html#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="data-preprocessing.html#cb4-8" tabindex="-1"></a><span class="co">#Script to extract nonpareil values of interest</span></span>
+<span id="cb4-9"><a href="data-preprocessing.html#cb4-9" tabindex="-1"></a><span class="ex">Rscript</span> {config<span class="pp">[</span><span class="ss">codedir</span><span class="pp">]</span>}/scripts/nonpareil_table.R {output.npo} {output.npstats}</span></code></pre></div>
 </div>
 <div id="prokaryotic-fraction-assessment" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Prokaryotic fraction assessment<a href="data-preprocessing.html#prokaryotic-fraction-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb4-1"><a href="data-preprocessing.html#cb4-1" tabindex="-1"></a><span class="co">#Run singlem pipe</span></span>
-<span id="cb4-2"><a href="data-preprocessing.html#cb4-2" tabindex="-1"></a><span class="ex">singlem</span> pipe <span class="dt">\</span></span>
-<span id="cb4-3"><a href="data-preprocessing.html#cb4-3" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
-<span id="cb4-4"><a href="data-preprocessing.html#cb4-4" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
-<span id="cb4-5"><a href="data-preprocessing.html#cb4-5" tabindex="-1"></a>    <span class="at">--otu-table</span> {params.pipe_uncompressed} <span class="dt">\</span></span>
-<span id="cb4-6"><a href="data-preprocessing.html#cb4-6" tabindex="-1"></a>    <span class="at">--taxonomic-profile</span> {output.condense} <span class="dt">\</span></span>
-<span id="cb4-7"><a href="data-preprocessing.html#cb4-7" tabindex="-1"></a>    <span class="at">--threads</span> {threads}</span>
-<span id="cb4-8"><a href="data-preprocessing.html#cb4-8" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="data-preprocessing.html#cb4-9" tabindex="-1"></a><span class="co">#Run singlem read_fraction</span></span>
-<span id="cb4-10"><a href="data-preprocessing.html#cb4-10" tabindex="-1"></a><span class="ex">singlem</span> read_fraction <span class="dt">\</span></span>
-<span id="cb4-11"><a href="data-preprocessing.html#cb4-11" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
-<span id="cb4-12"><a href="data-preprocessing.html#cb4-12" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
-<span id="cb4-13"><a href="data-preprocessing.html#cb4-13" tabindex="-1"></a>    <span class="at">--input-profile</span> {output.condense} <span class="dt">\</span></span>
-<span id="cb4-14"><a href="data-preprocessing.html#cb4-14" tabindex="-1"></a>    <span class="at">--output-tsv</span> {output.read_fraction} <span class="dt">\</span></span>
-<span id="cb4-15"><a href="data-preprocessing.html#cb4-15" tabindex="-1"></a>    <span class="at">--output-per-taxon-read-fractions</span> {params.read_fraction_taxa}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh script-source"><code class="sourceCode bash"><span id="cb5-1"><a href="data-preprocessing.html#cb5-1" tabindex="-1"></a><span class="co">#Run singlem pipe</span></span>
+<span id="cb5-2"><a href="data-preprocessing.html#cb5-2" tabindex="-1"></a><span class="ex">singlem</span> pipe <span class="dt">\</span></span>
+<span id="cb5-3"><a href="data-preprocessing.html#cb5-3" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb5-4"><a href="data-preprocessing.html#cb5-4" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
+<span id="cb5-5"><a href="data-preprocessing.html#cb5-5" tabindex="-1"></a>    <span class="at">--otu-table</span> {params.pipe_uncompressed} <span class="dt">\</span></span>
+<span id="cb5-6"><a href="data-preprocessing.html#cb5-6" tabindex="-1"></a>    <span class="at">--taxonomic-profile</span> {output.condense} <span class="dt">\</span></span>
+<span id="cb5-7"><a href="data-preprocessing.html#cb5-7" tabindex="-1"></a>    <span class="at">--threads</span> {threads}</span>
+<span id="cb5-8"><a href="data-preprocessing.html#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="data-preprocessing.html#cb5-9" tabindex="-1"></a><span class="co">#Run singlem read_fraction</span></span>
+<span id="cb5-10"><a href="data-preprocessing.html#cb5-10" tabindex="-1"></a><span class="ex">singlem</span> read_fraction <span class="dt">\</span></span>
+<span id="cb5-11"><a href="data-preprocessing.html#cb5-11" tabindex="-1"></a>    <span class="at">-1</span> {input.non_host_r1} <span class="dt">\</span></span>
+<span id="cb5-12"><a href="data-preprocessing.html#cb5-12" tabindex="-1"></a>    <span class="at">-2</span> {input.non_host_r2} <span class="dt">\</span></span>
+<span id="cb5-13"><a href="data-preprocessing.html#cb5-13" tabindex="-1"></a>    <span class="at">--input-profile</span> {output.condense} <span class="dt">\</span></span>
+<span id="cb5-14"><a href="data-preprocessing.html#cb5-14" tabindex="-1"></a>    <span class="at">--output-tsv</span> {output.read_fraction} <span class="dt">\</span></span>
+<span id="cb5-15"><a href="data-preprocessing.html#cb5-15" tabindex="-1"></a>    <span class="at">--output-per-taxon-read-fractions</span> {params.read_fraction_taxa}</span></code></pre></div>
 
 </div>
 </div>
