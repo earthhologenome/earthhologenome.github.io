@@ -1131,45 +1131,66 @@ section.lazy-placeholder:after {
 .cid-shlN1AIxR1 .card-img {
   color: #c4bc3b;
 }
-.cid-udB63It3Mq {
+.cid-uwxCBurJlK {
   padding-top: 30px;
-  padding-bottom: 0px;
-  background-color: #90cad8;
-}
-.cid-udB63It3Mq .mbr-section-subtitle {
-  color: #767676;
-}
-.cid-udB6HRuLAb {
-  padding-top: 0px;
   padding-bottom: 30px;
-  background-color: #90cad8;
+  background-color: #c4bc3b;
 }
-.cid-udB6HRuLAb .media-container-row {
-  flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
+.cid-uwxCBurJlK p {
+  margin-bottom: 0;
 }
-@media (min-width: 992px) {
-  .cid-udB6HRuLAb .mbr-figure {
-    padding-right: 4rem;
-  }
+.cid-uwxCBurJlK .card-box {
+  z-index: 1;
+  position: relative;
+  background-color: rgba(254, 247, 242, 0);
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
-@media (max-width: 991px) {
-  .cid-udB6HRuLAb .media-container-row {
-    flex-wrap: wrap-reverse;
-    -webkit-flex-wrap: wrap-reverse;
-  }
-  .cid-udB6HRuLAb .mbr-figure {
-    padding-bottom: 1rem;
-  }
+.cid-uwxCBurJlK .card-box .card-title {
+  pointer-events: all;
 }
-.cid-udB6HRuLAb .mbr-text {
-  color: #4f4943;
-  text-align: left;
+.cid-uwxCBurJlK .card-box .mbr-text {
+  pointer-events: all;
+}
+.cid-uwxCBurJlK .media-container-row {
+  word-wrap: break-word;
+  word-break: break-word;
+  align-items: stretch;
+  -webkit-align-items: stretch;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.cid-uwxCBurJlK .card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.cid-uwxCBurJlK .card-img img {
+  z-index: -1;
+  height: 100%;
+  min-width: 100%;
+  width: auto;
+}
+.cid-uwxCBurJlK .card-wrap {
+  position: relative;
+}
+.cid-uwxCBurJlK .card {
+  padding-bottom: 2rem;
+}
+.cid-uwxCBurJlK .mbr-section-title {
+  color: #ffffff;
+}
+.cid-uwxCBurJlK P {
+  color: #ff7f9f;
 }
 .cid-sw8DA09g9p {
   padding-top: 30px;
   padding-bottom: 15px;
-  background: linear-gradient(45deg, #f7ed4a, #787324);
+  background: linear-gradient(45deg, #0f7699, #55b4d4);
 }
 .cid-sw8DA09g9p .main {
   flex-direction: row-reverse;
