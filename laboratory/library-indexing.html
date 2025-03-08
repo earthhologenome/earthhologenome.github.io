@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Library indexing | The Earth Hologenome Initiative Laboratory Workflow</title>
   <meta name="description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Library indexing | The Earth Hologenome Initiative Laboratory Workflow" />
   <meta property="og:type" content="book" />
@@ -20,11 +20,9 @@
   <meta name="twitter:description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   
 
-<meta name="author" content="Carlotta Pietroni" />
-<meta name="author" content="Antton Alberdi" />
+<meta name="author" content="Carlotta Pietroni, Antton Alberdi" />
 
 
-<meta name="date" content="2023-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1878,6 +1876,28 @@ a.anchor-section::before {content: '#';font-size: 80%;}
 <style type="text/css">
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 <style type="text/css">p.caption {
 color: #777;
@@ -2090,8 +2110,8 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="library-indexing" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Library indexing<a href="library-indexing.html#library-indexing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The second step of the adaptor-based library preparation is to amplify the library using primers containing unique identifiers. This step serves the double function of increasing the molarity of the library to high-enough levels for sequencing, and to assign a sample-specific molecular tag to each library. As library preparation efficiency can be very variable when working with a diverge range of samples derived from different taxa, in the EHI pipeline we implement a <a href="library-indexing.html#library-preparation-qpcr">qPCR screening</a> that inform us about the optimal number of PCR cycles the libraries should be subject to for optimal library preparation.</p>
-<p>It is crucial to carefully adjust the number of indexing PCR cycles to prevent the over-amplification of libraries, which can lead to the generation of highly clonal libraries. With each PCR cycle, an identical copy of an existing DNA sequence is produced. When libraries are excessively amplified, the resultant library could be predominantly composed of technical PCR duplicates rather than the original DNA sequence templates. Failure to appropriately calibrate this step might lead to sequencing only a fraction of the original sample’s complexity. This outcome could artificially distort the diversity of DNA molecules, potentially resulting in erroneous data interpretations.</p>
+<p>Truncated adapters lack some of the essential motifs for sequencing and demultiplexing. The second step of the adaptor-based library preparation is to amplify the library using primers containing unique identifiers and the flow cell binding sequence. This step serves the double function of increasing the molarity of the library to levels adequate for sequencing and assigning a sample-specific molecular tag to each library. As library preparation efficiency can be very variable when working with a diverse range of samples derived from different taxa, in the EHI pipeline we implement a <a href="library-indexing.html#library-preparation-qpcr">qPCR screening</a> that informs us about the optimal number of PCR cycles the libraries should be subject to for optimal library preparation.</p>
+<p>It is crucial to carefully adjust the number of indexing PCR cycles to prevent the over-amplification of libraries, which can lead to the generation of highly clonal libraries. Each PCR cycle produces an identical copy of an existing DNA sequence. When libraries are excessively amplified, the resultant library could be predominantly composed of technical PCR duplicates rather than the original DNA sequence templates. Failure to appropriately calibrate this step might lead to sequencing only a fraction of the original sample’s complexity. This outcome could artificially distort the diversity of DNA molecules, potentially resulting in erroneous data interpretations.</p>
 <div id="instruments-plasticware-and-reagents-5" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Instruments, plasticware and reagents<a href="library-indexing.html#instruments-plasticware-and-reagents-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="instruments-5" class="section level3 unnumbered hasAnchor">
@@ -2174,7 +2194,7 @@ background-color: #ffffff !important;
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Deionized ultrapure water (ddH2O)</td>
+<td align="left">Deionised ultrapure water (ddH2O)</td>
 <td align="center">Bionordika</td>
 <td align="right"><a href="https://www.bionordika.se/bn-51100/">BN-51100</a></td>
 <td align="right">4 ºC</td>
@@ -2252,8 +2272,8 @@ background-color: #ffffff !important;
 <h2><span class="header-section-number">7.2</span> Protocol<a href="library-indexing.html#protocol-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="library-preparation-qpcr" class="section level3 unnumbered hasAnchor">
 <h3>1. Library QC qPCR<a href="library-indexing.html#library-preparation-qpcr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The efficiency of library preparation can vary significantly, especially when working with a diverse range of biological samples. This variation arises due to the presence of inhibitors, which differ greatly across taxa and sample types, and can substantially reduce the enzymatic efficiency of the reactions. Measuring the concentration or molarity of the library product proves ineffective, as it encompasses measurements of target DNA with attached adaptors, DNA lacking attached adaptors, loose adaptors, and adaptor dimers. Consequently, this approach fails to provide any meaningful information about the library’s effectiveness.</p>
-<p>The most effective approach to evaluate library preparation quality involves conducting a qPCR assay utilizing PCR primers that hybridize with the adaptors linked to the DNA molecules during the library preparation step. Within the qPCR assay, only DNA molecules with adaptors attached to both ends and adaptor dimers undergo amplification. Unlike traditional PCR, qPCR offers a real-time overview of the amplification pattern, which proves invaluable for assessing the ideal library quantity, identifying inhibitor presence, and estimating the optimal number of PCR cycles required for the subsequent indexing PCR step in the pipeline.</p>
+<p>Library preparation efficiency can vary significantly, especially when working with a diverse range of biological samples. This variation arises due to the presence of inhibitors, which differ greatly across taxa and sample types and can substantially reduce the enzymatic efficiency of the reactions. Measuring the concentration or molarity of the library product proves ineffective, as it encompasses measurements of target DNA with attached adaptors, DNA lacking attached adaptors, loose adaptors, and adaptor dimers. Consequently, this measurement does not offer meaningful insights into the library’s quality or effectiveness.</p>
+<p>The most effective approach to evaluate library preparation quality involves conducting a qPCR assay utilising PCR primers that hybridise with the adaptors linked to the DNA molecules during the library preparation step. Within the qPCR assay, only DNA molecules with adaptors attached to both ends and adaptor dimers undergo amplification. Unlike traditional PCR, qPCR offers a real-time overview of the amplification pattern, which proves invaluable for assessing the ideal library quantity, identifying inhibitor presence, and estimating the optimal number of PCR cycles required for the subsequent indexing PCR step in the pipeline.</p>
 <p>Although the amplification pattern itself cannot distinguish between library amplification and adaptor-dimer amplification, the dissociation curve provided by qPCR platforms, along with the analysis of qPCR product via agarose gel electrophoresis, greatly assists in further evaluating library quality.</p>
 <ol style="list-style-type: decimal">
 <li>Create the following PCR mastermix on a cooling block.</li>

@@ -1,0 +1,1332 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={The Earth Hologenome Initiative Laboratory Workflow},
+  pdfauthor={Carlotta Pietroni; Antton Alberdi},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{The Earth Hologenome Initiative Laboratory Workflow}
+\author{Carlotta Pietroni\footnote{University of Copenhagen, \href{mailto:carlotta.pietroni@sund.ku.dk}{\nolinkurl{carlotta.pietroni@sund.ku.dk}}} \and Antton Alberdi\footnote{University of Copenhagen, \href{mailto:antton.alberdu@sund.ku.dk}{\nolinkurl{antton.alberdu@sund.ku.dk}}}}
+\date{2023-08-21}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+The Earth Hologenome Initiative (EHI, www.earthhologenome.org) is a global collaborative endeavour aimed at promoting, facilitating, coordinating, and standardising hologenomic research on wild organisms worldwide. The EHI encompasses projects with diverse study designs and goals around standardised and open access sample collection and preservation, data generation and data management criteria.
+
+One of the main objectives of the EHI is to standardise optimal sampling, preservation, and laboratory methods based on open resources and knowledge. Currently, comparability and reproducibility of research data is one of the main issues of microbiome analyses, as molecular analysis of microbial communities is particularly sensitive to cross-contamination and variation in sample collection, preservation, and data generation (Aizpurua et al.~2023).
+
+Here we detail cost-effective procedures that can be reproduced, automated and deployed in different laboratories, which are used to generate high-quality hologenomic data in the EHI.
+
+\hypertarget{overview-of-the-workflow}{%
+\chapter{Overview of the workflow}\label{overview-of-the-workflow}}
+
+\hypertarget{workflow-steps}{%
+\section{Workflow steps}\label{workflow-steps}}
+
+The laboratory workflow of the Earth Hologenome Initiative (EHI) is composed of six steps.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \protect\hyperlink{sample-digestion}{\textbf{Sample homogenisation and digestion:}} to break down the complex matrix of the sample.
+\item
+  \protect\hyperlink{dna-extraction}{\textbf{DNA extraction:}} to isolate DNA molecules from the rest of organic materials in the mixture.
+\item
+  \protect\hyperlink{dna-shearing}{\textbf{DNA shearing:}} to achieve desired molecule sizes for optimal short-read sequencing.
+\item
+  \protect\hyperlink{library-preparation}{\textbf{Sequencing library preparation:}} to convert fragmented DNA molecules into a format that is compatible with the sequencing platform.
+\item
+  \protect\hyperlink{library-indexing}{\textbf{Sequencing library indexing:}} to amplify the library using primers containing unique identifiers.
+\item
+  \protect\hyperlink{library-pooling}{\textbf{Sequencing pool generation:}} to create a single sequencing pool containing multiple libraries in desired proportions.
+\end{enumerate}
+
+\hypertarget{general-considerations}{%
+\section{General considerations}\label{general-considerations}}
+
+\hypertarget{automatisation}{%
+\subsection*{Automatisation}\label{automatisation}}
+\addcontentsline{toc}{subsection}{Automatisation}
+
+All the procedures implemented in the EHI laboratory workflow are automatisable in liquid handlers.
+
+\hypertarget{physical-separation-of-laboratory-environment}{%
+\subsection*{Physical separation of laboratory environment}\label{physical-separation-of-laboratory-environment}}
+\addcontentsline{toc}{subsection}{Physical separation of laboratory environment}
+
+The steps 1-4 should be ran in a pre-PCR laboratory environment, where loads of environmental DNA are kept as low as possible to minimise sample contamination risk. As step 5 involves PCR amplification, any downstream procedure should be run in a post-PCR laboratory environment.
+
+\hypertarget{sample-digestion}{%
+\chapter{Sample homogeneisation and digestion}\label{sample-digestion}}
+
+Homogenisation and digestion of biological samples like faeces or intestinal contents are crucial steps in the process of DNA extraction. These steps help break down the complex matrix of the sample, thus separating different compounds and molecules from each other. Faeces, for example, are composed of a heterogeneous mixture of materials, including undigested food, microbial cells, host cells, and waste products. This complex matrix can make it challenging to access and extract DNA. Homogenisation involves breaking down the solid and semi-solid components of the sample, creating a more uniform mixture that is easier to work with, while digestion also entails degrading cellular structures to release intracellular compounds to the matrix.
+
+The EHI samples are stored in a buffer that serves a dual purpose as both a preservative and a digestion buffer. The buffer facilitates the release of nucleic acids from cells and tissues through breaking down cellular membranes and structures.
+
+The EHI protocol also includes bead-beating using a combination of ceramic, silica and glass beads for sample homogenisation. The mechanical force generated by the beads' movement and collision with the sample causes physical disruption, breaking apart cells and releasing their contents into the surrounding solution. Optimisation of bead-beating conditions is necessary to balance efficient disruption with minimal degradation, as depending on the sample, bead types, and shearing time, there is a potential risk of shearing or damaging sensitive biomolecules.
+
+\hypertarget{instruments-plasticware-and-reagents}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents}}
+
+\hypertarget{instruments}{%
+\subsection*{Instruments}\label{instruments}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  TissueLyser
+\item
+  Thermoshaker
+\end{itemize}
+
+\hypertarget{plasticware}{%
+\subsection*{Plasticware}\label{plasticware}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2857}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4286}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2857}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Item
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Lysing Matrix E 96-Well Plate & MP Biomedicals & \href{https://www.mpbio.com/us/116984001-lysing-matrix-e-96-well-1rack-cf}{116984001-CF} \\
+LX1000 SBS rack & LVL & ????? \\
+\end{longtable}
+
+\hypertarget{reagents}{%
+\subsection*{Reagents}\label{reagents}}
+\addcontentsline{toc}{subsection}{Reagents}
+
+\begin{longtable}[]{@{}lcrr@{}}
+\toprule\noalign{}
+Reagent & Brand & Catalogue number & Storage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Proteinase K 20 mg/ml & Sigma-Aldrich & ???? & -20ºC \\
+\end{longtable}
+
+\hypertarget{protocol}{%
+\section{Protocol}\label{protocol}}
+
+\hypertarget{faeces-and-swabs}{%
+\subsection*{Faeces and swabs}\label{faeces-and-swabs}}
+\addcontentsline{toc}{subsection}{Faeces and swabs}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Thaw the samples and ensure samples have entirely thawed.
+\item
+  Spin down or gently centrifuge tubes briefly to remove any liquid from the lid.
+\item
+  Add the content of 1 well of the Lysing Matrix E 96-Well Plate to each collection tube.
+\item
+  Vortex to ensure that the beads are moving in each sample. If beads are not moving despite vortexing, it is an indication of overstuffing the sample. Consider using a sterile pipet tip to attempt unclogging the beads.
+\item
+  Homogenise the sample with the TissueLyser for two rounds of 6 minutes at max speed (=30 Hz).
+\item
+  Spin down or centrifuge the tubes at 2,2 g/rcf for 1 minute. Ensure no foam is present on the tube's lids. Otherwise, repeat centrifugation.
+\item
+  Gently transfer the supernatant to an LX 1000 LVL tube without disturbing the pellet+beads.
+\end{enumerate}
+
+\hypertarget{tissue-samples}{%
+\subsection*{Tissue samples}\label{tissue-samples}}
+\addcontentsline{toc}{subsection}{Tissue samples}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Extract the tissue from the original preservation tube, dry it out and weight it on a sterile weighing boat.
+\item
+  If the tissue sample is heavier than 10 mg, cut a portion using a sterile scalpel and place it in an Eppendorf tube
+\item
+  Add 250 μl of SDS lysis buffer solution to the tube and 25 μl of proteinase K.
+\item
+  Incubation overnight at 56°C on a a thermoshaker.
+\item
+  Centrifuge/Spin Down** the tubes at 2,2 g/rcf for 1 minutes. Ensure no foam is present on the tube's lids. Otherwise, repeat centrifugation.
+\item
+  Transfer the digested sample to an LX 1000 LVL tube.
+\end{enumerate}
+
+\hypertarget{dna-extraction}{%
+\chapter{DNA extraction}\label{dna-extraction}}
+
+DNA extraction involves isolating DNA molecules from the rest of organic materials in the mixture, as well as removing inhibitors such as polysaccharides, proteins and bile salts, which can affect downstream enzymatic reactions, such as adaptor ligation or PCR amplification. The DNA extraction procedure employed in the EHI involves DNA isolation using silica magnetic beads combined with solid-phase reversible immobilisation (SPRI) to remove as many inhibitors as possible. This technique takes advantage of the binding properties of silica magnetic beads to selectively capture DNA fragments, followed by the principle of SPRI to efficiently remove impurities and elute the purified DNA.
+
+\hypertarget{instruments-plasticware-and-reagents-1}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents-1}}
+
+\hypertarget{instruments-1}{%
+\subsection*{Instruments}\label{instruments-1}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  Thermo Mixer
+\item
+  Vortex
+\item
+  Magnetic rack
+\item
+  Fluorometer (e.g.~Qubit)
+\end{itemize}
+
+\hypertarget{plasticware-1}{%
+\subsection*{Plasticware}\label{plasticware-1}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2857}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4286}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2857}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Item
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+96-well V-shaped 1ml microplate & 4titude & \href{https://www.azenta.com/products/96-round-deep-well-storage-microplate-magnetic-separators}{4ti-0125} \\
+200 µl SBS rack & LVL & ????? \\
+Self-adhesive aluminium foil & LVL & \href{https://www.lvl-technologies.com/en/sample-storage/sealing-foils/aluminium-self-adhesive}{AF100Plus} \\
+Millex-GP 0.22 µm Syringe Filter & Millipore & \href{https://www.sigmaaldrich.com/DK/en/product/mm/slgv013sl?gclid=Cj0KCQjwldKmBhCCARIsAP-0rfzjwr8Qj7HphldqMnc3nU_7QciO-EL5mXhqyq7SAlieGsQ5U0fW6YkaAmYnEALw_wcB\&gclsrc=aw.ds}{SLGV013SL} \\
+\end{longtable}
+
+\hypertarget{stock-reagents}{%
+\subsection*{Stock reagents}\label{stock-reagents}}
+\addcontentsline{toc}{subsection}{Stock reagents}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Storage
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Molecular grade water & Bionordika & \href{https://www.bionordika.se/bn-51100/}{BN-51100} & RT \\
+Citric acid powder & Sigma-Aldrich & \href{https://www.sigmaaldrich.com/DK/en/product/sigma/27487}{Citric acid powder} & RT \\
+Citrate Concentrated Solution 1M & Sigma-Aldrich & \href{https://www.sigmaaldrich.com/DK/en/product/sigma/83273}{83273-250ML-F} & RT \\
+Guanidine thiocyanate (GuSCN) & Sigma-Aldrich & \href{https://www.sigmaaldrich.com/DK/en/product/sigma/g9277}{G9277} & RT \\
+N-Lauroylsarcosine sodium salt solution & Sigma-Aldrich & \href{https://www.sigmaaldrich.com/DK/en/product/sigma/l7414}{L7414-50ML} & RT \\
+TWEEN® 20 & Sigma-Aldrich & \href{https://www.sigmaaldrich.com/DK/en/product/sigma/p9416}{P9416-50ML} & RT \\
+Silica magnetic beads & G-Biosciences & \href{https://astralscientific.com.au/products/786-916}{786-916} & 4ºC \\
+Qubit DNA HS Assay Kit & Invitrogen & \href{https://www.thermofisher.com/order/catalog/product/Q32851}{Q32851} & 4ºC \\
+Qubit DNA BR Assay Kit & Invitrogen & \href{https://www.thermofisher.com/order/catalog/product/Q32851}{Q32850} & 4ºC \\
+\end{longtable}
+
+\hypertarget{preparation-of-working-reagents}{%
+\section{Preparation of working reagents}\label{preparation-of-working-reagents}}
+
+\hypertarget{citrate-buffer-0.1-m-ph-5.0}{%
+\subsection*{Citrate buffer (0.1 M, ph 5.0)}\label{citrate-buffer-0.1-m-ph-5.0}}
+\addcontentsline{toc}{subsection}{Citrate buffer (0.1 M, ph 5.0)}
+
+To prepare a stock of 50ml:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In a 50 mL centrifuge tube, prepare Citric acid stock solution (1 M) by dissolving 9.60 g of citric acid powder (molecular weight = 192.12 g/mol) in H2O to a final volume of 50 mL.
+\item
+  In a 50 mL centrifuge tube, dilute Citric acid stock solution 1:10 to reach a 0.1 M solution with H2O.
+\item
+  In a 50 mL centrifuge tube, dilute Trisodium citrate/Citrate Concentrate solution (1 M) 1:10 to reach a 0.1 M solution with H2O.
+\item
+  In a 50 mL centrifuge tube, combine 17.5 mL of Citric acid solution (0.1 M) with 32.5 mL of Trisodium citrate/Citrate Concentrate solution (0.1 M).
+\item
+  Check that pH is around 5.0 and adjust if needed using NAOH (10M).
+\end{enumerate}
+
+\hypertarget{buffer-b}{%
+\subsection*{Buffer B}\label{buffer-b}}
+\addcontentsline{toc}{subsection}{Buffer B}
+
+To prepare a stock of 50ml:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Weigh 29.54 g of Guanidine thiocyanate (GuSCN) using a large weighing boat.
+\item
+  Add the GuSCN to a sterile PC or glass bottle (150 mL).
+\item
+  Add 20 mL H2O, 5 mL of Citrate buffer (0.1 M) and a sterile stirring bar.
+\item
+  Place the solution (approximately 45 mL) on the magnetic stirrer to dissolve completely.
+\item
+  Add 2.5 mL of N-Lauroylsarcosine sodium salt solution (20\%, pH 7-9).
+\item
+  Add H2O to a final volume of 50 mL.
+\item
+  Filter with a 0.22 µm Syringe Filter.
+\item
+  Check that pH is around 5.0 and adjust if needed using NAOH (10M).
+\end{enumerate}
+
+\hypertarget{buffer-c---dna-fraction}{%
+\subsection*{Buffer C - DNA fraction}\label{buffer-c---dna-fraction}}
+\addcontentsline{toc}{subsection}{Buffer C - DNA fraction}
+
+To prepare a stock of 50ml:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Weigh 11.82 g of Guanidine thiocyanate (GuSCN) using a large weighing boat.
+\item
+  Add the GuSCN to a sterile PC or glass bottle (150 mL).
+\item
+  Add 5 mL H2O, 5 mL of Citrate buffer (0.1 M) and a sterile stirring bar.
+\item
+  Place the solution on the magnetic stirrer to dissolve completely.
+\item
+  Add 30 mL of Isopropanol (2-Propanol).
+\item
+  Add 25 µl of Tween20.
+\item
+  Filter with a 0.22 µm Syringe Filter. Filter slowly to avoid filter overflowing.
+\item
+  Check that pH is around 5.0 and adjust if needed using NAOH (10M).
+\end{enumerate}
+
+\hypertarget{ebt-buffer}{%
+\subsection*{EBT buffer}\label{ebt-buffer}}
+\addcontentsline{toc}{subsection}{EBT buffer}
+
+To prepare a stock of 50ml:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In a 50 mL centrifuge tube, mix 50 ml of EB buffer with 25 µl of Tween20.
+\end{enumerate}
+
+\hypertarget{silica-magnetic-beads-and-buffer-aliquots}{%
+\subsection*{Silica magnetic beads and buffer aliquots}\label{silica-magnetic-beads-and-buffer-aliquots}}
+\addcontentsline{toc}{subsection}{Silica magnetic beads and buffer aliquots}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Switch on the Thermo Mixer and set to the right temperature.
+\item
+  Equilibrate* the silica magnetic beads to room temperature for 30 min.
+\item
+  Create the aliquots of reagents needed according to the table below. Prepare reagents for around 10\% extra samples. Always ensure that beads are thoroughly resuspended before taking an aliquot.
+\end{enumerate}
+
+\begin{longtable}[]{@{}lcr@{}}
+\toprule\noalign{}
+Working reagent & Volume per sample & Tube type \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Beads - DNA fraction & 15 µl & 2 mL \\
+Buffer B & 200 µl & 5/15/50 mL \\
+Buffer C - DNA fraction & 200 µl & 5/15/50 mL \\
+80\% EtOH - DNA washing & 400 µl & 5/15/50 mL \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Place the tube containing silica beads on a magnetic rack and wait until the beads are immobilised on the wall, and the supernatant is clear.
+\item
+  Discard the clear supernatant.
+\item
+  Add 2 mL of Tris-EDTA (TE) buffer to the tube. The TE buffer volume may be reduced according to the volume of the beads needed. The beads must be submerged during the wash step.
+\item
+  Discard the supernatant.
+\item
+  Repeat steps 6 and 7.
+\item
+  Transfer ``Beads - DNA fraction'' to Buffer B. Mix well (by vortexing if you can avoid bubbles) the mixture ``Beads - Buffer B''.
+\end{enumerate}
+
+\hypertarget{protocol-1}{%
+\section{Protocol}\label{protocol-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ensure that the mixture ``Beads - Buffer B'' is properly mixed. Transfer 200 µl of the mixture to each well of the microplate.
+\item
+  Ensure samples have entirely thawed. Vortex and centrifuge/spin down the LVL rack for 30 seconds to remove any liquid from the LVL tube lid.
+\item
+  Transfer 200 μL of each sample to the plate.
+\item
+  Seal the DNA plate with a self-adhesive aluminium foil and spin down.
+\item
+  Incubate DNA plate: for 15 minutes at 10ºC with shaking at 1500 rpm. Spin down.
+\item
+  Place the DNA plate on a magnetic rack and wait until the supernatant is clear. Discard the supernatant.
+\item
+  Remove the DNA plate from the magnet. Add 200 µl of Buffer C to each well and mix well by pipetting. Cover the DNA plate with an aluminium seal and spin down shortly.
+\item
+  Place the DNA plate on a magnetic rack and wait until the supernatant is clear. Discard the supernatant.
+\item
+  Remove the DNA plate from the magnet. Add 200 µl of 80\% EtOH and mix well by pipetting.
+\item
+  Place the DNA plate on the magnetic rack and wait until the supernatant is clear. Discard the supernatant.
+\item
+  Repeat step 18, briefly spin down the plate to bring EtOH residues down and repeat step 19.
+\item
+  Ensure that all residual ethanol is removed. Dry the beads for at least 5 minutes.
+\item
+  Remove the DNA plate from the magnet. Add 50 µl of EBT buffer. Cover the DNA plate with an aluminium seal and spin down shortly.
+\item
+  Incubate DNA plate: 5 minutes at 25 ºC with shaking at 1500 rpm.
+\item
+  Set up what needed for DNA quantification according to the Qubit Assay Protocol
+\item
+  Spin down the DNA plate shortly at 1000 g.
+\item
+  Place the DNA plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Aspirate slowly (to avoid bead transfer) and transfer the supernatant with eluted DNA to a new plate.
+\item
+  Place the plate on a magnetic rack. Transfer the DNA extract to a 200 µl LVL tube.
+\item
+  Use 2 µl to selectively quantify DNA using the Qubit DNA HS or BR Assay Kit and a Qubit Fluorometer.
+\item
+  Store the 200 µl LVL tube plate at -20ºC until further processing.
+\end{enumerate}
+
+\hypertarget{dna-shearing}{%
+\chapter{DNA shearing}\label{dna-shearing}}
+
+Subsequently, DNA extracts need to be sheared to desired molecule sizes for optimal short-read sequencing. Short-read DNA sequencing platforms, such as Illumina sequencing, require DNA fragments to be inserted into sequencing adapters. These adapters are limited in size, typically accommodating fragments within a specific length range (e.g., 400 to 800 base pairs). Shearing the DNA to the desired fragment size ensures that the resulting library inserts are within the acceptable range for adapter ligation and subsequent sequencing. DNA shearing can be achieved using both physical methods, such as ultrasonication, and enzymatic digestion. Ultrasonication involves the use of high-frequency sound waves to break DNA molecules into smaller fragments. Enzymatic digestion involves the use of enzymes, such as restriction endonucleases or other DNA-cleaving enzymes, to break DNA molecules into smaller fragments. Each method has its advantages and considerations, and the choice between them depends on factors such as the desired fragment size range, sample type, and available equipment.
+
+\hypertarget{instruments-plasticware-and-reagents-2}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents-2}}
+
+\hypertarget{instruments-2}{%
+\subsection*{Instruments}\label{instruments-2}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  Covaris LE220 platform
+\end{itemize}
+
+\hypertarget{plasticware-2}{%
+\subsection*{Plasticware}\label{plasticware-2}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Item & Brand & Catalogue number \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Covaris 96-well plate & Covaris & ????? \\
+Plate-adhesive aluminium foil & LVL & AF100Plus \\
+\end{longtable}
+
+\hypertarget{stock-reagents-1}{%
+\subsection*{Stock reagents}\label{stock-reagents-1}}
+\addcontentsline{toc}{subsection}{Stock reagents}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Storage
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Molecular grade water & Bionordika & \href{https://www.bionordika.se/bn-51100/}{BN-51100} & RT \\
+\end{longtable}
+
+\hypertarget{protocol-2}{%
+\section{Protocol}\label{protocol-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate the amount of water and DNA extract volumes are required for each sample to obtain 200 ng of input DNA in 24 µl.
+\item
+  Add the required volume of water to each well of the Covaris plate.
+\item
+  Add the required volume of DNA extract to each well of the Covaris plate.
+\item
+  Seal the plate with a self-adhesive aluminium foil.
+\item
+  Quick-spin the plate to ensure the samples are at the bottom and all air bubbles are removed.
+\item
+  Run DNA shearing using Covaris aiming for 450 nt-long DNA sequences.
+\end{enumerate}
+
+\hypertarget{library-preparation}{%
+\chapter{Library preparation}\label{library-preparation}}
+
+Sequencing library preparation is a crucial step in the process of DNA sequencing. It involves the conversion of fragmented DNA molecules into a format that is compatible with the sequencing platform. The goal of library preparation is to create a collection of DNA fragments, each with sequencing adapters attached, which enables high-throughput sequencing of the DNA molecules. This process ensures that the genetic information contained in the DNA sample can be accurately and efficiently read by the sequencing instrument.
+
+Most samples in the EHI are processed for shotgun metagenomics, which involves sequencing the genetic material of a complex mixture of organisms (e.g.~host animal, bacteria, fungi, dietary remains). Adaptor-ligation based preparation is a common approach for creating sequencing libraries in shotgun metagenomics. Sequencing adapters are short DNA molecules with specific sequences that are compatible with the sequencing platform. The fragmented DNA and sequencing adapters are mixed together, and DNA ligase enzyme is used to covalently join the adapters to the ends of the DNA fragments. This creates DNA molecules with adapters on both ends.
+
+\hypertarget{instruments-plasticware-and-reagents-3}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents-3}}
+
+\hypertarget{instruments-3}{%
+\subsection*{Instruments}\label{instruments-3}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  Thermal cycler
+\end{itemize}
+
+\hypertarget{plasticware-3}{%
+\subsection*{Plasticware}\label{plasticware-3}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Item & Brand & Catalogue number \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+\end{longtable}
+
+\hypertarget{stock-reagents-2}{%
+\subsection*{Stock reagents}\label{stock-reagents-2}}
+\addcontentsline{toc}{subsection}{Stock reagents}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Storage
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Molecular grade water & Bionordika & \href{https://www.bionordika.se/bn-51100/}{BN-51100} & RT \\
+\end{longtable}
+
+\hypertarget{preparation-of-working-reagents-1}{%
+\section{Preparation of working reagents}\label{preparation-of-working-reagents-1}}
+
+\hypertarget{reaction-enhancer}{%
+\subsection*{Reaction enhancer}\label{reaction-enhancer}}
+\addcontentsline{toc}{subsection}{Reaction enhancer}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Combine the following reagents and mix them thoroughly
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+PEG 4000 50\% & 50\% (w/v) & 25\% (w/v) & 500 µl \\
+BSA & 20 mg/ml & 2 mg/ml & 100 µl \\
+NaCl & 5M & 400 mM & 80 µl \\
+ddH2O & & & 320 µl \\
+\textbf{Total} & & & \textbf{1000 µl} \\
+\end{longtable}
+
+\hypertarget{protocol-3}{%
+\section{Protocol}\label{protocol-3}}
+
+\hypertarget{end-repair-reaction}{%
+\subsection*{1. End-repair reaction}\label{end-repair-reaction}}
+\addcontentsline{toc}{subsection}{1. End-repair reaction}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pre-heat the thermocycler's lid (set up/start incubation below).
+\item
+  Create master mix according to the table below on a cooling block.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+T4 DNA ligase buffer & 10X & 1X & 3.00 µl \\
+dNTPs & 25 mM each & 0.25 mM each & 0.30 µl \\
+T4 PNK & 10 U/µl & 7.5 U/rxn & 0.75 µl \\
+T4 DNA polymerase & 3 U/µl & 0.9 U/rxn & 0.30 µl \\
+Reaction enhancer & & & 1.50 µl \\
+\textbf{Total} & & & \textbf{5.85 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Mix the master mix by pipetting and spin it down.
+\item
+  Add 5.85 µl of master mix to each well of PCR strips/PCR plate.
+\item
+  Transfer 24 µl fragmented DNA to the wells (total reaction volume ca. 30 µl). Mix by pipetting.
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Incubate: 30 min at 20°C followed by 30 min at 65°C, cool to 4°C.
+\end{enumerate}
+
+\hypertarget{ligation-reaction}{%
+\subsection*{2. Ligation reaction}\label{ligation-reaction}}
+\addcontentsline{toc}{subsection}{2. Ligation reaction}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pre-heat the thermocycler's lid (set up/start incubation below).
+\item
+  Create master mix according to the table below on a cooling block.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+T4 DNA ligase buffer & 10X & 0.2X & 0.75 µl \\
+T4 DNA ligase & 400 U/µl & 300 U/rxn & 0.75 µl \\
+PEG 4000 50\% & 50\% & 6\% & 4.5 µl \\
+\textbf{Total} & & & \textbf{6.00 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Transfer 1.5 µl of BEDC3 blunt-end adapters to each reaction and mix by pipetting. Use different adaptor molarities depending on the input DNA amount to avoid adaptor dimer peaks.
+  2 µM for extracts ``Too low''
+  5 µM for \textless10 ng library input
+  10 µM for \textless50 ng library input
+  \textbf{20 µM for \textless300 ng library input} \textless- standard
+  50 µM for \textgreater300 ng library input
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Add 6 µl of master mix to the wells (total reaction volume 37,5 µl). Mix by pipetting.
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Incubate: 30 min at 20°C followed by 10 min at 65°C, cool to 4°C.
+\end{enumerate}
+
+\hypertarget{fill-in-reaction}{%
+\subsection*{3. Fill-in reaction}\label{fill-in-reaction}}
+\addcontentsline{toc}{subsection}{3. Fill-in reaction}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pre-heat the thermocycler's lid (set up/start incubation below).
+\item
+  Create master mix according to the table below on a cooling block.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Isothermal Amp buffer & 10X & 0.33X & 1.5 µl \\
+dNTPs & 25 mM & 0.33 mM & 0.76 µl \\
+Bts 2.0 WarmStart polymerase & 8 U/µl & 9.6 U/rxn & 1.2 µl \\
+ddH2O & & & 4.2 µl \\
+\textbf{Total} & & & \textbf{7.50 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Mix the master mix by pipetting and spin it down.
+\item
+  Add 7.5 µl of master mix to the wells (total reaction volume 45 µl). Mix by pipetting.
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Incubate: 15 min at 65°C followed by 15 min at 80°C, cool to 4°C.
+\item
+  Store PCR strips/PCR plate at -20° C if the magnetic beads purification is not performed on the same day.
+\end{enumerate}
+
+\hypertarget{magnetic-bead-based-purification}{%
+\subsection*{4. Magnetic bead-based purification}\label{magnetic-bead-based-purification}}
+\addcontentsline{toc}{subsection}{4. Magnetic bead-based purification}
+
+The final indexed library product needs to be purified in order to get rid of the enzymes and buffers employed in the library preparation.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Equilibrate the beads (MagBio or SPRI) to room temperature for 30 min.*
+\item
+  Ensure the beads are fully resuspended by vortexing.
+\item
+  Transfer 75 µl (1.67 times the volume) of beads to each well and mix thoroughly by pipetting.
+\item
+  Incubate: 5 minutes at room temperature.
+\item
+  Place PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Discard the supernatant.
+\item
+  Add 200 µl of 80\% EtOH to each well. Discard the supernatant.
+\item
+  Repeat step 8. Ensure that all residual ethanol is removed.
+\item
+  Dry the beads for a maximum of 5 minutes.
+\item
+  Add 40 µl of EBT buffer to each well. Quick-spin the PCR strips/PCR plate.
+\item
+  Incubate: 10 minutes at 37°C.
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Place the PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Aspirate (slowly to avoid bead transfer) and dispense the supernatant (DNA libraries) to a new PCR strips/PCR plate.
+\item
+  Place the PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Transfer the purified DNA to a 200 µl LVL tube.
+\end{enumerate}
+
+\hypertarget{library-preparation-qpcr}{%
+\subsection*{5. Library QC qPCR}\label{library-preparation-qpcr}}
+\addcontentsline{toc}{subsection}{5. Library QC qPCR}
+
+The efficiency of library preparation can vary significantly, especially when working with a diverse range of biological samples. This variation arises due to the presence of inhibitors, which differ greatly across taxa and sample types, and can substantially reduce the enzymatic efficiency of the reactions. Measuring the concentration or molarity of the library product proves ineffective, as it encompasses measurements of target DNA with attached adaptors, DNA lacking attached adaptors, loose adaptors, and adaptor dimers. Consequently, this approach fails to provide any meaningful information about the library's effectiveness.
+
+The most effective approach to evaluate library preparation quality involves conducting a qPCR assay utilizing PCR primers that hybridize with the adaptors linked to the DNA molecules during the library preparation step. Within the qPCR assay, only DNA molecules with adaptors attached to both ends and adaptor dimers undergo amplification. Unlike traditional PCR, qPCR offers a real-time overview of the amplification pattern, which proves invaluable for assessing the ideal library quantity, identifying inhibitor presence, and estimating the optimal number of PCR cycles required for the subsequent indexing PCR step in the pipeline.
+
+Although the amplification pattern itself cannot distinguish between library amplification and adaptor-dimer amplification, the dissociation curve provided by qPCR platforms, along with the analysis of qPCR product via agarose gel electrophoresis, greatly assists in further evaluating library quality.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create the following PCR mastermix on a cooling block.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10x PCR Gold buffer & 10X & 1X & 2.5 µl \\
+MgCl2 Solution & 25 mM & 2.5 mM & 2.5 µl \\
+dNTPs Mix & 10 mM each & 0.08 mM each & 0.2 µl \\
+Forward (F) Primer & 10 μM & 0.4 μM & 1.0 µl \\
+Forward (R) Primer & 10 μM & 0.4 μM & 1.0 µl \\
+Sybr Green & & & 1.0 µl \\
+AmpliTaq GOLD DNA polymerase & 5 U/µl & 2.5 U & 0.5 µl \\
+ddH2O & & & 14.3 µl \\
+\textbf{Total} & & & \textbf{23 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Mix well and spin down mastermix.
+\item
+  Aliquot 25 µl of the reaction to each well in the PCR plate/strip.
+\item
+  Add 2 µl of 1:20 diluted library template to each well.
+\item
+  Vortex and spin down the PCR mixture.
+\item
+  Set up the qPCR program.
+\end{enumerate}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Step & Time & Repetition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+95 ºC & 12 min & 1X \\
+- & - & - \\
+95 ºC & 20 sec & \\
+60 ºC & 30 sec & 40 X \\
+72 ºC & 40 sec & \\
+- & - & - \\
+Dissociation curve & & \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Run qPCR products on agarose gel 2\% using 5 µl qPCR product + 2 µl dye solution. Settings: 130V, 350A, 35 minutes.
+\end{enumerate}
+
+\hypertarget{library-indexing}{%
+\chapter{Library indexing}\label{library-indexing}}
+
+The second step of the adaptor-based library preparation is to amplify the library using primers containing unique identifiers. This step serves the double function of increasing the molarity of the library to high-enough levels for sequencing, and to assign a sample-specific molecular tag to each library. As library preparation efficiency can be very variable when working with a diverge range of samples derived from different taxa, in the EHI pipeline we implement a \protect\hyperlink{library-preparation-qpcr}{qPCR screening} that inform us about the optimal number of PCR cycles the libraries should be subject to for optimal library preparation.
+
+It is crucial to carefully adjust the number of indexing PCR cycles to prevent the over-amplification of libraries, which can lead to the generation of highly clonal libraries. With each PCR cycle, an identical copy of an existing DNA sequence is produced. When libraries are excessively amplified, the resultant library could be predominantly composed of technical PCR duplicates rather than the original DNA sequence templates. Failure to appropriately calibrate this step might lead to sequencing only a fraction of the original sample's complexity. This outcome could artificially distort the diversity of DNA molecules, potentially resulting in erroneous data interpretations.
+
+\hypertarget{instruments-plasticware-and-reagents-4}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents-4}}
+
+\hypertarget{instruments-4}{%
+\subsection*{Instruments}\label{instruments-4}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  Thermal cycler
+\end{itemize}
+
+\hypertarget{plasticware-4}{%
+\subsection*{Plasticware}\label{plasticware-4}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Item & Brand & Catalogue number \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+\end{longtable}
+
+\hypertarget{stock-reagents-3}{%
+\subsection*{Stock reagents}\label{stock-reagents-3}}
+\addcontentsline{toc}{subsection}{Stock reagents}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Storage
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Molecular grade water & Bionordika & \href{https://www.bionordika.se/bn-51100/}{BN-51100} & RT \\
+\end{longtable}
+
+\hypertarget{protocol-4}{%
+\section{Protocol}\label{protocol-4}}
+
+\hypertarget{pcr-amplification}{%
+\subsection*{1. PCR amplification}\label{pcr-amplification}}
+\addcontentsline{toc}{subsection}{1. PCR amplification}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create the PCR mastermix on a cooling block.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10x PCR Gold buffer & 10X & 1X & 5.0 µl \\
+MgCl2 Solution & 25 mM & 2.5 mM & 5.0 µl \\
+dNTPs Mix & 10 mM each & 0.08 mM each & 0.4 µl \\
+AmpliTaq GOLD DNA polymerase & 5 U/µl & 5 U & 1.0 µl \\
+ddH2O & & & 26.6 µl \\
+\textbf{Total} & & & \textbf{38 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Mix well and spin down mastermix.
+\item
+  Aliquot 38 µl of the reaction to each well in the PCR plate/strip.
+\item
+  Add 1 µl of each uniquely indexed primer to each well.
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stock concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mix concentration
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Volume per reaction
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Forward (F) Primer & 10 μM & 0.2 μM & 1.0 µl \\
+Forward (R) Primer & 10 μM & 0.2 μM & 1.0 µl \\
+\textbf{Total} & & & \textbf{2 µl} \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Add 10 µl of DNA library product to each well.
+\item
+  Vortex and spin down the PCR mixture.
+\item
+  Set up the qPCR program with adjusted number of cycles per library, as determined by the \protect\hyperlink{library-preparation-qpcr}{qPCR screening}.
+\end{enumerate}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Step & Time & Repetition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+95 ºC & 12 min & 1X \\
+- & - & - \\
+95 ºC & 20 sec & \\
+60 ºC & 30 sec & 7-19X \\
+72 ºC & 40 sec & \\
+- & - & - \\
+72 ºC & 5 min & 1X \\
+4 ºC & inf. & 1X \\
+\end{longtable}
+
+\hypertarget{magnetic-bead-based-purification-1}{%
+\subsection*{2. Magnetic bead-based purification}\label{magnetic-bead-based-purification-1}}
+\addcontentsline{toc}{subsection}{2. Magnetic bead-based purification}
+
+The final indexed library product needs to be purified in order to get rid of the enzymes and buffers employed in the PCR amplification.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Equilibrate the beads to room temperature for 30 min.
+\item
+  Ensure the beads are fully resuspended by vortexing.
+\item
+  Transfer 60 µl (\textasciitilde{} 1.2 times the volume of the library) of beads to each well containing the indexed library and mix thoroughly by pipetting.
+\item
+  Incubate the mixture for 5 minutes at room temperature.
+\item
+  Place PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Discard the supernatant.
+\item
+  Add 200 µl of 80\% EtOH to each well. Discard the supernatant.
+\item
+  Repeat step 7 and ensure that all residual ethanol is removed.
+\item
+  Dry the beads for a maximum of 5 minutes.
+\item
+  Add 35 µl of EBT buffer to each well and quick-spin the PCR strips/PCR plate.
+\item
+  Incubate the mixture 10 minutes at 37°C (outside the magnet).
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Place the PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Aspirate (slowly to avoid bead transfer) and dispense the supernatant (DNA libraries) to a new PCR strips/PCR plate.
+\item
+  Transfer the purified DNA to a 200 µl LVL tube.
+\end{enumerate}
+
+\hypertarget{library-pooling}{%
+\chapter{Library pooling}\label{library-pooling}}
+
+Subsequently, each individual indexed library is analysed for fragment size distribution using capillary electrophoresis. This technique enables measuring the concentration and molarity of desired fragments (usually between 300 and 800 bp) and undesired molecules such as adaptor dimers and primer remains (usually between 30 and 150 bp). Using this information, one can calculate how much volume from each library will be needed to generate a desired amount of data.
+
+\hypertarget{instruments-plasticware-and-reagents-5}{%
+\section{Instruments, plasticware and reagents}\label{instruments-plasticware-and-reagents-5}}
+
+\hypertarget{instruments-5}{%
+\subsection*{Instruments}\label{instruments-5}}
+\addcontentsline{toc}{subsection}{Instruments}
+
+\begin{itemize}
+\tightlist
+\item
+  Magnetic rack
+\item
+  1-10 µl micropipette
+\item
+  20-200 µl micropipette
+\end{itemize}
+
+\hypertarget{plasticware-5}{%
+\subsection*{Plasticware}\label{plasticware-5}}
+\addcontentsline{toc}{subsection}{Plasticware}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Item & Brand & Catalogue number \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & \\
+\end{longtable}
+
+\hypertarget{stock-reagents-4}{%
+\subsection*{Stock reagents}\label{stock-reagents-4}}
+\addcontentsline{toc}{subsection}{Stock reagents}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2222}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Reagent
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Brand
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Catalogue number
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Storage
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Molecular grade water & Bionordika & \href{https://www.bionordika.se/bn-51100/}{BN-51100} & RT \\
+\end{longtable}
+
+\hypertarget{protocol-5}{%
+\section{Protocol}\label{protocol-5}}
+
+\hypertarget{sample-pooling}{%
+\subsection*{1. Sample pooling}\label{sample-pooling}}
+\addcontentsline{toc}{subsection}{1. Sample pooling}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate how much volume is required from each indexed library to achieve the desired proportion of sequencing, and doublecheck no repeated indices are pooled together.
+\item
+  If the required volume is lower than 1 µl (meaning library is very concentrated), dilute the indexed library to ensure accurate pipetting.
+\item
+  Transfer the required volume of original or diluted indexed library to the library pool tube (usually 1.5 ml Eppendorf tube).
+\end{enumerate}
+
+\hypertarget{final-magnetic-bead-based-purification}{%
+\subsection*{2. Final magnetic bead-based purification}\label{final-magnetic-bead-based-purification}}
+\addcontentsline{toc}{subsection}{2. Final magnetic bead-based purification}
+
+Once all indexed libraries have been pooled into a single pool, it is convenient to perform one last bead-purification, to 1) get rid of short fragment remains that will likely create sequencing problems, while 2) concentrating the final library pool into a lower volume.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Equilibrate the beads to room temperature for 30 min.
+\item
+  Ensure the beads are fully resuspended by vortexing.
+\item
+  Transfer the volume of beads that is equivalent to \textasciitilde1.2 times the volume of the library pool and mix thoroughly by pipetting.
+\item
+  Incubate the mixture for 5 minutes at room temperature.
+\item
+  Place PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Discard the supernatant.
+\item
+  Add 200 µl of 80\% EtOH to each well. Discard the supernatant.
+\item
+  Repeat step 7 and ensure that all residual ethanol is removed.
+\item
+  Dry the beads for a maximum of 5 minutes.
+\item
+  Add 35 µl of EBT buffer to each well and quick-spin the PCR strips/PCR plate.
+\item
+  Incubate the mixture 10 minutes at 37°C (outside the magnet).
+\item
+  Quick-spin the PCR strips/PCR plate.
+\item
+  Place the PCR strips/PCR plate on a magnetic rack and wait until the supernatant is clear.
+\item
+  Aspirate (slowly to avoid bead transfer) and dispense the supernatant (DNA libraries) to a new PCR strips/PCR plate.
+\item
+  Transfer the purified DNA to a 200 µl LVL tube.
+\end{enumerate}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
