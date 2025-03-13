@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Library preparation | The Earth Hologenome Initiative Laboratory Workflow</title>
   <meta name="description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Library preparation | The Earth Hologenome Initiative Laboratory Workflow" />
   <meta property="og:type" content="book" />
@@ -20,11 +20,9 @@
   <meta name="twitter:description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   
 
-<meta name="author" content="Carlotta Pietroni" />
-<meta name="author" content="Antton Alberdi" />
+<meta name="author" content="Carlotta Pietroni, Antton Alberdi" />
 
 
-<meta name="date" content="2023-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1878,6 +1876,28 @@ a.anchor-section::before {content: '#';font-size: 80%;}
 <style type="text/css">
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 <style type="text/css">p.caption {
 color: #777;
@@ -2090,8 +2110,8 @@ background-color: #ffffff !important;
             <section class="normal" id="section-">
 <div id="library-preparation" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Library preparation<a href="library-preparation.html#library-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Sequencing library preparation is a crucial step in the process of DNA sequencing. It involves the conversion of fragmented DNA molecules into a format that is compatible with the sequencing platform. The goal of library preparation is to create a collection of DNA fragments, each with sequencing adapters attached, which enables high-throughput sequencing of the DNA molecules. This process ensures that the genetic information contained in the DNA sample can be accurately and efficiently read by the sequencing instrument.</p>
-<p>Most samples in the EHI are processed for shotgun metagenomics, which involves sequencing the genetic material of a complex mixture of organisms (e.g. host animal, bacteria, fungi, dietary remains). Adaptor-ligation based preparation is a common approach for creating sequencing libraries in shotgun metagenomics. Sequencing adapters are short DNA molecules with specific sequences that are compatible with the sequencing platform. The fragmented DNA and sequencing adapters are mixed together, and DNA ligase enzyme is used to covalently join the adapters to the ends of the DNA fragments. This creates DNA molecules with adapters on both ends.</p>
+<p>Sequencing library preparation is a crucial step in the process of DNA sequencing. It involves the conversion of fragmented DNA molecules into a format that is compatible with the sequencing platform. The goal of library preparation is to create a collection of DNA fragments, each with sequencing adapters attached on both ends, which enables high-throughput sequencing of the DNA molecules. This process ensures that the sequencing instrument can accurately and efficiently read the genetic information contained in the DNA sample.</p>
+<p>Most samples in the EHI are processed for shotgun metagenomics, which involves sequencing the genetic material of a complex mixture of organisms (e.g. host animal, bacteria, fungi, dietary remains) without targeting specific genomic regions (e.g., 16S rRNA, ITS, or other marker genes) often used for taxonomic profiling of known groups. Adaptor-ligation based preparation is a common approach for creating sequencing libraries in shotgun metagenomics. Full-length sequencing adapters are short DNA molecules containing specific sequences compatible with the sequencing platform. These include a flow cell binding sequence, the sequencing primer binding site, and a unique sequence (individual index) that enables the unique tagging of a sample and allows several samples to be pooled and sequenced in a single run. During library preparation, the fragmented DNA is mixed with truncated sequencing adapters (containing the sequencing primer binding site), and a DNA ligase enzyme covalently attaches the adapters to the ends of the DNA fragments. This creates DNA molecules with adapters on both ends. Using truncated adapters brings the disadvantage of being incompatible with PCR-free workflows as they require a PCR and clean-up step. However, it offers advantages such as higher ligation efficiency, enhanced multiplexing capabilities, and greater flexibility for projects involving large sample sizes, like the EHI.</p>
 <div id="instruments-plasticware-and-reagents-4" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Instruments, plasticware and reagents<a href="library-preparation.html#instruments-plasticware-and-reagents-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="instruments-4" class="section level3 unnumbered hasAnchor">
@@ -2161,7 +2181,7 @@ background-color: #ffffff !important;
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Deionized ultrapure water (ddH2O)</td>
+<td align="left">Deionised ultrapure water (ddH2O)</td>
 <td align="center">Bionordika</td>
 <td align="right"><a href="https://www.bionordika.se/bn-51100/">BN-51100</a></td>
 <td align="right">25 ºC</td>

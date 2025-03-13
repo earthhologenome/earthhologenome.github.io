@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Overview of the workflow | The Earth Hologenome Initiative Laboratory Workflow</title>
   <meta name="description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Overview of the workflow | The Earth Hologenome Initiative Laboratory Workflow" />
   <meta property="og:type" content="book" />
@@ -20,11 +20,9 @@
   <meta name="twitter:description" content="&lt;p&gt;Detailed information of the laboratory procedures employed in the Earth Hologenome Initiative.&lt;/p&gt;" />
   
 
-<meta name="author" content="Carlotta Pietroni" />
-<meta name="author" content="Antton Alberdi" />
+<meta name="author" content="Carlotta Pietroni, Antton Alberdi" />
 
 
-<meta name="date" content="2023-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1878,6 +1876,28 @@ a.anchor-section::before {content: '#';font-size: 80%;}
 <style type="text/css">
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 <style type="text/css">p.caption {
 color: #777;
@@ -2094,11 +2114,11 @@ background-color: #ffffff !important;
 <h2><span class="header-section-number">2.1</span> Workflow steps<a href="overview-of-the-workflow.html#workflow-steps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The laboratory workflow of the Earth Hologenome Initiative (EHI) is composed of six steps.</p>
 <ol style="list-style-type: decimal">
-<li><a href="sample-digestion.html#sample-digestion"><strong>Sample homogenisation and digestion:</strong></a> to break down the complex matrix of the sample.</li>
-<li><a href="dna-extraction.html#dna-extraction"><strong>DNA extraction:</strong></a> to isolate DNA molecules from the rest of organic materials in the mixture.</li>
+<li><a href="sample-digestion.html#sample-digestion"><strong>Sample homogenisation and digestion:</strong></a> to break down the complex matrix of the sample and to disrupt cell walls.</li>
+<li><a href="dna-extraction.html#dna-extraction"><strong>DNA extraction:</strong></a> to isolate DNA molecules from the rest of organic materials in the mixture and to remove chemical contaminants that may hinder further steps sensitive to inhibitors.</li>
 <li><a href="dna-shearing.html#dna-shearing"><strong>DNA shearing:</strong></a> to achieve desired molecule sizes for optimal short-read sequencing.</li>
-<li><a href="library-preparation.html#library-preparation"><strong>Sequencing library preparation:</strong></a> to convert fragmented DNA molecules into a format that is compatible with the sequencing platform.</li>
-<li><a href="library-indexing.html#library-indexing"><strong>Sequencing library indexing:</strong></a> to amplify the library using primers containing unique identifiers.</li>
+<li><a href="library-preparation.html#library-preparation"><strong>Sequencing library preparation:</strong></a> to convert fragmented DNA molecules into a format (library of DNA fragments) that is compatible with the sequencing platform.</li>
+<li><a href="library-indexing.html#library-indexing"><strong>Sequencing library indexing:</strong></a> to produce copies (amplify) of the library using primers containing unique identifiers.</li>
 <li><a href="library-pooling.html#library-pooling"><strong>Sequencing pool generation:</strong></a> to create a single sequencing pool containing multiple libraries in desired proportions.</li>
 </ol>
 </div>
@@ -2106,7 +2126,7 @@ background-color: #ffffff !important;
 <h2><span class="header-section-number">2.2</span> General considerations<a href="overview-of-the-workflow.html#general-considerations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="automatisation" class="section level3 unnumbered hasAnchor">
 <h3>Automatisation<a href="overview-of-the-workflow.html#automatisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>All the procedures implemented in the EHI laboratory workflow are automatisable in liquid handlers.</p>
+<p>All the procedures implemented in the EHI laboratory have also been semi-automatised on a basic commercial pipetting and liquid handling robot (Opentrons OT-2). The procedure requires a workstation with a thermocycler and magnetic block.</p>
 </div>
 <div id="physical-separation-of-laboratory-environment" class="section level3 unnumbered hasAnchor">
 <h3>Physical separation of laboratory environment<a href="overview-of-the-workflow.html#physical-separation-of-laboratory-environment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
