@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "Earth HoloGenome Initiative ",
-    "currentPage": "httpswww.earthhologenome.orgdatabase.html",
+    "currentPage": "zoom.html",
     "theme": {
       "name": "mobirise4",
       "title": "Mobirise 4",
@@ -32246,7 +32246,7 @@
         "meta_descr": "Site Maker Description",
         "title": "Zoom",
         "order": "40",
-        "header_custom": "<META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=https://ucph-ku.zoom.us/j/8715020416?omn=64828741593?\">"
+        "header_custom": "<META HTTP-EQUIV=REFRESH CONTENT=\"1; URL=https://ucph-ku.zoom.us/j/4440153955r\">"
       },
       "components": [
         {
@@ -32687,7 +32687,7 @@
           },
           "_name": "content11",
           "_sourceTheme": "goalm5",
-          "_customHTML": "<section data-bs-version=\"5.1\" class=\"content11\" group=\"Content\">\n    <mbr-parameters>\n        <header>Size</header>\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"10\" step=\"1\" value=\"0\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"10\" step=\"1\" value=\"10\">\n        <header>Background</header>\n        <input type=\"color\" title=\"Color\" name=\"bgColor\" value=\"#fef7f2\">\n    </mbr-parameters>\n    <div mbr-class=\"{'container': !fullWidth, 'container-fluid': fullWidth}\">\n        <div class=\"row justify-content-center\">\n            <div class=\"col-md-12\">\n                <div class=\"mbr-section-btn align-center\" mbr-buttons mbr-theme-style=\"display-7\" data-toolbar=\"-mbrBtnMove\"><a class=\"btn btn-info\" href=\"https://ucph-ku.zoom.us/j/8715020416?omn=64828741593\" data-app-placeholder=\"Type Text\">Click here if you get stuck</a></div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_customHTML": "<section data-bs-version=\"5.1\" class=\"content11\" group=\"Content\">\n    <mbr-parameters>\n        <header>Size</header>\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"10\" step=\"1\" value=\"0\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"10\" step=\"1\" value=\"10\">\n        <header>Background</header>\n        <input type=\"color\" title=\"Color\" name=\"bgColor\" value=\"#fef7f2\">\n    </mbr-parameters>\n    <div mbr-class=\"{'container': !fullWidth, 'container-fluid': fullWidth}\">\n        <div class=\"row justify-content-center\">\n            <div class=\"col-md-12\">\n                <div class=\"mbr-section-btn align-center\" mbr-buttons mbr-theme-style=\"display-7\" data-toolbar=\"-mbrBtnMove\"><a class=\"btn btn-info\" href=\"https://ucph-ku.zoom.us/j/4440153955r&quot;>\" data-app-placeholder=\"Type Text\">Click here if you get stuck</a></div>\n            </div>\n        </div>\n    </div>\n</section>",
           "_anchor": "content11-ow",
           "_isUserblock": true,
           "_cid": "u2QxjEYTdP",
